@@ -448,13 +448,13 @@ const FarmerDashboard = () => {
       ? (analysisData.candidate_crops || analysisData.candidates) 
       : DEFAULT_ANALYSIS_DATA.candidate_crops;
     
-    let farmerFinancial = analysisData?.farmerfinancial;
-    if (!farmerFinancial || farmerFinancial.loandistressscore === undefined) {
-      farmerFinancial = { loandistressscore: 12 };
+    let farmerFinancial = analysisData?.farmer_financial || analysisData?.farmerfinancial;
+    if (!farmerFinancial || farmerFinancial.loan_distress_score === undefined && farmerFinancial.loandistressscore === undefined) {
+      farmerFinancial = { loan_distress_score: 12, loandistressscore: 12 };
     }
 
     const currentCropCandidate = candidateCrops?.find(c => c.crop === selectedCrop) || candidateCrops?.[0];
-    const finalDistressScore = currentCropCandidate?.final_distress_score || farmerFinancial.loandistressscore;
+    const finalDistressScore = currentCropCandidate?.final_distress_score || farmerFinancial.loan_distress_score || farmerFinancial.loandistressscore;
     
     const phone = farmerProfile?.phone || localStorage.getItem('farmerMobile');
     if (phone && selectedCrop && finalDistressScore) {
@@ -813,14 +813,19 @@ const FarmerDashboard = () => {
 
 
   const farmerFinancial = (() => {
-    if (analysisData?.farmerfinancial && analysisData.farmerfinancial.loandistressscore > 0) {
-      return analysisData.farmerfinancial;
+    const backendData = analysisData?.farmer_financial || analysisData?.farmerfinancial;
+    if (backendData && (backendData.loan_distress_score > 0 || backendData.loandistressscore > 0)) {
+      return {
+        ...backendData,
+        loandistressscore: backendData.loan_distress_score || backendData.loandistressscore,
+        distresscategory: backendData.distress_category || backendData.distresscategory
+      };
     }
     if (loanProfile.has_loan) {
-      const orig = Number(loanProfile.originalloan_amount) || 100000;
-      const out = Number(loanProfile.outstandingprincipal) || 65000;
-      const repaid = Number(loanProfile.totalamountrepaid) || 35000;
-      const rate = Number(loanProfile.annualinterest_rate) || 7.5;
+      const orig = Number(loanProfile.original_loan_amount) || 100000;
+      const out = Number(loanProfile.outstanding_principal) || 65000;
+      const repaid = Number(loanProfile.total_amount_repaid) || 35000;
+      const rate = Number(loanProfile.annual_interest_rate) || 7.5;
       const profit = analysisData?.profit_analysis?.net_profit_inr || 150000;
 
       const repaymentRatio = Math.min(1, Math.max(0, repaid / (orig || 1)));
