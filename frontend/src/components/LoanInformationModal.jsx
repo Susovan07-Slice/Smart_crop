@@ -18,15 +18,29 @@ const LoanInformationModal = ({ isOpen, onClose, onSave, initialData }) => {
     if (initialData) {
       setHasLoan(!!initialData.has_loan);
       setOriginalLoanAmount(initialData.original_loan_amount || 100000);
-      setOutstandingPrincipal(initialData.outstanding_principal || 80000);
       setAnnualInterestRate(initialData.annual_interest_rate || 8.5);
       setTotalAmountRepaid(initialData.total_amount_repaid || 30000);
       setNewLoanAmount(initialData.new_loan_amount || 0);
       setLoanTenureMonths(initialData.loan_tenure_months || 12);
       setRepaymentFrequency(initialData.repayment_frequency || 'Yearly');
       setLenderSource(initialData.lender_source || 'Bank');
+      
+      // If there's an explicit outstanding principal passed, we could use it,
+      // but the requirement is to auto-calculate it based on formula.
     }
   }, [initialData, isOpen]);
+
+  // Auto-calculate Outstanding Principal
+  useEffect(() => {
+    if (hasLoan) {
+      const orig = parseFloat(originalLoanAmount) || 0;
+      const repaid = parseFloat(totalAmountRepaid) || 0;
+      const newL = parseFloat(newLoanAmount) || 0;
+      // Formula: (Original Loan + New Loan) - Repaid
+      const calculated = Math.max(0, (orig + newL) - repaid);
+      setOutstandingPrincipal(calculated);
+    }
+  }, [hasLoan, originalLoanAmount, totalAmountRepaid, newLoanAmount]);
 
   if (!isOpen) return null;
 
@@ -120,9 +134,9 @@ const LoanInformationModal = ({ isOpen, onClose, onSave, initialData }) => {
                   <input
                     type="number"
                     value={outstandingPrincipal}
-                    onChange={(e) => setOutstandingPrincipal(e.target.value)}
-                    className="w-full bg-white/90 border border-red-300 rounded-xl px-3.5 py-2.5 text-xs font-black text-red-600 focus:ring-2 focus:ring-red-500 outline-none shadow-2xs"
-                    required
+                    readOnly
+                    className="w-full bg-red-50/50 border border-red-200 rounded-xl px-3.5 py-2.5 text-xs font-black text-red-600 outline-none shadow-inner cursor-not-allowed"
+                    title="Auto-calculated"
                   />
                 </div>
               </div>
