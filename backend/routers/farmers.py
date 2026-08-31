@@ -190,7 +190,7 @@ def get_dashboard_data(district: Optional[str] = None, db: Session = Depends(dat
         }
         
         all_farmers_list.append(farmer_data)
-        if score > 60:
+        if score > 65.0:
             high_risk.append(farmer_data)
     
     return {
