@@ -2,9 +2,9 @@
 SmartCrop Comprehensive Multi-Factor Distress & Risk Scoring Engine
 ===================================================================
 Incorporates 4 Critical Risk Indicators:
-  1. Financial Debt & Loan Burden (35%)
-  2. Weather Rainfall Deficit / Flood Risk (25%)
-  3. Wind Speed Forecast & Cyclone/Disaster Risk (20%)
+  1. Financial Debt & Loan Burden (45%)
+  2. Weather Rainfall Deficit / Flood Risk (20%)
+  3. Wind Speed Forecast & Cyclone/Disaster Risk (15%)
   4. Crop Survivability & Agronomic Vulnerability Risk (20%)
 
 Categorization (0 to 100):
@@ -32,7 +32,7 @@ def calculate_comprehensive_distress_score(
     out_prin = float(outstanding_principal or orig_loan * 0.7)
     safe_profit = max(10000.0, float(expected_profit or 150000.0))
 
-    # 1. Financial & Loan Debt Burden Risk (Weight: 35%)
+    # 1. Financial & Loan Debt Burden Risk (Weight: 45%)
     if orig_loan <= 0 and out_prin <= 0:
         fin_risk = 0.0
     else:
@@ -48,7 +48,7 @@ def calculate_comprehensive_distress_score(
         )
         fin_risk = round(max(0.0, min(100.0, raw_fin_score)), 1)
 
-    # 2. Weather & Rainfall Deficit / Flood Risk (Weight: 25%)
+    # 2. Weather & Rainfall Deficit / Flood Risk (Weight: 20%)
     rain_dev = float(rainfall_deviation_pct or 0.0)
     if rain_dev < 0:
         rain_risk = min(100.0, abs(rain_dev) * 2.2)
@@ -56,7 +56,7 @@ def calculate_comprehensive_distress_score(
         rain_risk = min(100.0, max(0.0, (rain_dev - 15.0) * 2.5))
     rain_risk = round(rain_risk, 1)
 
-    # 3. Wind Speed Forecast & Extreme Disaster Possibility (Weight: 20%)
+    # 3. Wind Speed Forecast & Extreme Disaster Possibility (Weight: 15%)
     wind_kmh = float(wind_speed_kmh or 15.0)
     wind_risk = max(0.0, (wind_kmh - 12.0) * 2.8)
     if is_cyclone_alert:
@@ -77,9 +77,9 @@ def calculate_comprehensive_distress_score(
 
     # Composite Distress Calculation
     total_score = round(
-        0.35 * fin_risk +
-        0.25 * rain_risk +
-        0.20 * wind_risk +
+        0.45 * fin_risk +
+        0.20 * rain_risk +
+        0.15 * wind_risk +
         0.20 * crop_risk,
         1
     )
