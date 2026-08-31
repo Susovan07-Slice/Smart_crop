@@ -1006,7 +1006,7 @@ const FarmerDashboard = () => {
             </div>
 
             {/* LANGUAGE ADVISORY TOGGLE BUTTONS */}
-            <div className="flex items-center space-x-1.5 bg-emerald-100/70 p-1.5 rounded-2xl border border-emerald-300 shrink-0">
+            <div className="flex flex-wrap items-center gap-1.5 bg-emerald-100/70 p-1.5 rounded-2xl border border-emerald-300 w-full sm:w-auto">
               <span className="text-[10px] font-black uppercase text-emerald-950 px-1.5 flex items-center">
                 <Globe className="h-3.5 w-3.5 mr-1 text-emerald-700" /> Language:
               </span>
@@ -1316,7 +1316,7 @@ const FarmerDashboard = () => {
               <div className={`p-5 rounded-2xl border ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
                 <h3 className={`text-sm font-extrabold uppercase tracking-wider mb-3.5 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
                   <Award className="h-4 w-4 text-emerald-500 mr-2" />
-                  {t('riskbalancedcandidatecropscomparison')}
+                  {t('risk_balanced_candidate_crops_comparison')}
                 </h3>
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse text-xs">

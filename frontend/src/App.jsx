@@ -152,8 +152,8 @@ function NavigationBar() {
         ? 'bg-slate-900/95 border-slate-800 text-white' 
         : 'bg-white/95 border-gray-200 text-gray-900'
     }`}>
-      <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="w-full px-2 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap items-center justify-between min-h-[4rem] py-2 gap-2">
           
           {/* Logo & Brand */}
           <a href="/" onClick={handleHomeClick} className="flex items-center space-x-2.5 group cursor-pointer">
@@ -176,7 +176,7 @@ function NavigationBar() {
           </a>
 
           {/* Right Action Stack */}
-          <div className="flex items-center space-x-2 sm:space-x-3">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-3">
             
             {/* Language Selector Dropdown */}
             <div className={`flex items-center border rounded-lg px-2 sm:px-2.5 py-1 transition-colors ${
@@ -433,7 +433,7 @@ function App() {
     <ErrorBoundary>
       <LanguageProvider>
         <Router>
-          <div className="min-h-screen bg-slate-100 font-sans text-gray-900 flex flex-col overflow-x-hidden">
+          <div className="min-h-screen bg-slate-100 font-sans text-gray-900 flex flex-col">
             <NavigationBar />
             <main className="flex-1">
               <Routes>
