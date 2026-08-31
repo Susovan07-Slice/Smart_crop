@@ -1,8 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Optional
 import database
+import database_login
 import models
+from models_login import FarmerLoginDetails
 import schemas
 from services.distress_scorer import calculate_distress_score, calculate_comprehensive_distress_score
 from services.advisory_engine import generate_advisory
