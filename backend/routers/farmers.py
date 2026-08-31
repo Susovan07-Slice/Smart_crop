@@ -22,6 +22,28 @@ def sync_dashboard(req: FarmerSyncRequest, db: Session = Depends(database.get_db
     if not clean_phone: return {"status": "error"}
     clean_10 = clean_phone[-10:]
     f = db.query(models.Farmer).filter(models.Farmer.phone.like(f"%{clean_10}%")).first()
+    
+    if not f:
+        # Sync from login db if they exist there but not here yet
+        login_db = database_login.LoginSessionLocal()
+        try:
+            lf = login_db.query(FarmerLoginDetails).filter(FarmerLoginDetails.phone.like(f"%{clean_10}%")).first()
+            if lf:
+                f = models.Farmer(
+                    name=f"{lf.first_name or ''} {lf.last_name or ''}".strip() or "Farmer",
+                    phone=lf.phone,
+                    language=lf.preferred_language or "en",
+                    district=lf.district or "Cuttack",
+                    crop=req.crop or "Paddy",
+                    soil_type="Alluvial",
+                    loan_amount=0.0,
+                    days_to_loan_due=45
+                )
+                db.add(f)
+                db.flush()
+        finally:
+            login_db.close()
+            
     if f:
         f.crop = req.crop
         rec = models.FarmerRecord(farmer_id=f.id, distress_score=req.distress_score)
