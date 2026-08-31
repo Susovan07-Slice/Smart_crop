@@ -9,3 +9,5 @@ xgboost
 pandas
 numpy
 pydantic-settings
+sqlalchemy
+gTTS
