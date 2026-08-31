@@ -54,19 +54,19 @@ const DEFAULT_ANALYSIS_DATA = {
     ]
   },
   candidate_crops: [
-    { crop: 'Moong(Green Gram)', suitability_score: 95.2, expected_net_profit: 4432816, total_cultivation_cost: 4310000, safety_score: 85 },
-    { crop: 'Groundnut', suitability_score: 88.5, expected_net_profit: 4416490, total_cultivation_cost: 6350000, safety_score: 78 },
-    { crop: 'Ragi', suitability_score: 94.9, expected_net_profit: 3250000, total_cultivation_cost: 3500000, safety_score: 92 },
-    { crop: 'Rice', suitability_score: 82.1, expected_net_profit: 3850000, total_cultivation_cost: 7500000, safety_score: 80 },
-    { crop: 'Maize', suitability_score: 79.4, expected_net_profit: 3100000, total_cultivation_cost: 5200000, safety_score: 75 }
+    { crop: 'Moong(Green Gram)', suitability_score: 95.2, expected_net_profit: 103078, total_cultivation_cost: 187500, safety_score: 85 },
+    { crop: 'Groundnut', suitability_score: 88.5, expected_net_profit: 92252, total_cultivation_cost: 187500, safety_score: 78 },
+    { crop: 'Ragi', suitability_score: 94.9, expected_net_profit: 62500, total_cultivation_cost: 187500, safety_score: 92 },
+    { crop: 'Rice', suitability_score: 82.1, expected_net_profit: 85500, total_cultivation_cost: 187500, safety_score: 80 },
+    { crop: 'Maize', suitability_score: 79.4, expected_net_profit: 71000, total_cultivation_cost: 187500, safety_score: 75 }
   ],
   profit_analysis: {
-    net_profit_inr: 4432816,
-    total_revenue_inr: 8742816,
-    total_cost_inr: 7500000,
-    formatted_profit: '₹44,32,816 (44.33 Lakh)',
-    formatted_revenue: '₹87,42,816 (87.43 Lakh)',
-    roi_percent: 102.85
+    net_profit_inr: 103078,
+    total_revenue_inr: 290578,
+    total_cost_inr: 187500,
+    formatted_profit: '₹1,03,078',
+    formatted_revenue: '₹2,90,578',
+    roi_percent: 54.9
   },
   market_price_summary: {
     mandi_price_per_quintal: 9714.24,
@@ -723,7 +723,7 @@ const FarmerDashboard = () => {
         body: JSON.stringify({
           district: distName,
           season: seasonName,
-          land_area_ha: areaVal,
+          area_ha: areaVal,
           loan_info: currentLoan
         })
       });
