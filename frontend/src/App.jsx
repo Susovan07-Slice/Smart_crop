@@ -433,7 +433,7 @@ function App() {
     <ErrorBoundary>
       <LanguageProvider>
         <Router>
-          <div className="min-h-screen bg-slate-100 font-sans text-gray-900 flex flex-col">
+          <div className="min-h-screen bg-slate-100 font-sans text-gray-900 flex flex-col overflow-x-hidden">
             <NavigationBar />
             <main className="flex-1">
               <Routes>
