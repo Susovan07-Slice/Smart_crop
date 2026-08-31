@@ -91,11 +91,17 @@ const LocationPickerMap = ({ onLocationSelect, initialDistrict = 'Cuttack' }) =>
     );
   };
 
+  const [isSaved, setIsSaved] = useState(false);
+
   const handleSaveChanges = (e) => {
     e.preventDefault();
-    if (onLocationSelect) {
-      onLocationSelect(currentDistrict);
-    }
+    setIsSaved(true);
+    setTimeout(() => {
+      setIsSaved(false);
+      if (onLocationSelect) {
+        onLocationSelect(currentDistrict);
+      }
+    }, 600);
   };
 
   return (
@@ -138,9 +144,13 @@ const LocationPickerMap = ({ onLocationSelect, initialDistrict = 'Cuttack' }) =>
       <button 
         type="button"
         onClick={handleSaveChanges}
-        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-xl text-sm transition-colors shadow-sm flex items-center justify-center mt-1"
+        disabled={isSaved}
+        className={`w-full font-bold py-2 rounded-xl text-sm transition-all shadow-sm flex items-center justify-center mt-1 transform active:scale-95 ${
+          isSaved ? 'bg-green-500 text-white scale-95' : 'bg-emerald-600 hover:bg-emerald-700 text-white'
+        }`}
       >
-        <CheckCircle2 className="h-4 w-4 mr-2" /> Save Changes
+        <CheckCircle2 className={`h-5 w-5 mr-2 transition-transform duration-300 ${isSaved ? 'scale-125 text-white' : ''}`} /> 
+        {isSaved ? 'Saved!' : 'Save Changes'}
       </button>
     </div>
   );
