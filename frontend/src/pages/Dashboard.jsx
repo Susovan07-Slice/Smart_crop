@@ -35,7 +35,21 @@ const Dashboard = () => {
     // Manual refresh event listener from header navigation bar
     const handleManualRefresh = () => fetchDashboardData();
     window.addEventListener('refreshOfficerDashboard', handleManualRefresh);
-    return () => window.removeEventListener('refreshOfficerDashboard', handleManualRefresh);
+
+    // LIVE REAL-TIME POLLING: Auto-refresh data every 10 seconds
+    const pollInterval = setInterval(() => {
+      // Fetch silently without setting loading state to avoid UI flicker
+      apiClient.get('/dashboard-data/', {
+        params: { district: officerDistrict }
+      })
+      .then(response => setData(response.data))
+      .catch(err => console.warn('Silent live-poll failed:', err));
+    }, 10000);
+
+    return () => {
+      window.removeEventListener('refreshOfficerDashboard', handleManualRefresh);
+      clearInterval(pollInterval);
+    };
   }, [officerDistrict]);
 
   const [sendingAlertId, setSendingAlertId] = useState(null);
