@@ -36,11 +36,19 @@ const LoanInformationModal = ({ isOpen, onClose, onSave, initialData }) => {
       const orig = parseFloat(originalLoanAmount) || 0;
       const repaid = parseFloat(totalAmountRepaid) || 0;
       const newL = parseFloat(newLoanAmount) || 0;
-      // Formula: (Original Loan + New Loan) - Repaid
-      const calculated = Math.max(0, (orig + newL) - repaid);
-      setOutstandingPrincipal(calculated);
+      const rate = parseFloat(annualInterestRate) || 0;
+      const tenure = parseInt(loanTenureMonths) || 0;
+      
+      const totalPrincipal = orig + newL;
+      // Simple Interest = P * R * T / 100 where T is in years
+      const interest = totalPrincipal * rate * (tenure / 12) / 100;
+      
+      const totalDue = totalPrincipal + interest;
+      const calculated = Math.max(0, totalDue - repaid);
+      
+      setOutstandingPrincipal(Math.round(calculated * 100) / 100);
     }
-  }, [hasLoan, originalLoanAmount, totalAmountRepaid, newLoanAmount]);
+  }, [hasLoan, originalLoanAmount, totalAmountRepaid, newLoanAmount, annualInterestRate, loanTenureMonths]);
 
   if (!isOpen) return null;
 
@@ -190,19 +198,31 @@ const LoanInformationModal = ({ isOpen, onClose, onSave, initialData }) => {
                 </div>
               </div>
 
-              <div>
-                <label className="block text-[11px] font-bold text-gray-700 uppercase mb-1">{t('lender_source')}</label>
-                <select
-                  value={lenderSource}
-                  onChange={(e) => setLenderSource(e.target.value)}
-                  className="w-full bg-white/90 border border-gray-300 rounded-xl px-3.5 py-2.5 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-emerald-500 outline-none shadow-2xs"
-                >
-                  <option value="Bank">{t('bank')}</option>
-                  <option value="Cooperative">{t('cooperative')}</option>
-                  <option value="Government scheme">{t('govt_scheme')}</option>
-                  <option value="Microfinance">{t('microfinance')}</option>
-                  <option value="Other">{t('other_lender')}</option>
-                </select>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-[11px] font-bold text-gray-700 uppercase mb-1">Tenure (Months)</label>
+                  <input
+                    type="number"
+                    value={loanTenureMonths}
+                    onChange={(e) => setLoanTenureMonths(e.target.value)}
+                    className="w-full bg-white/90 border border-gray-300 rounded-xl px-3.5 py-2.5 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-emerald-500 outline-none shadow-2xs"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-[11px] font-bold text-gray-700 uppercase mb-1">{t('lender_source')}</label>
+                  <select
+                    value={lenderSource}
+                    onChange={(e) => setLenderSource(e.target.value)}
+                    className="w-full bg-white/90 border border-gray-300 rounded-xl px-3.5 py-2.5 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-emerald-500 outline-none shadow-2xs"
+                  >
+                    <option value="Bank">{t('bank')}</option>
+                    <option value="Cooperative">{t('cooperative')}</option>
+                    <option value="Government scheme">{t('govt_scheme')}</option>
+                    <option value="Microfinance">{t('microfinance')}</option>
+                    <option value="Other">{t('other_lender')}</option>
+                  </select>
+                </div>
               </div>
             </div>
           )}
