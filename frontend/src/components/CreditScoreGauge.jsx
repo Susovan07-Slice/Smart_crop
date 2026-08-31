@@ -10,8 +10,19 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
 
   // Determine category theme based on distress score
   const getScoreTheme = (dScore) => {
+    // Stable environmental factors that do NOT change when financial loans change
+    const envRisks = {
+      weatherRiskPct: 35,
+      weatherRiskLevel: "Mild Deficit",
+      windRiskPct: 28,
+      windRiskLevel: "Light Breeze",
+      cropRiskPct: 45,
+      cropRiskLevel: "Normal Vuln."
+    };
+
     if (dScore <= 25) {
       return {
+        ...envRisks,
         badgeText: "VERY LOW DISTRESS",
         badgeClass: isDarkMode ? "bg-emerald-900/70 text-emerald-300 border-emerald-700" : "bg-emerald-100 text-emerald-800 border-emerald-300",
         scoreColor: isDarkMode ? "text-emerald-400" : "text-emerald-600",
@@ -21,16 +32,11 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
         get loanBurdenLevel() {
           if (!hasLoan) return t('level_low');
           return this.loanBurdenPct >= 70 ? t('level_high') : (this.loanBurdenPct >= 40 ? t('level_moderate') : t('level_low'));
-        },
-        weatherRiskPct: 15,
-        weatherRiskLevel: "Low Deficit",
-        windRiskPct: 12,
-        windRiskLevel: "Normal Wind",
-        cropRiskPct: 20,
-        cropRiskLevel: "Resilient Crop"
+        }
       };
     } else if (dScore <= 50) {
       return {
+        ...envRisks,
         badgeText: "LOW DISTRESS",
         badgeClass: isDarkMode ? "bg-emerald-900/50 text-emerald-300 border-emerald-600" : "bg-emerald-50 text-emerald-700 border-emerald-200",
         scoreColor: isDarkMode ? "text-emerald-400" : "text-emerald-600",
@@ -40,16 +46,11 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
         get loanBurdenLevel() {
           if (!hasLoan) return t('level_low');
           return this.loanBurdenPct >= 70 ? t('level_high') : (this.loanBurdenPct >= 40 ? t('level_moderate') : t('level_low'));
-        },
-        weatherRiskPct: 35,
-        weatherRiskLevel: "Mild Deficit",
-        windRiskPct: 28,
-        windRiskLevel: "Light Breeze",
-        cropRiskPct: 35,
-        cropRiskLevel: "Normal Crop"
+        }
       };
     } else if (dScore <= 75) {
       return {
+        ...envRisks,
         badgeText: "MODERATE DISTRESS",
         badgeClass: isDarkMode ? "bg-amber-900/70 text-amber-300 border-amber-700" : "bg-amber-100 text-amber-900 border-amber-300",
         scoreColor: isDarkMode ? "text-amber-400" : "text-amber-600",
@@ -59,16 +60,11 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
         get loanBurdenLevel() {
           if (!hasLoan) return t('level_moderate');
           return this.loanBurdenPct >= 70 ? t('level_high') : (this.loanBurdenPct >= 40 ? t('level_moderate') : t('level_low'));
-        },
-        weatherRiskPct: 60,
-        weatherRiskLevel: "Moderate Deficit",
-        windRiskPct: 52,
-        windRiskLevel: "Breezy/Gusts",
-        cropRiskPct: 58,
-        cropRiskLevel: "Moderate Vuln."
+        }
       };
     } else {
       return {
+        ...envRisks,
         badgeText: "HIGH DISTRESS",
         badgeClass: isDarkMode ? "bg-rose-900/70 text-rose-300 border-rose-700" : "bg-red-100 text-red-800 border-red-300",
         scoreColor: isDarkMode ? "text-rose-400" : "text-red-600",
@@ -78,13 +74,7 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
         get loanBurdenLevel() {
           if (!hasLoan) return t('level_high');
           return this.loanBurdenPct >= 70 ? t('level_high') : (this.loanBurdenPct >= 40 ? t('level_moderate') : t('level_low'));
-        },
-        weatherRiskPct: 85,
-        weatherRiskLevel: "Severe Deficit",
-        windRiskPct: 82,
-        windRiskLevel: "Storm Warning",
-        cropRiskPct: 88,
-        cropRiskLevel: "High Vuln."
+        }
       };
     }
   };
