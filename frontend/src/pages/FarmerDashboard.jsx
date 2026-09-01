@@ -747,11 +747,46 @@ const FarmerDashboard = () => {
   };
 
   useEffect(() => {
-    runFullPipeline(location, season, areaHa, loanProfile);
+    const phone = farmerProfile?.phone || localStorage.getItem('farmerMobile');
+    const shouldPromptLoan = localStorage.getItem('promptLoanOnLogin') === 'true';
 
-    if (localStorage.getItem('promptLoanOnLogin') === 'true') {
-      setIsLoanModalOpen(true);
-      localStorage.removeItem('promptLoanOnLogin');
+    if (phone && !localStorage.getItem('farmerLoanProfile')) {
+      apiClient.get(`/financial-profile-by-phone/${phone}`)
+        .then(res => {
+          if (res.data) {
+            setLoanProfile(res.data);
+            localStorage.setItem('farmerLoanProfile', JSON.stringify(res.data));
+            
+            // If they have a loan, we don't need to force the empty "Add a loan" modal on them
+            if (shouldPromptLoan && res.data.has_loan) {
+              localStorage.removeItem('promptLoanOnLogin');
+            } else if (shouldPromptLoan) {
+              setIsLoanModalOpen(true);
+              localStorage.removeItem('promptLoanOnLogin');
+            }
+            runFullPipeline(location, season, areaHa, res.data);
+          } else {
+            if (shouldPromptLoan) {
+              setIsLoanModalOpen(true);
+              localStorage.removeItem('promptLoanOnLogin');
+            }
+            runFullPipeline(location, season, areaHa, loanProfile);
+          }
+        })
+        .catch(err => {
+          console.warn('Failed to load existing loan profile:', err);
+          if (shouldPromptLoan) {
+            setIsLoanModalOpen(true);
+            localStorage.removeItem('promptLoanOnLogin');
+          }
+          runFullPipeline(location, season, areaHa, loanProfile);
+        });
+    } else {
+      if (shouldPromptLoan) {
+        setIsLoanModalOpen(true);
+        localStorage.removeItem('promptLoanOnLogin');
+      }
+      runFullPipeline(location, season, areaHa, loanProfile);
     }
 
     const handleOpenLoan = () => setIsLoanModalOpen(true);

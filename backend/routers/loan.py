@@ -79,6 +79,32 @@ def save_farmer_financial_profile_by_phone(phone: str, loan: schemas.LoanProfile
 
     breakdown = calculate_loan_distress(loan)
     return breakdown
+
+@router.get("/financial-profile-by-phone/{phone}", response_model=schemas.LoanProfileInput)
+def get_farmer_financial_profile_by_phone(phone: str, db: Session = Depends(database.get_db)):
+    clean_phone = "".join(filter(str.isdigit, phone))[-10:]
+    db_farmer = db.query(models.Farmer).filter(models.Farmer.phone.like(f"%{clean_phone}%")).first()
+    
+    if not db_farmer:
+        return {"has_loan": False}
+
+    profile = db.query(models.FarmerFinancialProfile).filter(models.FarmerFinancialProfile.farmer_id == db_farmer.id).first()
+    if not profile:
+        return {"has_loan": False}
+
+    return schemas.LoanProfileInput(
+        has_loan=profile.has_loan,
+        original_loan_amount=profile.original_loan_amount,
+        outstanding_principal=profile.outstanding_principal,
+        annual_interest_rate=profile.annual_interest_rate,
+        total_amount_repaid=profile.total_amount_repaid,
+        new_loan_amount=profile.new_loan_amount,
+        loan_start_date=profile.loan_start_date,
+        loan_tenure_months=profile.loan_tenure_months,
+        repayment_frequency=profile.repayment_frequency,
+        lender_source=profile.lender_source
+    )
+
 @router.get("/financial-profile/{farmer_id}")
 def get_farmer_financial_profile(farmer_id: int, db: Session = Depends(database.get_db)):
     profile = db.query(models.FarmerFinancialProfile).filter(models.FarmerFinancialProfile.farmer_id == farmer_id).first()
