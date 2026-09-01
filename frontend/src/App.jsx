@@ -223,7 +223,7 @@ function NavigationBar() {
             {/* CONDITIONAL AUTHENTICATED PROFILE DROPDOWN */}
             {location.pathname === '/officer-dashboard' && isOfficerLoggedIn ? (
               /* OFFICER LOGGED IN: SHOW OFFICER PROFILE DROPDOWN BADGE */
-              <div className="relative" ref={officerProfileRef}>
+              <div className="sm:relative" ref={officerProfileRef}>
                 <button
                   onClick={() => setShowOfficerMenu(!showOfficerMenu)}
                   className="flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-blue-300 bg-blue-50 hover:bg-blue-100 text-blue-950 font-black text-xs transition-all shadow-xs cursor-pointer"
@@ -236,7 +236,7 @@ function NavigationBar() {
 
                 {/* Officer Profile Dropdown Menu */}
                 {showOfficerMenu && (
-                  <div className="absolute right-0 mt-2 w-72 rounded-2xl shadow-2xl border border-blue-100 bg-white text-gray-800 py-3 z-50 animate-in fade-in zoom-in-95 duration-150">
+                  <div className="absolute top-full mt-2 left-2 right-2 sm:top-auto sm:mt-2 sm:left-auto sm:right-0 sm:w-72 rounded-2xl shadow-2xl border border-blue-100 bg-white text-gray-800 py-3 z-50 animate-in fade-in zoom-in-95 duration-150">
                     {/* Officer Header Info */}
                     <div className="px-4 py-2 border-b border-gray-100 bg-blue-50/50">
                       <p className="text-sm font-black text-blue-950 flex items-center">
@@ -288,7 +288,7 @@ function NavigationBar() {
                 )}
               </div>
             ) : location.pathname === '/farmer-dashboard' && isLoggedIn ? (
-              <div className="relative" ref={profileRef}>
+              <div className="sm:relative" ref={profileRef}>
                 <button
                   onClick={() => setShowProfileMenu(!showProfileMenu)}
                   className={`flex items-center space-x-1.5 px-2.5 py-1.5 rounded-full border transition-colors shadow-2xs font-extrabold text-xs ${
@@ -303,7 +303,7 @@ function NavigationBar() {
 
                 {/* Profile Dropdown Menu Modal */}
                 {showProfileMenu && (
-                  <div className={`absolute right-0 mt-2 w-72 rounded-2xl shadow-2xl border py-2.5 z-50 animate-in fade-in zoom-in-95 duration-150 ${
+                  <div className={`absolute top-full mt-2 left-2 right-2 sm:top-auto sm:mt-2 sm:left-auto sm:right-0 sm:w-72 rounded-2xl shadow-2xl border py-2.5 z-50 animate-in fade-in zoom-in-95 duration-150 ${
                     isDarkMode ? 'bg-slate-900 border-slate-700 text-white' : 'bg-white border-gray-200 text-gray-800'
                   }`}>
                     
