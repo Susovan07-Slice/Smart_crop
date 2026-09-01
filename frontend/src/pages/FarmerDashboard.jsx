@@ -694,23 +694,21 @@ const FarmerDashboard = () => {
     setLoading(true);
     
     try {
-      const soilRes = await fetch(`${API_BASE}/api/district-profile/${distName}`);
-      if (soilRes.ok) {
-        const data = await soilRes.json();
-        setSoilProfile(data.soil);
+      const soilRes = await apiClient.get(`/district-profile/${distName}`);
+      if (soilRes.data) {
+        setSoilProfile(soilRes.data.soil);
       }
     } catch (e) {
       console.warn("Soil fetch note:", e);
     }
 
     try {
-      const wRes = await fetch(`${API_BASE}/api/weather/${distName}`);
-      if (wRes.ok) {
-        const wData = await wRes.json();
+      const wRes = await apiClient.get(`/weather/${distName}`);
+      if (wRes.data) {
         setWeatherInfo({
-          temp: wData.temperature || 27.5,
-          condition: wData.condition || 'Partly Cloudy',
-          humidity: wData.humidity || 76,
+          temp: wRes.data.temperature || 27.5,
+          condition: wRes.data.condition || 'Partly Cloudy',
+          humidity: wRes.data.humidity || 76,
           rainfall: 1150
         });
       }
@@ -719,22 +717,17 @@ const FarmerDashboard = () => {
     }
 
     try {
-      const res = await fetch(`${API_BASE}/api/full-farm-analysis`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          district: distName,
-          season: seasonName,
-          area_ha: areaVal,
-          loan_info: currentLoan
-        })
+      const res = await apiClient.post(`/full-farm-analysis`, {
+        district: distName,
+        season: seasonName,
+        area_ha: areaVal,
+        loan_input: currentLoan
       });
       
-      if (res.ok) {
-        const data = await res.json();
-        setAnalysisData(data);
-        if (data.crop_recommendation && data.crop_recommendation.recommended_crop) {
-          setSelectedCrop(data.crop_recommendation.recommended_crop);
+      if (res.data) {
+        setAnalysisData(res.data);
+        if (res.data.crop_recommendation && res.data.crop_recommendation.recommended_crop) {
+          setSelectedCrop(res.data.crop_recommendation.recommended_crop);
         }
       } else {
         setAnalysisData(DEFAULT_ANALYSIS_DATA);
@@ -796,6 +789,14 @@ const FarmerDashboard = () => {
   const handleSaveLoanProfile = (updatedProfile) => {
     setLoanProfile(updatedProfile);
     localStorage.setItem('farmerLoanProfile', JSON.stringify(updatedProfile));
+    
+    // Save to backend so Officer Portal sees it
+    const phone = farmerProfile?.phone || localStorage.getItem('farmerMobile');
+    if (phone) {
+      apiClient.post(`/financial-profile-by-phone/${phone}`, updatedProfile)
+        .catch(err => console.warn('Failed to save loan to backend:', err));
+    }
+
     window.dispatchEvent(new CustomEvent('loanProfileUpdated'));
     runFullPipeline(location, season, areaHa, updatedProfile);
   };
