@@ -690,7 +690,7 @@ const FarmerDashboard = () => {
     return nearest;
   };
 
-  const runFullPipeline = async (distName, seasonName, areaVal, currentLoan) => {
+  const runFullPipeline = async (distName, seasonName, areaVal, currentLoan, targetCrop = selectedCrop) => {
     setLoading(true);
     
     try {
@@ -722,12 +722,14 @@ const FarmerDashboard = () => {
         season: seasonName,
         area_ha: areaVal,
         loan_input: currentLoan,
-        current_crop: selectedCrop // Send user's selected crop to force evaluation
+        current_crop: targetCrop // Send user's selected crop to force evaluation
       });
       
       if (res.data) {
         setAnalysisData(res.data);
-        if (res.data.crop_recommendation && res.data.crop_recommendation.recommended_crop) {
+        if (targetCrop) {
+          setSelectedCrop(targetCrop);
+        } else if (res.data.crop_recommendation && res.data.crop_recommendation.recommended_crop) {
           setSelectedCrop(res.data.crop_recommendation.recommended_crop);
         }
       } else {
@@ -1168,7 +1170,28 @@ const FarmerDashboard = () => {
             </button>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            
+            {/* Target Crop Selector */}
+            <div>
+              <label className={`flex items-center text-xs font-bold uppercase mb-1.5 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
+                <Sprout className="h-3.5 w-3.5 mr-1.5 text-green-500" />
+                Target Crop
+              </label>
+              <select 
+                value={selectedCrop}
+                onChange={(e) => {
+                  setSelectedCrop(e.target.value);
+                  runFullPipeline(location, season, areaHa, loanProfile, e.target.value);
+                }}
+                className={`w-full border rounded-xl px-3.5 py-2.5 text-sm font-semibold focus:ring-2 focus:ring-green-500 outline-none shadow-2xs ${isDarkMode ? 'bg-slate-700 text-white border-slate-600' : 'bg-white text-gray-800 border-gray-300'}`}
+              >
+                {['Rice', 'Maize', 'Moong(Green Gram)', 'Groundnut', 'Ragi', 'Urad', 'Cotton', 'Jute', 'Sugarcane', 'Horse Gram', 'Potato', 'Rapeseed &Mustard', 'Sesamum', 'Wheat'].map(crop => (
+                  <option key={crop} value={crop}>{crop}</option>
+                ))}
+              </select>
+            </div>
+
             {/* Season Selector */}
             <div>
               <label className={`flex items-center text-xs font-bold uppercase mb-1.5 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
