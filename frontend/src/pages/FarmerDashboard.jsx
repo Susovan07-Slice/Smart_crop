@@ -54,11 +54,11 @@ const DEFAULT_ANALYSIS_DATA = {
     ]
   },
   candidate_crops: [
-    { crop: 'Moong(Green Gram)', suitability_score: 95.2, expected_net_profit: 103078, total_cultivation_cost: 187500, safety_score: 85 },
-    { crop: 'Groundnut', suitability_score: 88.5, expected_net_profit: 92252, total_cultivation_cost: 187500, safety_score: 78 },
-    { crop: 'Ragi', suitability_score: 94.9, expected_net_profit: 62500, total_cultivation_cost: 187500, safety_score: 92 },
-    { crop: 'Rice', suitability_score: 82.1, expected_net_profit: 85500, total_cultivation_cost: 187500, safety_score: 80 },
-    { crop: 'Maize', suitability_score: 79.4, expected_net_profit: 71000, total_cultivation_cost: 187500, safety_score: 75 }
+    { crop: 'Moong(Green Gram)', suitability_score: 95.2, expected_net_profit: 103078, total_cultivation_cost: 187500, safety_score: 85, final_distress_score: 31.0 },
+    { crop: 'Groundnut', suitability_score: 88.5, expected_net_profit: 92252, total_cultivation_cost: 187500, safety_score: 78, final_distress_score: 33.5 },
+    { crop: 'Ragi', suitability_score: 94.9, expected_net_profit: 62500, total_cultivation_cost: 187500, safety_score: 92, final_distress_score: 29.0 },
+    { crop: 'Rice', suitability_score: 82.1, expected_net_profit: 85500, total_cultivation_cost: 187500, safety_score: 80, final_distress_score: 35.0 },
+    { crop: 'Maize', suitability_score: 79.4, expected_net_profit: 71000, total_cultivation_cost: 187500, safety_score: 75, final_distress_score: 38.0 }
   ],
   profit_analysis: {
     net_profit_inr: 103078,
@@ -444,6 +444,8 @@ const FarmerDashboard = () => {
   const [analysisData, setAnalysisData] = useState(DEFAULT_ANALYSIS_DATA);
 
   useEffect(() => {
+    if (loading) return;
+    
     const candidateCrops = (analysisData?.candidate_crops || analysisData?.candidates)?.length > 0 
       ? (analysisData.candidate_crops || analysisData.candidates) 
       : DEFAULT_ANALYSIS_DATA.candidate_crops;

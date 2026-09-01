@@ -72,10 +72,8 @@ const Login = () => {
       });
 
       if (response.data.token) {
-        localStorage.removeItem('farmerLoanProfile');
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('farmerMobile', cleanPhone);
-        localStorage.setItem('promptLoanOnLogin', 'true');
 
         if (response.data.profile) {
           localStorage.setItem('smartCropFarmerProfile', JSON.stringify(response.data.profile));
@@ -113,10 +111,8 @@ const Login = () => {
           land_area_ha: 2.5,
           preferred_language: "en"
         };
-        localStorage.removeItem('farmerLoanProfile');
         localStorage.setItem('token', token);
         localStorage.setItem('farmerMobile', cleanPhone);
-        localStorage.setItem('promptLoanOnLogin', 'true');
         localStorage.setItem('smartCropFarmerProfile', JSON.stringify(profile));
         localStorage.setItem('smartCropLocation', profile.district);
         localStorage.setItem('smartCropLandArea', profile.land_area_ha);
