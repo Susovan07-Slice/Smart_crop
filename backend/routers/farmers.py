@@ -129,7 +129,7 @@ def get_dashboard_data(district: Optional[str] = None, db: Session = Depends(dat
                     district=lf.district or district or "Cuttack",
                     crop="Paddy",
                     soil_type="Alluvial",
-                    loan_amount=65000.0,
+                    loan_amount=0.0,
                     days_to_loan_due=45
                 )
                 db.add(new_f)

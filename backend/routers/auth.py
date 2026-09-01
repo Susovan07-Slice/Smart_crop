@@ -50,7 +50,7 @@ def sync_farmer_to_main_db(phone: str, first_name: str, last_name: str, district
                 district=district,
                 crop="Paddy",
                 soil_type="Alluvial",
-                loan_amount=50000.0,
+                loan_amount=0.0,
                 days_to_loan_due=60
             )
             main_db.add(new_farmer)

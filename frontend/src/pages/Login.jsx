@@ -72,6 +72,7 @@ const Login = () => {
       });
 
       if (response.data.token) {
+        localStorage.removeItem('farmerLoanProfile');
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('farmerMobile', cleanPhone);
         localStorage.setItem('promptLoanOnLogin', 'true');
@@ -112,6 +113,7 @@ const Login = () => {
           land_area_ha: 2.5,
           preferred_language: "en"
         };
+        localStorage.removeItem('farmerLoanProfile');
         localStorage.setItem('token', token);
         localStorage.setItem('farmerMobile', cleanPhone);
         localStorage.setItem('promptLoanOnLogin', 'true');
@@ -178,6 +180,7 @@ const Login = () => {
       });
 
       if (response.data.token) {
+        localStorage.removeItem('farmerLoanProfile');
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('farmerMobile', cleanPhone);
         localStorage.setItem('promptLoanOnLogin', 'true');
@@ -223,6 +226,7 @@ const Login = () => {
           land_area_ha: parseFloat(landAreaHa) || 2.5,
           preferred_language: signupLang
         };
+        localStorage.removeItem('farmerLoanProfile');
         localStorage.setItem('token', token);
         localStorage.setItem('farmerMobile', cleanPhone);
         localStorage.setItem('promptLoanOnLogin', 'true');

@@ -748,6 +748,11 @@ const FarmerDashboard = () => {
   useEffect(() => {
     runFullPipeline(location, season, areaHa, loanProfile);
 
+    if (localStorage.getItem('promptLoanOnLogin') === 'true') {
+      setIsLoanModalOpen(true);
+      localStorage.removeItem('promptLoanOnLogin');
+    }
+
     const handleOpenLoan = () => setIsLoanModalOpen(true);
     const handleToggleAssistant = () => setIsAssistantOpen(prev => !prev);
 
