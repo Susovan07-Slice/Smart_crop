@@ -53,7 +53,8 @@ def run_loan_aware_farm_analysis(
     area_ha: float,
     loan_input: Optional[LoanProfileInput] = None,
     latitude: Optional[float] = None,
-    longitude: Optional[float] = None
+    longitude: Optional[float] = None,
+    current_crop: Optional[str] = None
 ) -> Dict[str, Any]:
     if loan_input is None:
         loan_input = LoanProfileInput(has_loan=False)
@@ -90,6 +91,20 @@ def run_loan_aware_farm_analysis(
     )
     rec_res = recommend_crop(rec_req)
     top_candidates_raw = rec_res.top_recommendations[:5]
+
+    # FORCE inclusion of the user's current crop if it exists
+    if current_crop:
+        # Check if it's already in the top 5
+        exists = any(c.crop.lower() == current_crop.lower() for c in top_candidates_raw)
+        if not exists:
+            # We don't have a strict probability for it since it didn't make top 5, so we assign a moderate suitability
+            from schemas.ml import CropRecommendationItem
+            forced_crop = CropRecommendationItem(
+                crop=current_crop,
+                probability=0.55,
+                reasons=[f"Selected by farmer for evaluation in {district}"]
+            )
+            top_candidates_raw.append(forced_crop)
 
     evaluated_candidates = []
     max_expected_profit = 0.0
@@ -220,6 +235,13 @@ def run_loan_aware_farm_analysis(
         cand.rank = idx + 1
 
     top_3_candidates = scored_candidates[:3]
+    
+    # Make sure the current_crop is in the returned list so frontend doesn't fall back to Maize!
+    if current_crop:
+        if not any(c.crop.lower() == current_crop.lower() for c in top_3_candidates):
+            current_crop_cand = next((c for c in scored_candidates if c.crop.lower() == current_crop.lower()), None)
+            if current_crop_cand:
+                top_3_candidates.append(current_crop_cand)
     master_recommended_crop = top_3_candidates[0].crop
 
     top_cand = top_3_candidates[0]

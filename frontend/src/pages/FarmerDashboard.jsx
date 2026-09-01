@@ -721,7 +721,8 @@ const FarmerDashboard = () => {
         district: distName,
         season: seasonName,
         area_ha: areaVal,
-        loan_input: currentLoan
+        loan_input: currentLoan,
+        current_crop: selectedCrop // Send user's selected crop to force evaluation
       });
       
       if (res.data) {
@@ -733,7 +734,10 @@ const FarmerDashboard = () => {
         setAnalysisData(DEFAULT_ANALYSIS_DATA);
       }
     } catch (e) {
-      console.warn("Analysis fetch note:", e);
+      console.error("CRITICAL: full-farm-analysis API call failed. Is VITE_API_BASE_URL set correctly on Vercel?", e);
+      if (e.isVercelHtmlFallback) {
+        alert("API Connection Error: The dashboard cannot reach the backend server. Please configure VITE_API_BASE_URL in your Vercel deployment settings pointing to your Render backend (e.g. https://your-backend.onrender.com). For now, displaying offline placeholder data.");
+      }
       setAnalysisData(DEFAULT_ANALYSIS_DATA);
     } finally {
       setLoading(false);

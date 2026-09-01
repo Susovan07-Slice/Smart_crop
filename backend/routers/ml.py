@@ -84,14 +84,16 @@ def run_full_farm_analysis(payload: FullFarmAnalysisPayload):
         district_name = payload.district or "Cuttack"
         season_name = payload.season or "Kharif"
         area_ha = payload.area_ha or 2.5
+        current_crop = getattr(payload, "current_crop", None)
 
         analysis_result = ml_service.run_loan_aware_farm_analysis(
             district=district_name,
             season=season_name,
             area_ha=area_ha,
+            loan_input=payload.loan_input,
             latitude=payload.latitude,
             longitude=payload.longitude,
-            loan_input=payload.loan_input
+            current_crop=current_crop
         )
 
         rec_crop = analysis_result["crop_recommendation"]["recommended_crop"]

@@ -56,6 +56,7 @@ class FullFarmAnalysisRequest(BaseModel):
     longitude: Optional[float] = None
     season: Optional[str] = "Kharif"
     area_ha: Optional[float] = 2.5
+    current_crop: Optional[str] = None
 
 class FullFarmAnalysisResponse(BaseModel):
     location_summary: Dict[str, Any]
