@@ -23,11 +23,11 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
     if (dScore <= 25) {
       return {
         ...envRisks,
-        badgeText: "VERY {t('low_distress')}",
+        badgeText: 'VERY ' + t('low_distress'),
         badgeClass: isDarkMode ? "bg-emerald-900/70 text-emerald-300 border-emerald-700" : "bg-emerald-100 text-emerald-800 border-emerald-300",
         scoreColor: isDarkMode ? "text-emerald-400" : "text-emerald-600",
         barColor: "bg-emerald-500",
-        message: "Your farm is in a stable overall safety position with minimal risk.",
+        message: t('msg_stable'),
         loanBurdenPct: hasLoan ? Math.min(100, Math.round(((loanProfile.outstanding_principal || 50000) / (loanProfile.original_loan_amount || 100000)) * 100)) : 10,
         get loanBurdenLevel() {
           if (!hasLoan) return t('level_low');
@@ -37,11 +37,11 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
     } else if (dScore <= 50) {
       return {
         ...envRisks,
-        badgeText: "{t('low_distress')}",
+        badgeText: t('low_distress'),
         badgeClass: isDarkMode ? "bg-emerald-900/50 text-emerald-300 border-emerald-600" : "bg-emerald-50 text-emerald-700 border-emerald-200",
         scoreColor: isDarkMode ? "text-emerald-400" : "text-emerald-600",
         barColor: "bg-emerald-500",
-        message: "Minor operational risks detected; maintain balanced soil nutrients and normal field monitoring.",
+        message: t('msg_minor'),
         loanBurdenPct: hasLoan ? Math.min(100, Math.round(((loanProfile.outstanding_principal || 50000) / (loanProfile.original_loan_amount || 100000)) * 100)) : 35,
         get loanBurdenLevel() {
           if (!hasLoan) return t('level_low');
@@ -51,11 +51,11 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
     } else if (dScore <= 75) {
       return {
         ...envRisks,
-        badgeText: "{t('moderate_distress')}",
+        badgeText: t('moderate_distress'),
         badgeClass: isDarkMode ? "bg-amber-900/70 text-amber-300 border-amber-700" : "bg-amber-100 text-amber-900 border-amber-300",
         scoreColor: isDarkMode ? "text-amber-400" : "text-amber-600",
         barColor: "bg-amber-500",
-        message: "Moderate distress alert! Weather fluctuations, wind gusts, or loan interest burden require attention.",
+        message: t('msg_moderate'),
         loanBurdenPct: hasLoan ? Math.min(100, Math.round(((loanProfile.outstanding_principal || 50000) / (loanProfile.original_loan_amount || 100000)) * 100)) : 58,
         get loanBurdenLevel() {
           if (!hasLoan) return t('level_moderate');
@@ -65,11 +65,11 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
     } else {
       return {
         ...envRisks,
-        badgeText: "{t('high_distress')}",
+        badgeText: t('high_distress'),
         badgeClass: isDarkMode ? "bg-rose-900/70 text-rose-300 border-rose-700" : "bg-red-100 text-red-800 border-red-300",
         scoreColor: isDarkMode ? "text-rose-400" : "text-red-600",
         barColor: "bg-red-500",
-        message: "Critical distress alert! High vulnerability detected across climate threats, storm warnings, or heavy debt burden.",
+        message: t('msg_critical'),
         loanBurdenPct: hasLoan ? Math.min(100, Math.round(((loanProfile.outstanding_principal || 50000) / (loanProfile.original_loan_amount || 100000)) * 100)) : 88,
         get loanBurdenLevel() {
           if (!hasLoan) return t('level_high');
