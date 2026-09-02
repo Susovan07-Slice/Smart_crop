@@ -160,15 +160,15 @@ function NavigationBar() {
             <div className="bg-gradient-to-tr from-emerald-600 to-green-500 p-2 rounded-xl text-white shadow-sm group-hover:scale-105 transition-transform">
               <Sprout className="h-5 w-5 sm:h-6 sm:w-6" />
             </div>
-            <span className={`text-lg sm:text-xl font-black tracking-tight ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+            <span className={`text-xl sm:text-2xl font-black tracking-tight ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               {t('nav_brand')}
               {location.pathname === '/farmer-dashboard' && (
-                <span className="ml-1.5 text-xs font-black uppercase tracking-wider px-2 py-0.5 rounded-full text-emerald-800 bg-emerald-100 border border-emerald-300">
+                <span className="ml-1.5 text-sm font-black uppercase tracking-wider px-2 py-0.5 rounded-full text-emerald-800 bg-emerald-100 border border-emerald-300">
                   FARMER
                 </span>
               )}
               {location.pathname === '/officer-dashboard' && (
-                <span className="ml-1.5 text-xs font-black uppercase tracking-wider px-2 py-0.5 rounded-full text-blue-800 bg-blue-100 border border-blue-300">
+                <span className="ml-1.5 text-sm font-black uppercase tracking-wider px-2 py-0.5 rounded-full text-blue-800 bg-blue-100 border border-blue-300">
                   OFFICER
                 </span>
               )}
@@ -187,7 +187,7 @@ function NavigationBar() {
                 value={lang}
                 onChange={(e) => changeLanguage(e.target.value)}
                 aria-label={t('language')}
-                className={`bg-transparent text-sm font-semibold focus:outline-hidden cursor-pointer border-none pr-1 ${
+                className={`bg-transparent text-base font-semibold focus:outline-hidden cursor-pointer border-none pr-1 ${
                   isDarkMode ? 'text-white' : 'text-gray-800'
                 }`}
               >
@@ -201,7 +201,7 @@ function NavigationBar() {
             <a 
               href="/" 
               onClick={handleHomeClick}
-              className={`text-sm font-semibold px-2 py-1.5 rounded-lg transition-colors cursor-pointer ${
+              className={`text-base font-semibold px-2 py-1.5 rounded-lg transition-colors cursor-pointer ${
                 isDarkMode ? 'text-slate-300 hover:text-emerald-400 hover:bg-slate-800' : 'text-gray-700 hover:text-green-700 hover:bg-gray-100'
               }`}
             >
@@ -212,7 +212,7 @@ function NavigationBar() {
             {location.pathname === '/officer-dashboard' && (
               <button
                 onClick={() => window.dispatchEvent(new CustomEvent('refreshOfficerDashboard'))}
-                className="flex items-center text-sm font-black px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white transition-all cursor-pointer shadow-xs"
+                className="flex items-center text-base font-black px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white transition-all cursor-pointer shadow-xs"
                 title="Refresh Officer Dashboard Data"
               >
                 <RefreshCw className="h-3.5 w-3.5 mr-1.5 animate-spin-hover" />
@@ -226,7 +226,7 @@ function NavigationBar() {
               <div className="sm:relative" ref={officerProfileRef}>
                 <button
                   onClick={() => setShowOfficerMenu(!showOfficerMenu)}
-                  className="flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-blue-300 bg-blue-50 hover:bg-blue-100 text-blue-950 font-black text-sm transition-all shadow-xs cursor-pointer"
+                  className="flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-blue-300 bg-blue-50 hover:bg-blue-100 text-blue-950 font-black text-base transition-all shadow-xs cursor-pointer"
                   title="Officer Profile & Jurisdiction Settings"
                 >
                   <ShieldCheck className="h-4 w-4 text-blue-600 flex-shrink-0" />
@@ -239,31 +239,31 @@ function NavigationBar() {
                   <div className="absolute top-full mt-2 left-2 right-2 sm:top-auto sm:mt-2 sm:left-auto sm:right-0 sm:w-72 rounded-2xl shadow-2xl border border-blue-100 bg-white text-gray-800 py-3 z-50 animate-in fade-in zoom-in-95 duration-150">
                     {/* Officer Header Info */}
                     <div className="px-4 py-2 border-b border-gray-100 bg-blue-50/50">
-                      <p className="text-base font-black text-blue-950 flex items-center">
+                      <p className="text-lg font-black text-blue-950 flex items-center">
                         <ShieldCheck className="h-4 w-4 mr-1.5 text-blue-600" />
                         {officerUsername}
                       </p>
-                      <p className="text-sm text-blue-700 font-bold mt-0.5">
+                      <p className="text-base text-blue-700 font-bold mt-0.5">
                         District Krushi Agriculture Officer
                       </p>
                     </div>
 
                     {/* Jurisdiction Card inside Officer Profile */}
                     <div className="p-3 my-2 mx-3 bg-blue-50/80 border border-blue-200 rounded-xl space-y-1">
-                      <span className="text-xs font-black text-blue-900 uppercase block tracking-wider">
+                      <span className="text-sm font-black text-blue-900 uppercase block tracking-wider">
                         Assigned Jurisdiction
                       </span>
-                      <p className="text-sm font-black text-blue-950 flex items-center">
+                      <p className="text-base font-black text-blue-950 flex items-center">
                         📍 {officerDistrict} District
                       </p>
-                      <p className="text-xs font-semibold text-emerald-700 flex items-center">
+                      <p className="text-sm font-semibold text-emerald-700 flex items-center">
                         <span className="w-2 h-2 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>
                         Active Jurisdiction Lock
                       </p>
                     </div>
 
                     {/* Officer Actions */}
-                    <div className="px-3 py-1 space-y-1 text-sm font-semibold">
+                    <div className="px-3 py-1 space-y-1 text-base font-semibold">
                       <button
                         onClick={() => {
                           window.dispatchEvent(new CustomEvent('refreshOfficerDashboard'));
@@ -279,7 +279,7 @@ function NavigationBar() {
                     {/* Officer Logout Button */}
                     <button
                       onClick={handleOfficerLogout}
-                      className="w-full text-left px-4 py-2.5 text-sm font-black text-red-600 hover:bg-red-50 flex items-center space-x-2 transition-colors border-t border-gray-100 cursor-pointer mt-1"
+                      className="w-full text-left px-4 py-2.5 text-base font-black text-red-600 hover:bg-red-50 flex items-center space-x-2 transition-colors border-t border-gray-100 cursor-pointer mt-1"
                     >
                       <LogOut className="h-4 w-4 text-red-500" />
                       <span>Officer Logout</span>
@@ -291,7 +291,7 @@ function NavigationBar() {
               <div className="sm:relative" ref={profileRef}>
                 <button
                   onClick={() => setShowProfileMenu(!showProfileMenu)}
-                  className={`flex items-center space-x-1.5 px-2.5 py-1.5 rounded-full border transition-colors shadow-2xs font-extrabold text-sm ${
+                  className={`flex items-center space-x-1.5 px-2.5 py-1.5 rounded-full border transition-colors shadow-2xs font-extrabold text-base ${
                     isDarkMode ? 'bg-slate-800 hover:bg-slate-700 text-emerald-400 border-slate-700' : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border-emerald-300'
                   }`}
                   title="Account Profile & Loan Summary"
@@ -309,8 +309,8 @@ function NavigationBar() {
                     
                     {/* Farmer Header Info */}
                     <div className={`px-4 py-2 border-b ${isDarkMode ? 'border-slate-800' : 'border-gray-100'}`}>
-                      <p className={`text-base font-black truncate ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>👤 {farmerName}</p>
-                      <p className="text-sm text-emerald-500 font-bold">
+                      <p className={`text-lg font-black truncate ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>👤 {farmerName}</p>
+                      <p className="text-base text-emerald-500 font-bold">
                         📍 {farmerProfile?.district || 'Odisha Node'} • {farmerProfile?.land_area_ha || 2.5} ha
                       </p>
                     </div>
@@ -318,7 +318,7 @@ function NavigationBar() {
                     {/* LOAN SUMMARY OVERVIEW SECTION INSIDE PROFILE DROPDOWN */}
                     <div className="p-3 my-1 mx-2 bg-gradient-to-br from-amber-50 to-orange-50/80 border border-amber-200 rounded-xl space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-black text-amber-950 uppercase flex items-center">
+                        <span className="text-sm font-black text-amber-950 uppercase flex items-center">
                           <CreditCard className="h-3.5 w-3.5 mr-1 text-amber-700" />
                           {t('loan_summary_title')}
                         </span>
@@ -330,22 +330,22 @@ function NavigationBar() {
                       </div>
 
                       {loanProfile.has_loan ? (
-                        <div className="space-y-1 text-sm">
-                          <div className="flex justify-between items-center text-gray-700"><span className="text-sm font-medium">{t("annual_interest_rate") || "Interest Rate"}:</span><span className="font-bold text-amber-600">{(loanProfile.annual_interest_rate || 8.5)}%</span></div><div className="flex justify-between items-center text-gray-700"><span className="text-sm font-medium">{t("loan_due_date") || "Due Date"}:</span><span className="font-bold text-gray-900">{loanProfile.loan_due_date || "2027-09-15"}</span></div>
+                        <div className="space-y-1 text-base">
+                          <div className="flex justify-between items-center text-gray-700"><span className="text-base font-medium">{t("annual_interest_rate") || "Interest Rate"}:</span><span className="font-bold text-amber-600">{(loanProfile.annual_interest_rate || 8.5)}%</span></div><div className="flex justify-between items-center text-gray-700"><span className="text-base font-medium">{t("loan_due_date") || "Due Date"}:</span><span className="font-bold text-gray-900">{loanProfile.loan_due_date || "2027-09-15"}</span></div>
                           <div className="flex justify-between items-center pt-1 border-t border-amber-200/80">
-                            <span className="text-sm font-black text-amber-950">{t("outstanding_principal") || "Outstanding Principal"}:</span>
-                            <span className="text-base font-black text-red-600">
+                            <span className="text-base font-black text-amber-950">{t("outstanding_principal") || "Outstanding Principal"}:</span>
+                            <span className="text-lg font-black text-red-600">
                               ₹{(loanProfile.outstanding_principal || 80000).toLocaleString('en-IN')}
                             </span>
                           </div>
                         </div>
                       ) : (
-                        <p className="text-sm text-gray-600 italic">No active loan registered on your profile.</p>
+                        <p className="text-base text-gray-600 italic">No active loan registered on your profile.</p>
                       )}
 
                       <button
                         onClick={handleOpenLoanModal}
-                        className="w-full mt-1 py-1.5 px-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm font-extrabold transition-colors shadow-2xs text-center block"
+                        className="w-full mt-1 py-1.5 px-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-base font-extrabold transition-colors shadow-2xs text-center block"
                       >
                         {loanProfile.has_loan ? "✏️ Edit Loan & Financial Profile" : "+ Add Active Loan"}
                       </button>
@@ -353,11 +353,11 @@ function NavigationBar() {
 
                     {/* Kisan Helpline Numbers Section */}
                     <div className="px-3 py-2 border-t border-b border-gray-100 bg-emerald-50/50">
-                      <p className="text-xs font-extrabold text-emerald-900 uppercase flex items-center mb-1">
+                      <p className="text-sm font-extrabold text-emerald-900 uppercase flex items-center mb-1">
                         <PhoneCall className="h-3 w-3 mr-1 text-emerald-600" />
                         {t('krushi_helpline')}
                       </p>
-                      <div className="space-y-1 text-sm">
+                      <div className="space-y-1 text-base">
                         <a href="tel:18001801551" className="flex justify-between items-center text-gray-700 hover:text-emerald-700 font-semibold">
                           <span>{t('kisan_call_center')}:</span>
                           <span className="font-bold text-emerald-800">1800-180-1551</span>
@@ -372,7 +372,7 @@ function NavigationBar() {
                     {/* Logout Button */}
                     <button
                       onClick={handleLogout}
-                      className="w-full text-left px-4 py-2 text-sm font-bold text-red-600 hover:bg-red-50 flex items-center space-x-2 transition-colors border-t border-gray-100 cursor-pointer"
+                      className="w-full text-left px-4 py-2 text-base font-bold text-red-600 hover:bg-red-50 flex items-center space-x-2 transition-colors border-t border-gray-100 cursor-pointer"
                     >
                       <LogOut className="h-3.5 w-3.5 text-red-500" />
                       <span>{t('logout')}</span>
@@ -408,16 +408,16 @@ class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       return (
         <div className="p-8 max-w-lg mx-auto my-12 bg-white rounded-3xl border border-red-200 shadow-xl text-center space-y-4">
-          <div className="p-3 bg-red-100 text-red-600 rounded-full w-12 h-12 mx-auto flex items-center justify-center font-bold text-xl">
+          <div className="p-3 bg-red-100 text-red-600 rounded-full w-12 h-12 mx-auto flex items-center justify-center font-bold text-2xl">
             ⚠️
           </div>
-          <h2 className="text-xl font-black text-gray-900">Dashboard UI Notice</h2>
-          <p className="text-sm text-gray-600 font-medium">
+          <h2 className="text-2xl font-black text-gray-900">Dashboard UI Notice</h2>
+          <p className="text-base text-gray-600 font-medium">
             {this.state.error?.message || "An unexpected error occurred while rendering."}
           </p>
           <button
             onClick={() => window.location.reload()}
-            className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-sm shadow-md transition-all cursor-pointer"
+            className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-base shadow-md transition-all cursor-pointer"
           >
             🔄 Refresh Dashboard
           </button>

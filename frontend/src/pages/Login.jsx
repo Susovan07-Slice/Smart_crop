@@ -268,22 +268,22 @@ const Login = () => {
           <div className="mx-auto flex items-center justify-center h-14 w-14 rounded-full bg-green-100 mb-2 shadow-xs">
             <Sprout className="h-9 w-9 text-green-600" />
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+          <h2 className="text-3xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
             {mode === 'login' ? t('farmer_login_title') : t('farmer_signup_title')}
           </h2>
-          <p className="mt-1 text-sm sm:text-base text-gray-600 font-medium">
+          <p className="mt-1 text-base sm:text-lg text-gray-600 font-medium">
             {mode === 'login' ? 'Enter Mobile Number & 4-Digit PIN' : 'Register New Account with Mobile Number'}
           </p>
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-600 px-3.5 py-2.5 rounded-xl text-sm sm:text-base font-semibold animate-in fade-in">
+          <div className="bg-red-50 border border-red-200 text-red-600 px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-semibold animate-in fade-in">
             ⚠️ {error}
           </div>
         )}
 
         {successMsg && (
-          <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 px-3.5 py-2 rounded-xl text-sm sm:text-base flex items-center gap-2 font-medium">
+          <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 px-3.5 py-2 rounded-xl text-base sm:text-lg flex items-center gap-2 font-medium">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
             <span>{successMsg}</span>
           </div>
@@ -295,7 +295,7 @@ const Login = () => {
             
             {/* Mobile Number Input */}
             <div>
-              <label className="block text-sm font-bold text-gray-700 uppercase mb-1">
+              <label className="block text-base font-bold text-gray-700 uppercase mb-1">
                 Mobile Number
               </label>
               <div className="relative rounded-xl shadow-xs">
@@ -307,7 +307,7 @@ const Login = () => {
                   type="tel"
                   required
                   autoComplete="off"
-                  className="focus:ring-2 focus:ring-green-500 focus:border-green-500 block w-full pl-11 text-lg sm:text-lg border-gray-300 rounded-xl py-2.5 bg-gray-50 border font-mono text-gray-900 font-bold"
+                  className="focus:ring-2 focus:ring-green-500 focus:border-green-500 block w-full pl-11 text-xl sm:text-xl border-gray-300 rounded-xl py-2.5 bg-gray-50 border font-mono text-gray-900 font-bold"
                   placeholder={t('mobile_placeholder')}
                   value={phone}
                   onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))}
@@ -319,7 +319,7 @@ const Login = () => {
                 {/* Recent Logins History Dropdown */}
                 {showRecent && recentPhones.filter(p => p.includes(phone)).length > 0 && (
                   <div className="absolute z-20 w-full mt-1 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden">
-                    <div className="px-3 py-2 bg-gray-50 text-sm font-semibold text-gray-500 flex items-center border-b border-gray-100">
+                    <div className="px-3 py-2 bg-gray-50 text-base font-semibold text-gray-500 flex items-center border-b border-gray-100">
                       <History className="w-3.5 h-3.5 mr-1.5 text-gray-400" /> {t('recent_logins')}
                     </div>
                     {recentPhones.filter(p => p.includes(phone)).map((p) => (
@@ -334,7 +334,7 @@ const Login = () => {
                       >
                         <div className="flex items-center min-w-0 pr-2">
                           <Phone className="w-4 h-4 mr-2.5 text-gray-400 flex-shrink-0" />
-                          <span className="font-medium tracking-wide text-base font-mono">{p}</span>
+                          <span className="font-medium tracking-wide text-lg font-mono">{p}</span>
                         </div>
                         
                         <button
@@ -359,7 +359,7 @@ const Login = () => {
 
             {/* 4-Digit Security PIN Input */}
             <div>
-              <label className="block text-sm font-bold text-gray-700 uppercase mb-1">
+              <label className="block text-base font-bold text-gray-700 uppercase mb-1">
                 {t('enter_pin')}
               </label>
               <div className="relative rounded-xl shadow-xs">
@@ -370,7 +370,7 @@ const Login = () => {
                   id="login-pin"
                   type="password"
                   required
-                  className="focus:ring-2 focus:ring-green-500 focus:border-green-500 block w-full pl-11 text-xl border-gray-300 rounded-xl py-2.5 bg-gray-50 border text-center tracking-[0.5em] font-bold font-mono text-gray-900"
+                  className="focus:ring-2 focus:ring-green-500 focus:border-green-500 block w-full pl-11 text-2xl border-gray-300 rounded-xl py-2.5 bg-gray-50 border text-center tracking-[0.5em] font-bold font-mono text-gray-900"
                   placeholder="••••"
                   value={pin}
                   onChange={(e) => setPin(e.target.value.replace(/\D/g, ''))}
@@ -383,7 +383,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading || phone.replace(/\D/g, '').length < 10 || pin.length < 4}
-              className="group relative w-full flex justify-center items-center py-3 px-4 border border-transparent text-lg font-bold rounded-xl text-white bg-green-600 hover:bg-green-700 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md mt-2 cursor-pointer"
+              className="group relative w-full flex justify-center items-center py-3 px-4 border border-transparent text-xl font-bold rounded-xl text-white bg-green-600 hover:bg-green-700 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md mt-2 cursor-pointer"
             >
               {loading ? (
                 <Loader2 className="animate-spin h-5 w-5" />
@@ -403,7 +403,7 @@ const Login = () => {
                   setError('');
                   setSuccessMsg('');
                 }}
-                className="text-sm sm:text-base font-extrabold text-emerald-700 hover:text-emerald-800 hover:underline flex items-center justify-center mx-auto space-x-1.5 bg-emerald-50 px-4 py-2.5 rounded-xl border border-emerald-200 shadow-2xs transition-colors cursor-pointer w-full"
+                className="text-base sm:text-lg font-extrabold text-emerald-700 hover:text-emerald-800 hover:underline flex items-center justify-center mx-auto space-x-1.5 bg-emerald-50 px-4 py-2.5 rounded-xl border border-emerald-200 shadow-2xs transition-colors cursor-pointer w-full"
               >
                 <UserPlus className="h-4 w-4 text-emerald-700" />
                 <span>Don't have an account? Sign Up with Phone Number</span>
@@ -416,14 +416,14 @@ const Login = () => {
             
             {/* Mobile Number Input (PRIMARY IDENTIFIER) */}
             <div>
-              <label className="block text-sm font-extrabold text-gray-800 uppercase mb-1 flex items-center">
+              <label className="block text-base font-extrabold text-gray-800 uppercase mb-1 flex items-center">
                 <Phone className="h-4 w-4 mr-1 text-emerald-600" />
                 Mobile Number (Primary Account Key) *
               </label>
               <input
                 type="tel"
                 required
-                className="w-full bg-white border border-gray-300 rounded-xl px-3.5 py-2.5 text-lg font-mono font-bold text-gray-900 focus:ring-2 focus:ring-green-500 outline-none shadow-2xs"
+                className="w-full bg-white border border-gray-300 rounded-xl px-3.5 py-2.5 text-xl font-mono font-bold text-gray-900 focus:ring-2 focus:ring-green-500 outline-none shadow-2xs"
                 placeholder={t('mobile_placeholder')}
                 value={phone}
                 onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))}
@@ -434,13 +434,13 @@ const Login = () => {
             {/* Set 4-Digit Security PIN (PRIMARY AUTH) */}
             <div className="grid grid-cols-2 gap-2.5">
               <div>
-                <label className="block text-sm font-bold text-gray-700 uppercase mb-1">
+                <label className="block text-base font-bold text-gray-700 uppercase mb-1">
                   Set 4-Digit PIN *
                 </label>
                 <input
                   type="password"
                   required
-                  className="w-full bg-gray-50 border border-gray-300 rounded-xl py-2 text-center text-lg font-bold font-mono tracking-widest text-gray-900 focus:ring-2 focus:ring-green-500 outline-none"
+                  className="w-full bg-gray-50 border border-gray-300 rounded-xl py-2 text-center text-xl font-bold font-mono tracking-widest text-gray-900 focus:ring-2 focus:ring-green-500 outline-none"
                   placeholder="••••"
                   value={pin}
                   onChange={(e) => setPin(e.target.value.replace(/\D/g, ''))}
@@ -449,13 +449,13 @@ const Login = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-gray-700 uppercase mb-1">
+                <label className="block text-base font-bold text-gray-700 uppercase mb-1">
                   Confirm PIN *
                 </label>
                 <input
                   type="password"
                   required
-                  className="w-full bg-gray-50 border border-gray-300 rounded-xl py-2 text-center text-lg font-bold font-mono tracking-widest text-gray-900 focus:ring-2 focus:ring-green-500 outline-none"
+                  className="w-full bg-gray-50 border border-gray-300 rounded-xl py-2 text-center text-xl font-bold font-mono tracking-widest text-gray-900 focus:ring-2 focus:ring-green-500 outline-none"
                   placeholder="••••"
                   value={confirmPin}
                   onChange={(e) => setConfirmPin(e.target.value.replace(/\D/g, ''))}
@@ -467,13 +467,13 @@ const Login = () => {
             {/* First Name & Surname (OPTIONAL PROFILE FIELDS) */}
             <div className="grid grid-cols-2 gap-2.5 pt-1">
               <div>
-                <label className="block text-sm font-bold text-gray-600 uppercase mb-1 flex items-center">
+                <label className="block text-base font-bold text-gray-600 uppercase mb-1 flex items-center">
                   <User className="h-3.5 w-3.5 mr-1 text-emerald-600" />
                   First Name <span className="text-gray-400 font-normal lowercase ml-1">(optional)</span>
                 </label>
                 <input
                   type="text"
-                  className="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-green-500 outline-none"
+                  className="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-base font-semibold text-gray-800 focus:ring-2 focus:ring-green-500 outline-none"
                   placeholder="e.g. Ramesh"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
@@ -481,13 +481,13 @@ const Login = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-gray-600 uppercase mb-1 flex items-center">
+                <label className="block text-base font-bold text-gray-600 uppercase mb-1 flex items-center">
                   <User className="h-3.5 w-3.5 mr-1 text-emerald-600" />
                   Surname <span className="text-gray-400 font-normal lowercase ml-1">(optional)</span>
                 </label>
                 <input
                   type="text"
-                  className="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-green-500 outline-none"
+                  className="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-base font-semibold text-gray-800 focus:ring-2 focus:ring-green-500 outline-none"
                   placeholder="e.g. Sahoo"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
@@ -505,7 +505,7 @@ const Login = () => {
               </div>
 
               <div className="col-span-2">
-                <label className="block text-sm font-bold text-gray-600 uppercase mb-1 flex items-center">
+                <label className="block text-base font-bold text-gray-600 uppercase mb-1 flex items-center">
                   <Calendar className="h-3.5 w-3.5 mr-1 text-blue-500" />
                   {t('dob_label')}
                 </label>
@@ -513,14 +513,14 @@ const Login = () => {
                   type="date"
                   value={dob}
                   onChange={(e) => setDob(e.target.value)}
-                  className="w-full bg-white border border-gray-300 rounded-xl px-2 py-1.5 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-green-500 outline-none"
+                  className="w-full bg-white border border-gray-300 rounded-xl px-2 py-1.5 text-base font-semibold text-gray-800 focus:ring-2 focus:ring-green-500 outline-none"
                 />
               </div>
             </div>
 
             {/* Preferred Language Selection */}
             <div>
-              <label className="block text-sm font-extrabold text-emerald-900 uppercase mb-1 flex items-center">
+              <label className="block text-base font-extrabold text-emerald-900 uppercase mb-1 flex items-center">
                 <Globe className="h-3.5 w-3.5 mr-1 text-emerald-600" />
                 Preferred Language / ପସନ୍ଦର ଭାଷା *
               </label>
@@ -530,7 +530,7 @@ const Login = () => {
                   setSignupLang(e.target.value);
                   changeLanguage(e.target.value);
                 }}
-                className="w-full bg-emerald-50/90 border border-emerald-300 rounded-xl px-3 py-2 text-sm font-bold text-emerald-950 focus:ring-2 focus:ring-green-500 outline-none shadow-2xs cursor-pointer"
+                className="w-full bg-emerald-50/90 border border-emerald-300 rounded-xl px-3 py-2 text-base font-bold text-emerald-950 focus:ring-2 focus:ring-green-500 outline-none shadow-2xs cursor-pointer"
               >
                 <option value="en">🇬🇧 English</option>
                 <option value="or">🇮🇳 ଓଡ଼ିଆ (Odia)</option>
@@ -540,7 +540,7 @@ const Login = () => {
 
             {/* Land Area Input */}
             <div>
-              <label className="block text-sm font-bold text-gray-600 uppercase mb-1 flex items-center">
+              <label className="block text-base font-bold text-gray-600 uppercase mb-1 flex items-center">
                 <Ruler className="h-3.5 w-3.5 mr-1 text-amber-600" />
                 {t('land_area_label')}
               </label>
@@ -550,7 +550,7 @@ const Login = () => {
                 min="0.1"
                 value={landAreaHa}
                 onChange={(e) => setLandAreaHa(e.target.value)}
-                className="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-green-500 outline-none"
+                className="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-base font-semibold text-gray-800 focus:ring-2 focus:ring-green-500 outline-none"
                 placeholder="e.g. 2.5"
               />
             </div>
@@ -559,7 +559,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading || phone.replace(/\D/g, '').length < 10 || pin.length < 4 || confirmPin.length < 4}
-              className="group relative w-full flex justify-center items-center py-3 px-4 border border-transparent text-lg font-bold rounded-xl text-white bg-green-600 hover:bg-green-700 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md mt-2 cursor-pointer"
+              className="group relative w-full flex justify-center items-center py-3 px-4 border border-transparent text-xl font-bold rounded-xl text-white bg-green-600 hover:bg-green-700 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md mt-2 cursor-pointer"
             >
               {loading ? (
                 <Loader2 className="animate-spin h-5 w-5" />
@@ -579,7 +579,7 @@ const Login = () => {
                   setError('');
                   setSuccessMsg('');
                 }}
-                className="text-sm sm:text-base font-extrabold text-emerald-700 hover:text-emerald-800 hover:underline flex items-center justify-center mx-auto space-x-1.5 bg-emerald-50 px-4 py-2.5 rounded-xl border border-emerald-200 shadow-2xs transition-colors cursor-pointer w-full"
+                className="text-base sm:text-lg font-extrabold text-emerald-700 hover:text-emerald-800 hover:underline flex items-center justify-center mx-auto space-x-1.5 bg-emerald-50 px-4 py-2.5 rounded-xl border border-emerald-200 shadow-2xs transition-colors cursor-pointer w-full"
               >
                 <LogIn className="h-4 w-4 text-emerald-700" />
                 <span>Already have an account? Log In with Mobile Number</span>
