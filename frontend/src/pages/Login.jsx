@@ -36,11 +36,15 @@ const Login = () => {
   const [recentPhones, setRecentPhones] = useState(() => {
     try {
       const stored = JSON.parse(localStorage.getItem('recentFarmerPhones'));
-      if (stored && stored.length > 0) return stored;
+      if (stored && stored.length > 0) {
+        // Filter out the old hardcoded dummy numbers just in case they were persisted
+        const validStored = stored.filter(p => p !== '9876543210' && p !== '9437123456');
+        return validStored;
+      }
     } catch (e) {
       console.error(e);
     }
-    return ['9876543210', '9437123456'];
+    return [];
   });
   const [showRecent, setShowRecent] = useState(false);
 
