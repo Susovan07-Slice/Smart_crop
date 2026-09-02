@@ -487,7 +487,7 @@ const FarmerChat = ({ isEmbedded = false, isDarkMode: propDarkMode }) => {
       <div
         key={sess.id}
         onClick={() => selectSession(sess.id)}
-        className={`group flex items-center justify-between p-2.5 rounded-xl cursor-pointer transition-all text-base ${
+        className={`group flex items-center justify-between p-2.5 rounded-xl cursor-pointer transition-all text-lg ${
           isActive
             ? isDarkMode 
               ? 'bg-slate-800 text-emerald-400 border border-emerald-500/50 shadow-xs font-semibold'
@@ -500,8 +500,8 @@ const FarmerChat = ({ isEmbedded = false, isDarkMode: propDarkMode }) => {
         <div className="flex items-center space-x-2.5 min-w-0 flex-1 pr-1">
           <MessageSquare className={`h-4 w-4 shrink-0 ${isActive ? 'text-emerald-500' : isDarkMode ? 'text-slate-500' : 'text-slate-400'}`} />
           <div className="truncate min-w-0 flex-1">
-            <p className="truncate text-base font-medium leading-snug">{sess.title || 'New Advisory Session'}</p>
-            <p className={`text-sm mt-0.5 ${isDarkMode ? 'text-slate-400' : 'text-slate-400'}`}>{sess.dateStr || formatDateTime(sess.timestamp)}</p>
+            <p className="truncate text-lg font-medium leading-snug">{sess.title || 'New Advisory Session'}</p>
+            <p className={`text-base mt-0.5 ${isDarkMode ? 'text-slate-400' : 'text-slate-400'}`}>{sess.dateStr || formatDateTime(sess.timestamp)}</p>
           </div>
         </div>
 
@@ -541,7 +541,7 @@ const FarmerChat = ({ isEmbedded = false, isDarkMode: propDarkMode }) => {
         }`}>
           <button
             onClick={createNewChat}
-            className="flex-1 flex items-center justify-center space-x-2 bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 px-4 rounded-xl font-bold text-base sm:text-lg shadow-xs hover:shadow-md transition-all active:scale-95 cursor-pointer"
+            className="flex-1 flex items-center justify-center space-x-2 bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 px-4 rounded-xl font-bold text-lg sm:text-xl shadow-xs hover:shadow-md transition-all active:scale-95 cursor-pointer"
           >
             <Plus className="h-4 w-4 stroke-[3]" />
             <span>New Chat</span>
@@ -554,7 +554,7 @@ const FarmerChat = ({ isEmbedded = false, isDarkMode: propDarkMode }) => {
           {/* Today */}
           {groupedSessions.today.length > 0 && (
             <div>
-              <div className={`px-3.5 py-1 text-sm font-extrabold uppercase tracking-wider flex items-center space-x-1.5 ${
+              <div className={`px-3.5 py-1 text-base font-extrabold uppercase tracking-wider flex items-center space-x-1.5 ${
                 isDarkMode ? 'text-slate-400' : 'text-slate-400'
               }`}>
                 <Clock className="h-3 w-3 text-emerald-500" />
@@ -569,7 +569,7 @@ const FarmerChat = ({ isEmbedded = false, isDarkMode: propDarkMode }) => {
           {/* Yesterday */}
           {groupedSessions.yesterday.length > 0 && (
             <div>
-              <div className={`px-3.5 py-1 text-sm font-extrabold uppercase tracking-wider flex items-center space-x-1.5 ${
+              <div className={`px-3.5 py-1 text-base font-extrabold uppercase tracking-wider flex items-center space-x-1.5 ${
                 isDarkMode ? 'text-slate-400' : 'text-slate-400'
               }`}>
                 <Clock className="h-3 w-3 text-slate-400" />
@@ -584,7 +584,7 @@ const FarmerChat = ({ isEmbedded = false, isDarkMode: propDarkMode }) => {
           {/* Previous 7 Days */}
           {groupedSessions.last7Days.length > 0 && (
             <div>
-              <div className={`px-3.5 py-1 text-sm font-extrabold uppercase tracking-wider flex items-center space-x-1.5 ${
+              <div className={`px-3.5 py-1 text-base font-extrabold uppercase tracking-wider flex items-center space-x-1.5 ${
                 isDarkMode ? 'text-slate-400' : 'text-slate-400'
               }`}>
                 <Clock className="h-3 w-3 text-slate-400" />
@@ -599,7 +599,7 @@ const FarmerChat = ({ isEmbedded = false, isDarkMode: propDarkMode }) => {
           {/* Older */}
           {groupedSessions.older.length > 0 && (
             <div>
-              <div className={`px-3.5 py-1 text-sm font-extrabold uppercase tracking-wider flex items-center space-x-1.5 ${
+              <div className={`px-3.5 py-1 text-base font-extrabold uppercase tracking-wider flex items-center space-x-1.5 ${
                 isDarkMode ? 'text-slate-400' : 'text-slate-400'
               }`}>
                 <Clock className="h-3 w-3 text-slate-400" />
@@ -638,10 +638,10 @@ const FarmerChat = ({ isEmbedded = false, isDarkMode: propDarkMode }) => {
                 <Sprout className="h-5 w-5" />
               </div>
               <div>
-                <h1 className={`text-xl sm:text-xl font-bold leading-tight ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h1 className={`text-2xl sm:text-2xl font-bold leading-tight ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
                   Krushi Sahayak (କୃଷି ସହାୟକ)
                 </h1>
-                <p className="text-base text-emerald-500 font-medium flex items-center gap-1">
+                <p className="text-lg text-emerald-500 font-medium flex items-center gap-1">
                   <Sparkles className="h-3 w-3" /> Official Agricultural Advisory Assistant
                 </p>
               </div>
@@ -658,7 +658,7 @@ const FarmerChat = ({ isEmbedded = false, isDarkMode: propDarkMode }) => {
                 value={lang}
                 onChange={(e) => changeLanguage(e.target.value)}
                 aria-label="Translate Assistant Chat"
-                className={`bg-transparent text-base font-bold focus:outline-none cursor-pointer border-none pr-1 ${
+                className={`bg-transparent text-lg font-bold focus:outline-none cursor-pointer border-none pr-1 ${
                   isDarkMode ? 'text-white' : 'text-gray-800'
                 }`}
               >
@@ -670,7 +670,7 @@ const FarmerChat = ({ isEmbedded = false, isDarkMode: propDarkMode }) => {
 
             <button
               onClick={createNewChat}
-              className="sm:hidden flex items-center space-x-1 bg-emerald-600 text-white text-base px-2.5 py-1.5 rounded-lg font-bold shadow-xs cursor-pointer"
+              className="sm:hidden flex items-center space-x-1 bg-emerald-600 text-white text-lg px-2.5 py-1.5 rounded-lg font-bold shadow-xs cursor-pointer"
             >
               <Plus className="h-3.5 w-3.5" />
               <span>New Chat</span>
@@ -703,7 +703,7 @@ const FarmerChat = ({ isEmbedded = false, isDarkMode: propDarkMode }) => {
 
                 <div className={`flex flex-col max-w-[85%] sm:max-w-[80%] ${isUser ? 'items-end' : 'items-start'}`}>
                   <div
-                    className={`p-3.5 sm:p-4 rounded-2xl text-lg sm:text-xl leading-relaxed shadow-2xs whitespace-pre-line ${
+                    className={`p-3.5 sm:p-4 rounded-2xl text-xl sm:text-2xl leading-relaxed shadow-2xs whitespace-pre-line ${
                       isUser
                         ? 'bg-green-600 text-white font-medium rounded-tr-none'
                         : isDarkMode
@@ -717,7 +717,7 @@ const FarmerChat = ({ isEmbedded = false, isDarkMode: propDarkMode }) => {
                   {!isUser && (
                     <button
                       onClick={() => handleReadAloud(msg.text, index)}
-                      className={`mt-1.5 flex items-center text-base px-2.5 py-1 rounded-full border transition-all ${
+                      className={`mt-1.5 flex items-center text-lg px-2.5 py-1 rounded-full border transition-all ${
                         isReadingThis
                           ? 'bg-green-100 border-green-300 text-green-700 animate-pulse font-semibold'
                           : isDarkMode
@@ -743,7 +743,7 @@ const FarmerChat = ({ isEmbedded = false, isDarkMode: propDarkMode }) => {
                 isDarkMode ? 'bg-slate-900 border-slate-800 text-slate-300' : 'bg-white border-gray-100 text-gray-500'
               }`}>
                 <Loader2 className="h-5 w-5 text-emerald-500 animate-spin" />
-                <span className="text-lg font-medium">Fetching agricultural advisory...</span>
+                <span className="text-xl font-medium">Fetching agricultural advisory...</span>
               </div>
             </div>
           )}
@@ -776,7 +776,7 @@ const FarmerChat = ({ isEmbedded = false, isDarkMode: propDarkMode }) => {
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               placeholder={isListening ? "Listening..." : "Type your message or tap the mic..."}
-              className={`flex-1 border rounded-full px-4 py-2.5 sm:py-3 text-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all ${
+              className={`flex-1 border rounded-full px-4 py-2.5 sm:py-3 text-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all ${
                 isDarkMode 
                   ? 'bg-slate-800 border-slate-700 text-white placeholder-slate-400' 
                   : 'bg-white border-gray-300 text-gray-900'

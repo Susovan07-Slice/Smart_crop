@@ -107,7 +107,7 @@ const LocationPickerMap = ({ onLocationSelect, initialDistrict = 'Cuttack' }) =>
   return (
     <div className="flex flex-col space-y-2 w-full">
       <div className="flex items-center justify-between px-1">
-        <label className="block text-base font-bold text-gray-700 uppercase flex items-center">
+        <label className="block text-lg font-bold text-gray-700 uppercase flex items-center">
           <MapPin className="h-4 w-4 mr-1 text-red-500" />
           Farm Location: <span className="text-emerald-700 font-black ml-1 uppercase">{currentDistrict}</span>
         </label>
@@ -119,11 +119,11 @@ const LocationPickerMap = ({ onLocationSelect, initialDistrict = 'Cuttack' }) =>
           className="focus:outline-none transition-all"
         >
           {isLocating ? (
-            <span className="inline-block bg-emerald-500 text-white px-3 py-1 rounded-full text-base font-bold shadow-sm animate-pulse">
+            <span className="inline-block bg-emerald-500 text-white px-3 py-1 rounded-full text-lg font-bold shadow-sm animate-pulse">
               Locating...
             </span>
           ) : (
-            <span className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-bold text-base hover:underline">
+            <span className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-bold text-lg hover:underline">
               <LocateFixed className="h-3 w-3 mr-1" /> Auto Detect
             </span>
           )}
@@ -145,7 +145,7 @@ const LocationPickerMap = ({ onLocationSelect, initialDistrict = 'Cuttack' }) =>
         type="button"
         onClick={handleSaveChanges}
         disabled={isSaved}
-        className={`w-full font-bold py-2 rounded-xl text-lg transition-all shadow-sm flex items-center justify-center mt-1 transform active:scale-95 ${
+        className={`w-full font-bold py-2 rounded-xl text-xl transition-all shadow-sm flex items-center justify-center mt-1 transform active:scale-95 ${
           isSaved ? 'bg-green-500 text-white scale-95' : 'bg-emerald-600 hover:bg-emerald-700 text-white'
         }`}
       >

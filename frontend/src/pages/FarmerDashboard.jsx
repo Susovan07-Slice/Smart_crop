@@ -279,12 +279,12 @@ const MandiPriceChart = ({ prices, cropName, isDarkMode }) => {
         : 'bg-emerald-50/80 border-emerald-200/90 text-emerald-950 shadow-2xs'
     }`}>
       <div className="flex justify-between items-center mb-3 px-1">
-        <span className={`text-base font-bold uppercase tracking-wider flex items-center gap-1.5 ${
+        <span className={`text-lg font-bold uppercase tracking-wider flex items-center gap-1.5 ${
           isDarkMode ? 'text-emerald-400' : 'text-emerald-900'
         }`}>
           <LineChart className="h-4 w-4 text-emerald-600" /> Mandi Price Trend Graph (₹/Quintal)
         </span>
-        <span className={`text-sm font-bold px-2.5 py-0.5 rounded-full border ${
+        <span className={`text-base font-bold px-2.5 py-0.5 rounded-full border ${
           isDarkMode ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30' : 'bg-emerald-200/80 text-emerald-900 border-emerald-300'
         }`}>
           Seasonal Market Rally
@@ -324,7 +324,7 @@ const MandiPriceChart = ({ prices, cropName, isDarkMode }) => {
                 x={pt.x} 
                 y={pt.y - 12} 
                 textAnchor="middle" 
-                className={`text-base font-black tracking-tight ${isDarkMode ? 'fill-emerald-300' : 'fill-emerald-800'}`}
+                className={`text-lg font-black tracking-tight ${isDarkMode ? 'fill-emerald-300' : 'fill-emerald-800'}`}
               >
                 ₹{pt.val.toLocaleString('en-IN')}
               </text>
@@ -334,7 +334,7 @@ const MandiPriceChart = ({ prices, cropName, isDarkMode }) => {
                 x={pt.x} 
                 y="145" 
                 textAnchor="middle" 
-                className={`text-sm font-extrabold uppercase tracking-wider ${isDarkMode ? 'fill-slate-400' : 'fill-slate-600'}`}
+                className={`text-base font-extrabold uppercase tracking-wider ${isDarkMode ? 'fill-slate-400' : 'fill-slate-600'}`}
               >
                 {pt.label}
               </text>
@@ -938,12 +938,12 @@ const FarmerDashboard = () => {
             </div>
             <div>
               <div className="flex items-center gap-2.5 flex-wrap">
-                <h1 className={`text-3xl sm:text-3xl font-black tracking-tight ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                <h1 className={`text-4xl sm:text-4xl font-black tracking-tight ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                   {t('smart_farm_advisory_title')}
                 </h1>
                 
                 {farmerName && (
-                  <span className="bg-emerald-700 text-white font-extrabold text-base px-3 py-1.5 rounded-full flex items-center shadow-2xs">
+                  <span className="bg-emerald-700 text-white font-extrabold text-lg px-3 py-1.5 rounded-full flex items-center shadow-2xs">
                     <User className="h-3.5 w-3.5 mr-1" />
                     {farmerName}
                   </span>
@@ -952,7 +952,7 @@ const FarmerDashboard = () => {
                 {/* PROMINENT FAT LIGHT / DARK MODE TOGGLE BUTTON */}
                 <button
                   onClick={toggleDarkMode}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-2xl text-base sm:text-lg font-black shadow-md hover:shadow-lg transition-all active:scale-95 border cursor-pointer ${
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-2xl text-lg sm:text-xl font-black shadow-md hover:shadow-lg transition-all active:scale-95 border cursor-pointer ${
                     isDarkMode
                       ? 'bg-slate-800 text-amber-300 border-slate-600 hover:bg-slate-700'
                       : 'bg-white text-slate-800 border-gray-300 hover:bg-gray-50'
@@ -978,7 +978,7 @@ const FarmerDashboard = () => {
                     setIsAlertModalOpen(true);
                     handleMarkAlertsRead();
                   }}
-                  className={`relative flex items-center space-x-2 px-4 py-2 rounded-2xl text-base sm:text-lg font-black shadow-md hover:shadow-lg transition-all active:scale-95 border cursor-pointer ${
+                  className={`relative flex items-center space-x-2 px-4 py-2 rounded-2xl text-lg sm:text-xl font-black shadow-md hover:shadow-lg transition-all active:scale-95 border cursor-pointer ${
                     officerAlerts.some(a => !a.is_read)
                       ? 'bg-red-600 text-white border-red-500 animate-pulse'
                       : isDarkMode
@@ -990,13 +990,13 @@ const FarmerDashboard = () => {
                   <MessageSquare className="h-4.5 w-4.5 text-white" />
                   <span>Officer Messages</span>
                   {officerAlerts.filter(a => !a.is_read).length > 0 && (
-                    <span className="ml-1.5 bg-yellow-400 text-red-950 text-base font-black px-2 py-0.5 rounded-full border border-white">
+                    <span className="ml-1.5 bg-yellow-400 text-red-950 text-lg font-black px-2 py-0.5 rounded-full border border-white">
                       {officerAlerts.filter(a => !a.is_read).length} New
                     </span>
                   )}
                 </button>
               </div>
-              <p className={`text-base sm:text-lg font-semibold mt-1 ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>
+              <p className={`text-lg sm:text-xl font-semibold mt-1 ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>
                 {t('smart_farm_advisory_subtitle')}
               </p>
             </div>
@@ -1011,11 +1011,11 @@ const FarmerDashboard = () => {
                 <MessageSquare className="w-5 h-5 animate-bounce" />
               </div>
               <div>
-                <h4 className="text-base font-black text-red-950 uppercase tracking-wider flex items-center gap-1.5">
+                <h4 className="text-lg font-black text-red-950 uppercase tracking-wider flex items-center gap-1.5">
                   <span>📩 Official Alert from {location} District Officer</span>
-                  <span className="bg-red-600 text-white text-sm px-2 py-0.5 rounded-full font-bold">New Message</span>
+                  <span className="bg-red-600 text-white text-base px-2 py-0.5 rounded-full font-bold">New Message</span>
                 </h4>
-                <p className="text-base sm:text-lg font-bold text-gray-800 mt-0.5">{officerAlerts.find(a => !a.is_read)?.message}</p>
+                <p className="text-lg sm:text-xl font-bold text-gray-800 mt-0.5">{officerAlerts.find(a => !a.is_read)?.message}</p>
               </div>
             </div>
             <button 
@@ -1023,7 +1023,7 @@ const FarmerDashboard = () => {
                 setIsAlertModalOpen(true);
                 handleMarkAlertsRead();
               }}
-              className="px-4 py-2 bg-red-600 hover:bg-red-700 active:scale-95 text-white rounded-xl text-base font-black shrink-0 shadow-xs cursor-pointer transition-all"
+              className="px-4 py-2 bg-red-600 hover:bg-red-700 active:scale-95 text-white rounded-xl text-lg font-black shrink-0 shadow-xs cursor-pointer transition-all"
             >
               Read Messages
             </button>
@@ -1038,20 +1038,20 @@ const FarmerDashboard = () => {
         }`}>
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b pb-3 border-emerald-200/60">
             <div>
-              <h3 className={`text-xl sm:text-2xl font-black tracking-tight flex items-center gap-2 ${
+              <h3 className={`text-2xl sm:text-3xl font-black tracking-tight flex items-center gap-2 ${
                 isDarkMode ? 'text-emerald-300' : 'text-emerald-950'
               }`}>
                 <Sparkles className="h-5.5 w-5.5 text-emerald-600 animate-pulse" />
                 <span>
                   {t('farmers_advisor')}</span>
               </h3>
-              <p className={`text-base font-semibold mt-0.5 ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
+              <p className={`text-lg font-semibold mt-0.5 ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
                 {t('real_time_hyperlocal_advisory')}</p>
             </div>
 
             {/* LANGUAGE ADVISORY TOGGLE BUTTONS */}
             <div className="flex flex-wrap items-center gap-1.5 bg-emerald-100/70 p-1.5 rounded-2xl border border-emerald-300 w-full sm:w-auto">
-              <span className="text-sm font-black uppercase text-emerald-950 px-1.5 flex items-center">
+              <span className="text-base font-black uppercase text-emerald-950 px-1.5 flex items-center">
                 <Globe className="h-3.5 w-3.5 mr-1 text-emerald-700" /> Language:
               </span>
               <button
@@ -1061,7 +1061,7 @@ const FarmerDashboard = () => {
                   changeLanguage('en');
                   setNlpResponse(generateHyperlocalDistrictAdvisory(location, 'en'));
                 }}
-                className={`px-3 py-1.5 rounded-xl text-base font-black transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-xl text-lg font-black transition-all cursor-pointer ${
                   lang === 'en' ? 'bg-emerald-600 text-white shadow-xs scale-105' : 'text-emerald-900 hover:bg-emerald-200'
                 }`}
               >
@@ -1074,7 +1074,7 @@ const FarmerDashboard = () => {
                   changeLanguage('or');
                   setNlpResponse(generateHyperlocalDistrictAdvisory(location, 'or'));
                 }}
-                className={`px-3 py-1.5 rounded-xl text-base font-black transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-xl text-lg font-black transition-all cursor-pointer ${
                   lang === 'or' ? 'bg-emerald-600 text-white shadow-xs scale-105' : 'text-emerald-900 hover:bg-emerald-200'
                 }`}
               >
@@ -1087,7 +1087,7 @@ const FarmerDashboard = () => {
                   changeLanguage('hi');
                   setNlpResponse(generateHyperlocalDistrictAdvisory(location, 'hi'));
                 }}
-                className={`px-3 py-1.5 rounded-xl text-base font-black transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-xl text-lg font-black transition-all cursor-pointer ${
                   lang === 'hi' ? 'bg-emerald-600 text-white shadow-xs scale-105' : 'text-emerald-900 hover:bg-emerald-200'
                 }`}
               >
@@ -1101,7 +1101,7 @@ const FarmerDashboard = () => {
             isDarkMode ? 'bg-slate-900 border-slate-700 text-slate-100' : 'bg-white border-emerald-200 text-gray-900'
           }`}>
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b pb-2.5 border-emerald-100 gap-2">
-              <span className="text-base font-black text-emerald-700 uppercase flex items-center gap-1.5">
+              <span className="text-lg font-black text-emerald-700 uppercase flex items-center gap-1.5">
                 <Sparkles className="h-4 w-4 text-emerald-500 animate-pulse" />
                 <span>📍 HYPERLOCAL ADVISORY FOR {location.toUpperCase()} DISTRICT</span>
               </span>
@@ -1112,7 +1112,7 @@ const FarmerDashboard = () => {
                   <button
                     type="button"
                     onClick={handleToggleAdvisorySpeech}
-                    className={`text-white text-base font-black px-3.5 py-1.5 rounded-xl shadow-2xs flex items-center space-x-1.5 transition-all cursor-pointer border ${
+                    className={`text-white text-lg font-black px-3.5 py-1.5 rounded-xl shadow-2xs flex items-center space-x-1.5 transition-all cursor-pointer border ${
                       isSpeaking
                         ? 'bg-red-500 hover:bg-red-600 border-red-400 animate-pulse'
                         : 'bg-emerald-600 hover:bg-emerald-700 border-emerald-500 active:scale-95'
@@ -1138,12 +1138,12 @@ const FarmerDashboard = () => {
             {nlpLoading ? (
               <div className="py-6 flex flex-col items-center justify-center space-y-3 text-emerald-700">
                 <Loader2 className="h-8 w-8 animate-spin text-emerald-600" />
-                <p className="text-base font-bold animate-pulse text-center">
+                <p className="text-lg font-bold animate-pulse text-center">
                   ⚡ Analyzing weather risk, soil NPK, mandi prices & pest control for {location} District...
                 </p>
               </div>
             ) : (
-              <div className="text-base sm:text-lg font-semibold leading-relaxed whitespace-pre-wrap tracking-wide">
+              <div className="text-lg sm:text-xl font-semibold leading-relaxed whitespace-pre-wrap tracking-wide">
                 {nlpResponse}
               </div>
             )}
@@ -1165,15 +1165,15 @@ const FarmerDashboard = () => {
                                 {/* Controls: Location, Season & Land Area */}
         <div className={`p-4.5 rounded-2xl border transition-colors duration-300 ${isDarkMode ? 'bg-slate-800/80 border-slate-700 text-slate-100' : 'bg-gray-50/90 border-gray-200 text-gray-900'}`}>
           <div className={`flex flex-col sm:flex-row sm:items-center justify-between p-3.5 mb-4 rounded-xl border ${isDarkMode ? 'bg-slate-900 border-slate-600' : 'bg-white border-gray-200'} shadow-sm`}>
-            <div className="flex items-center text-lg font-bold mb-2 sm:mb-0 flex-wrap gap-2">
+            <div className="flex items-center text-xl font-bold mb-2 sm:mb-0 flex-wrap gap-2">
               <div className="flex items-center">
                 <MapPin className="h-4 w-4 mr-1.5 text-red-500 shrink-0" />
-                <span className={`uppercase tracking-wide text-base ${isDarkMode ? 'text-slate-300' : 'text-gray-500'}`}>Farm Location:</span>
+                <span className={`uppercase tracking-wide text-lg ${isDarkMode ? 'text-slate-300' : 'text-gray-500'}`}>Farm Location:</span>
               </div>
               <select
                 value={location}
                 onChange={(e) => handleSelectDistrict(e.target.value)}
-                className={`text-lg font-black px-3.5 py-1.5 rounded-xl border-2 transition-all outline-none cursor-pointer shadow-2xs ${
+                className={`text-xl font-black px-3.5 py-1.5 rounded-xl border-2 transition-all outline-none cursor-pointer shadow-2xs ${
                   isDarkMode 
                     ? 'bg-slate-800 text-emerald-300 border-slate-600' 
                     : 'bg-emerald-50 text-emerald-950 border-emerald-300 hover:bg-emerald-100'
@@ -1189,7 +1189,7 @@ const FarmerDashboard = () => {
             </div>
             <button 
               onClick={() => setIsMapModalOpen(true)}
-              className="text-base font-black uppercase tracking-wider bg-emerald-100 text-emerald-900 hover:bg-emerald-200 px-3 py-1.5 rounded-lg transition-colors border border-emerald-300 cursor-pointer shrink-0"
+              className="text-lg font-black uppercase tracking-wider bg-emerald-100 text-emerald-900 hover:bg-emerald-200 px-3 py-1.5 rounded-lg transition-colors border border-emerald-300 cursor-pointer shrink-0"
             >
               🗺️ Map Picker
             </button>
@@ -1199,7 +1199,7 @@ const FarmerDashboard = () => {
             
             {/* Target Crop Selector */}
             <div>
-              <label className={`flex items-center text-base font-bold uppercase mb-1.5 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
+              <label className={`flex items-center text-lg font-bold uppercase mb-1.5 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
                 <Sprout className="h-3.5 w-3.5 mr-1.5 text-green-500" />
                 Target Crop
               </label>
@@ -1209,7 +1209,7 @@ const FarmerDashboard = () => {
                   setSelectedCrop(e.target.value);
                   runFullPipeline(location, season, areaHa, loanProfile, e.target.value);
                 }}
-                className={`w-full border rounded-xl px-3.5 py-2.5 text-lg font-semibold focus:ring-2 focus:ring-green-500 outline-none shadow-2xs ${isDarkMode ? 'bg-slate-700 text-white border-slate-600' : 'bg-white text-gray-800 border-gray-300'}`}
+                className={`w-full border rounded-xl px-3.5 py-2.5 text-xl font-semibold focus:ring-2 focus:ring-green-500 outline-none shadow-2xs ${isDarkMode ? 'bg-slate-700 text-white border-slate-600' : 'bg-white text-gray-800 border-gray-300'}`}
               >
                 {['Rice', 'Maize', 'Moong(Green Gram)', 'Groundnut', 'Ragi', 'Urad', 'Cotton', 'Jute', 'Sugarcane', 'Horse Gram', 'Potato', 'Rapeseed &Mustard', 'Sesamum', 'Wheat'].map(crop => (
                   <option key={crop} value={crop}>{crop}</option>
@@ -1219,7 +1219,7 @@ const FarmerDashboard = () => {
 
             {/* Season Selector */}
             <div>
-              <label className={`flex items-center text-base font-bold uppercase mb-1.5 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
+              <label className={`flex items-center text-lg font-bold uppercase mb-1.5 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
                 <Calendar className="h-3.5 w-3.5 mr-1.5 text-amber-500" />
                 {t('farming_season')}
               </label>
@@ -1229,7 +1229,7 @@ const FarmerDashboard = () => {
                   setSeason(e.target.value);
                   runFullPipeline(location, e.target.value, areaHa, loanProfile);
                 }}
-                className={`w-full border rounded-xl px-3.5 py-2.5 text-lg font-semibold focus:ring-2 focus:ring-green-500 outline-none shadow-2xs ${isDarkMode ? 'bg-slate-700 text-white border-slate-600' : 'bg-white text-gray-800 border-gray-300'}`}
+                className={`w-full border rounded-xl px-3.5 py-2.5 text-xl font-semibold focus:ring-2 focus:ring-green-500 outline-none shadow-2xs ${isDarkMode ? 'bg-slate-700 text-white border-slate-600' : 'bg-white text-gray-800 border-gray-300'}`}
               >
                 <option value="Kharif Monsoon">Kharif (Monsoon)</option>
                 <option value="Rabi Winter">Rabi (Winter)</option>
@@ -1239,7 +1239,7 @@ const FarmerDashboard = () => {
 
             {/* Land Area Input */}
             <div>
-              <div className={`flex justify-between items-center text-base font-bold uppercase mb-1.5 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
+              <div className={`flex justify-between items-center text-lg font-bold uppercase mb-1.5 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
                   <span className="flex items-center">
                     <Ruler className="h-3.5 w-3.5 mr-1.5 text-blue-500" />
                     {t('land_area')}
@@ -1252,7 +1252,7 @@ const FarmerDashboard = () => {
                       localStorage.setItem('smartCropLandUnit', newUnit);
                       runFullPipeline(location, season, newUnit === 'Acres' ? displayArea * 0.404686 : displayArea, loanProfile);
                     }}
-                    className={`ml-2 text-sm bg-transparent font-extrabold cursor-pointer outline-none ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`}
+                    className={`ml-2 text-base bg-transparent font-extrabold cursor-pointer outline-none ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`}
                   >
                     <option value="Hectares" className="text-gray-900">Hectares</option>
                     <option value="Acres" className="text-gray-900">Acres</option>
@@ -1265,7 +1265,7 @@ const FarmerDashboard = () => {
                 value={displayArea}
                 onChange={(e) => { setDisplayArea(parseFloat(e.target.value) || 1.0); localStorage.setItem('smartCropDisplayArea', e.target.value); }}
                 onBlur={() => runFullPipeline(location, season, areaHa, loanProfile)}
-                className={`w-full border rounded-xl px-3.5 py-2.5 text-lg font-semibold focus:ring-2 focus:ring-green-500 outline-none shadow-2xs ${isDarkMode ? 'bg-slate-700 text-white border-slate-600' : 'bg-white text-gray-800 border-gray-300'}`}
+                className={`w-full border rounded-xl px-3.5 py-2.5 text-xl font-semibold focus:ring-2 focus:ring-green-500 outline-none shadow-2xs ${isDarkMode ? 'bg-slate-700 text-white border-slate-600' : 'bg-white text-gray-800 border-gray-300'}`}
               />
             </div>
           </div>
@@ -1278,26 +1278,26 @@ const FarmerDashboard = () => {
 
         {/* Regional Soil Profile */}
         <div className={`border rounded-2xl p-4 transition-colors ${isDarkMode ? 'bg-emerald-950/40 border-emerald-800 text-slate-100' : 'bg-emerald-50/80 border-emerald-200/90 text-emerald-900'}`}>
-          <div className="flex justify-between items-center mb-3 text-base font-bold">
+          <div className="flex justify-between items-center mb-3 text-lg font-bold">
             <span>🌱 {t('regional_soil_chemistry_profile')}</span>
             <span className="bg-emerald-700 text-white px-2.5 py-1 rounded-md font-bold">{location} {t('soil_profile_badge')}</span>
           </div>
           <div className="grid grid-cols-4 gap-3.5 text-center">
             <div className={`p-3 rounded-xl border shadow-2xs ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-emerald-100'}`}>
-              <span className="block text-sm font-bold text-gray-400 uppercase">{t('nitrogen')}</span>
-              <span className="text-xl font-black text-emerald-500">{soilProfile.N} <xs className="text-sm">kg/ha</xs></span>
+              <span className="block text-base font-bold text-gray-400 uppercase">{t('nitrogen')}</span>
+              <span className="text-2xl font-black text-emerald-500">{soilProfile.N} <xs className="text-base">kg/ha</xs></span>
             </div>
             <div className={`p-3 rounded-xl border shadow-2xs ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-emerald-100'}`}>
-              <span className="block text-sm font-bold text-gray-400 uppercase">{t('phosphorus')}</span>
-              <span className="text-xl font-black text-emerald-500">{soilProfile.P} <xs className="text-sm">kg/ha</xs></span>
+              <span className="block text-base font-bold text-gray-400 uppercase">{t('phosphorus')}</span>
+              <span className="text-2xl font-black text-emerald-500">{soilProfile.P} <xs className="text-base">kg/ha</xs></span>
             </div>
             <div className={`p-3 rounded-xl border shadow-2xs ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-emerald-100'}`}>
-              <span className="block text-sm font-bold text-gray-400 uppercase">{t('potassium')}</span>
-              <span className="text-xl font-black text-emerald-500">{soilProfile.K} <xs className="text-sm">kg/ha</xs></span>
+              <span className="block text-base font-bold text-gray-400 uppercase">{t('potassium')}</span>
+              <span className="text-2xl font-black text-emerald-500">{soilProfile.K} <xs className="text-base">kg/ha</xs></span>
             </div>
             <div className={`p-3 rounded-lg border shadow-2xs ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-emerald-100'}`}>
-              <span className="block text-sm font-bold text-gray-400 uppercase">{t('soilph')}</span>
-              <span className="text-xl font-black text-emerald-500">{soilProfile.pH}</span>
+              <span className="block text-base font-bold text-gray-400 uppercase">{t('soilph')}</span>
+              <span className="text-2xl font-black text-emerald-500">{soilProfile.pH}</span>
             </div>
           </div>
         </div>
@@ -1306,7 +1306,7 @@ const FarmerDashboard = () => {
         {loading ? (
           <div className="py-12 flex flex-col items-center justify-center space-y-3">
             <div className="w-10 h-10 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin"></div>
-            <p className="text-lg font-bold text-gray-500">{t('analyzingfarmdata')}</p>
+            <p className="text-xl font-bold text-gray-500">{t('analyzingfarmdata')}</p>
           </div>
         ) : analysisData ? (
           <div className="space-y-6 animate-in fade-in duration-300">
@@ -1316,14 +1316,14 @@ const FarmerDashboard = () => {
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-emerald-200/60 pb-5">
                 <div>
                   <div className="flex items-center space-x-2">
-                    <span className="bg-emerald-600 text-white font-extrabold text-base px-3 py-1 rounded-full uppercase tracking-wider shadow-2xs">
+                    <span className="bg-emerald-600 text-white font-extrabold text-lg px-3 py-1 rounded-full uppercase tracking-wider shadow-2xs">
                       {t('top_recommended_crop')}
                     </span>
-                    <span className="bg-emerald-100 text-emerald-800 font-bold text-base px-2.5 py-1 rounded-full">
+                    <span className="bg-emerald-100 text-emerald-800 font-bold text-lg px-2.5 py-1 rounded-full">
                       {location} • {season}
                     </span>
                   </div>
-                  <h2 className={`text-3xl sm:text-4xl font-black mt-2 tracking-tight ${isDarkMode ? 'text-emerald-400' : 'text-emerald-950'}`}>
+                  <h2 className={`text-4xl sm:text-5xl font-black mt-2 tracking-tight ${isDarkMode ? 'text-emerald-400' : 'text-emerald-950'}`}>
                     {localizedTopCrop}
                   </h2>
                 </div>
@@ -1331,40 +1331,40 @@ const FarmerDashboard = () => {
                 <div className={`text-left sm:text-right p-3.5 rounded-2xl border shadow-2xs ${
                   isDarkMode ? 'bg-slate-900 border-slate-700 text-white' : 'bg-white border-emerald-100 text-gray-900'
                 }`}>
-                  <span className={`block text-sm font-bold uppercase ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>{t('currentmandiprice')}</span>
-                  <span className={`text-3xl font-black ${isDarkMode ? 'text-emerald-400' : 'text-emerald-700'}`}>₹{basePrice.toLocaleString('en-IN')} <xs className={`text-base font-semibold ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>/qtl</xs></span>
+                  <span className={`block text-base font-bold uppercase ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>{t('currentmandiprice')}</span>
+                  <span className={`text-4xl font-black ${isDarkMode ? 'text-emerald-400' : 'text-emerald-700'}`}>₹{basePrice.toLocaleString('en-IN')} <xs className={`text-lg font-semibold ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>/qtl</xs></span>
                 </div>
               </div>
 
               {/* Crop Analysis Stats Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 mt-5">
                 <div className={`p-3.5 rounded-2xl border ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-emerald-100'}`}>
-                  <span className={`block text-sm font-bold uppercase ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>{t('expectedyield')}</span>
-                  <span className={`text-xl font-extrabold ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`}>{analysisData.crop_recommendation?.yield_per_ha || 3.65} t/ha</span>
-                  <span className={`block text-sm font-medium mt-0.5 ${isDarkMode ? 'text-slate-400' : 'text-gray-400'}`}>Total ~{((analysisData.crop_recommendation?.yield_per_ha || 3.65) * areaHa).toFixed(1)} Tons</span>
+                  <span className={`block text-base font-bold uppercase ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>{t('expectedyield')}</span>
+                  <span className={`text-2xl font-extrabold ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`}>{analysisData.crop_recommendation?.yield_per_ha || 3.65} t/ha</span>
+                  <span className={`block text-base font-medium mt-0.5 ${isDarkMode ? 'text-slate-400' : 'text-gray-400'}`}>Total ~{((analysisData.crop_recommendation?.yield_per_ha || 3.65) * areaHa).toFixed(1)} Tons</span>
                 </div>
                 <div className={`p-3.5 rounded-2xl border ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-emerald-100'}`}>
-                  <span className={`block text-sm font-bold uppercase ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>{t('expected_net_profit')}</span>
-                  <span className={`text-xl font-extrabold ${isDarkMode ? ((analysisData.profit_analysis?.net_profit_inr || 1) >= 0 ? "text-emerald-400" : "text-red-400") : ((analysisData.profit_analysis?.net_profit_inr || 1) >= 0 ? "text-emerald-600" : "text-red-600")}`}>{formatIndianCurrency(analysisData.profit_analysis?.net_profit_inr || ((3.65 * areaHa * 23000) - (75000 * areaHa)))}</span>
-                  <span className={`block text-sm font-medium mt-0.5 ${isDarkMode ? 'text-slate-400' : 'text-gray-400'}`}>{displayArea} {landUnit === 'Acres' ? 'Acres' : 'Ha'} Total Land</span>
+                  <span className={`block text-base font-bold uppercase ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>{t('expected_net_profit')}</span>
+                  <span className={`text-2xl font-extrabold ${isDarkMode ? ((analysisData.profit_analysis?.net_profit_inr || 1) >= 0 ? "text-emerald-400" : "text-red-400") : ((analysisData.profit_analysis?.net_profit_inr || 1) >= 0 ? "text-emerald-600" : "text-red-600")}`}>{formatIndianCurrency(analysisData.profit_analysis?.net_profit_inr || ((3.65 * areaHa * 23000) - (75000 * areaHa)))}</span>
+                  <span className={`block text-base font-medium mt-0.5 ${isDarkMode ? 'text-slate-400' : 'text-gray-400'}`}>{displayArea} {landUnit === 'Acres' ? 'Acres' : 'Ha'} Total Land</span>
                 </div>
                 <div className={`p-3.5 rounded-2xl border ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-emerald-100'}`}>
-                  <span className={`block text-sm font-bold uppercase ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>{t('cultivation_cost')}</span>
-                  <span className={`text-xl font-extrabold ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>{formatIndianCurrency(75000 * areaHa)}</span>
-                  <span className={`block text-sm font-medium mt-0.5 ${isDarkMode ? 'text-slate-400' : 'text-gray-400'}`}>{landUnit === 'Acres' ? '₹30,351 / acre' : '₹75,000 / ha'}</span>
+                  <span className={`block text-base font-bold uppercase ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>{t('cultivation_cost')}</span>
+                  <span className={`text-2xl font-extrabold ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>{formatIndianCurrency(75000 * areaHa)}</span>
+                  <span className={`block text-base font-medium mt-0.5 ${isDarkMode ? 'text-slate-400' : 'text-gray-400'}`}>{landUnit === 'Acres' ? '₹30,351 / acre' : '₹75,000 / ha'}</span>
                 </div>
                 <div className={`p-3.5 rounded-2xl border ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-emerald-100'}`}>
-                  <span className={`block text-sm font-bold uppercase ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>{t('profit_margin')}</span>
-                  <span className={`text-xl font-extrabold ${isDarkMode ? ((analysisData.profit_analysis?.roi_percent || 19.1) >= 0 ? "text-emerald-400" : "text-red-400") : ((analysisData.profit_analysis?.roi_percent || 19.1) >= 0 ? "text-emerald-600" : "text-red-600")}`}>{(analysisData.profit_analysis?.roi_percent || 19.1) > 0 ? "+" : ""}{analysisData.profit_analysis?.roi_percent || 19.1}%</span>
-                  <span className={`block text-sm font-medium mt-0.5 ${isDarkMode ? 'text-slate-400' : 'text-gray-400'}`}>Return on Investment</span>
+                  <span className={`block text-base font-bold uppercase ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>{t('profit_margin')}</span>
+                  <span className={`text-2xl font-extrabold ${isDarkMode ? ((analysisData.profit_analysis?.roi_percent || 19.1) >= 0 ? "text-emerald-400" : "text-red-400") : ((analysisData.profit_analysis?.roi_percent || 19.1) >= 0 ? "text-emerald-600" : "text-red-600")}`}>{(analysisData.profit_analysis?.roi_percent || 19.1) > 0 ? "+" : ""}{analysisData.profit_analysis?.roi_percent || 19.1}%</span>
+                  <span className={`block text-base font-medium mt-0.5 ${isDarkMode ? 'text-slate-400' : 'text-gray-400'}`}>Return on Investment</span>
                 </div>
               </div>
 
               {/* Recommendation Rationale */}
               {analysisData.crop_recommendation?.reasons && (
                 <div className={`mt-5 pt-4 border-t ${isDarkMode ? 'border-slate-700' : 'border-emerald-200/50'}`}>
-                  <h4 className={`text-base font-bold uppercase tracking-wider mb-2 ${isDarkMode ? 'text-emerald-300' : 'text-emerald-900'}`}>💡 {t('why_this_crop_was_recommended')}</h4>
-                  <ul className={`grid grid-cols-1 sm:grid-cols-2 gap-2 text-base font-medium ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>
+                  <h4 className={`text-lg font-bold uppercase tracking-wider mb-2 ${isDarkMode ? 'text-emerald-300' : 'text-emerald-900'}`}>💡 {t('why_this_crop_was_recommended')}</h4>
+                  <ul className={`grid grid-cols-1 sm:grid-cols-2 gap-2 text-lg font-medium ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>
                     {analysisData.crop_recommendation.reasons.map((reason, idx) => (
                       <li key={idx} className="flex items-center">
                         <ShieldCheck className="h-4 w-4 text-emerald-500 mr-2 shrink-0" />
@@ -1379,14 +1379,14 @@ const FarmerDashboard = () => {
             {/* CANDIDATE CROPS COMPARISON TABLE */}
             {candidateCrops.length > 0 && (
               <div className={`p-5 rounded-2xl border ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
-                <h3 className={`text-lg font-extrabold uppercase tracking-wider mb-3.5 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl font-extrabold uppercase tracking-wider mb-3.5 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
                   <Award className="h-4 w-4 text-emerald-500 mr-2" />
                   {t('risk_balanced_candidate_crops_comparison')}
                 </h3>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse text-base">
+                  <table className="w-full text-left border-collapse text-lg">
                     <thead>
-                      <tr className={`border-b text-sm uppercase font-bold ${isDarkMode ? 'bg-slate-900 border-slate-700 text-slate-300' : 'bg-gray-50 border-gray-200 text-gray-500'}`}>
+                      <tr className={`border-b text-base uppercase font-bold ${isDarkMode ? 'bg-slate-900 border-slate-700 text-slate-300' : 'bg-gray-50 border-gray-200 text-gray-500'}`}>
                         <th className="p-3">{t('crop')}</th>
                         <th className="p-3">{t('agronomicfit')}</th>
                         <th className="p-3">{t('expected_net_profit')}</th>
@@ -1415,7 +1415,7 @@ const FarmerDashboard = () => {
                             <td className={`p-3 font-extrabold ${isDarkMode ? (c.expected_net_profit >= 0 ? "text-emerald-400" : "text-red-400") : (c.expected_net_profit >= 0 ? "text-emerald-700" : "text-red-700")}`}>{formatIndianCurrency(c.expected_net_profit, true)}</td>
                             <td className={`p-3 ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>{formatIndianCurrency(c.total_cultivation_cost, true)}</td>
                             <td className="p-3">
-                              <span className={`px-2 py-0.5 rounded-md text-sm font-extrabold ${
+                              <span className={`px-2 py-0.5 rounded-md text-base font-extrabold ${
                                 c.safety_score >= 80 ? 'bg-green-100 text-green-800' : 'bg-amber-100 text-amber-800'
                               }`}>
                                 {c.safety_score}/100
@@ -1427,7 +1427,7 @@ const FarmerDashboard = () => {
                                   setSelectedCrop(cropName);
                                   setSelectedInsightCrop(c);
                                 }}
-                                className="bg-emerald-600 hover:bg-emerald-700 text-white text-base font-bold px-3 py-1.5 rounded-xl shadow-2xs hover:shadow-xs transition-all flex items-center space-x-1 cursor-pointer"
+                                className="bg-emerald-600 hover:bg-emerald-700 text-white text-lg font-bold px-3 py-1.5 rounded-xl shadow-2xs hover:shadow-xs transition-all flex items-center space-x-1 cursor-pointer"
                               >
                                 <Sparkles className="h-3.5 w-3.5" />
                                 <span>{t('view_insights')}</span>
@@ -1445,11 +1445,11 @@ const FarmerDashboard = () => {
             {/* MANDI PRICE FORECAST CARD */}
             <div className={`p-5 rounded-2xl border ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
               <div className="flex justify-between items-center mb-3">
-                <h3 className={`text-lg font-extrabold uppercase tracking-wider flex items-center ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl font-extrabold uppercase tracking-wider flex items-center ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
                   <LineChart className="h-4 w-4 text-emerald-500 mr-2" />
                   {t('mandi_price_trend_forecast')} - {localizedTopCrop} ({location})
                 </h3>
-                <span className="text-sm bg-emerald-700 text-white font-extrabold px-3 py-1 rounded-full shadow-2xs">
+                <span className="text-base bg-emerald-700 text-white font-extrabold px-3 py-1 rounded-full shadow-2xs">
                   {t('forecast_badge')}
                 </span>
               </div>
@@ -1457,23 +1457,23 @@ const FarmerDashboard = () => {
               {/* RICH DARK EMERALD GREEN BOXES */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
                 <div className="p-3.5 rounded-2xl border bg-slate-900 text-slate-100 border-slate-700 shadow-md">
-                  <span className="block text-sm font-bold text-slate-400 uppercase tracking-wider">{t('today_mandi_price')}</span>
-                  <span className="text-xl font-black text-white">₹{priceForecast.priceToday.toLocaleString('en-IN')}</span>
+                  <span className="block text-base font-bold text-slate-400 uppercase tracking-wider">{t('today_mandi_price')}</span>
+                  <span className="text-2xl font-black text-white">₹{priceForecast.priceToday.toLocaleString('en-IN')}</span>
                   <span className="block text-[9px] text-slate-400 font-extrabold mt-0.5">Base Rate</span>
                 </div>
                 <div className="p-3.5 rounded-2xl border bg-emerald-900/90 text-emerald-100 border-emerald-700 shadow-md">
-                  <span className="block text-sm font-bold text-emerald-300 uppercase tracking-wider">{t('next_15_days') || '15 Day Forecast'}</span>
-                  <span className="text-xl font-black text-white">₹{priceForecast.price15.toLocaleString('en-IN')}</span>
+                  <span className="block text-base font-bold text-emerald-300 uppercase tracking-wider">{t('next_15_days') || '15 Day Forecast'}</span>
+                  <span className="text-2xl font-black text-white">₹{priceForecast.price15.toLocaleString('en-IN')}</span>
                   <span className="block text-[9px] text-emerald-300 font-extrabold mt-0.5">+3.8% Gain</span>
                 </div>
                 <div className="p-3.5 rounded-2xl border bg-emerald-800 text-white border-emerald-600 shadow-lg ring-1 ring-emerald-500/40">
-                  <span className="block text-sm font-bold text-emerald-200 uppercase tracking-wider">{t('next_30_days') || '30 Day Forecast'}</span>
-                  <span className="text-xl font-black text-white">₹{priceForecast.price30.toLocaleString('en-IN')}</span>
+                  <span className="block text-base font-bold text-emerald-200 uppercase tracking-wider">{t('next_30_days') || '30 Day Forecast'}</span>
+                  <span className="text-2xl font-black text-white">₹{priceForecast.price30.toLocaleString('en-IN')}</span>
                   <span className="block text-[9px] text-amber-300 font-extrabold mt-0.5">+7.5% Gain</span>
                 </div>
                 <div className="p-3.5 rounded-2xl border bg-teal-900/90 text-teal-100 border-teal-700 shadow-md">
-                  <span className="block text-sm font-bold text-teal-300 uppercase tracking-wider">{t('next_90_days') || '90 Day Forecast'}</span>
-                  <span className="text-xl font-black text-white">₹{priceForecast.price90.toLocaleString('en-IN')}</span>
+                  <span className="block text-base font-bold text-teal-300 uppercase tracking-wider">{t('next_90_days') || '90 Day Forecast'}</span>
+                  <span className="text-2xl font-black text-white">₹{priceForecast.price90.toLocaleString('en-IN')}</span>
                   <span className="block text-[9px] text-teal-300 font-extrabold mt-0.5">+13.4% Peak</span>
                 </div>
               </div>
@@ -1484,12 +1484,12 @@ const FarmerDashboard = () => {
 
             {/* PROFITABILITY BREAKDOWN */}
             <div className={`p-5 rounded-2xl border ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
-              <h3 className={`text-lg font-extrabold uppercase tracking-wider mb-3 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
+              <h3 className={`text-xl font-extrabold uppercase tracking-wider mb-3 flex items-center ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
                 <DollarSign className="h-4 w-4 text-emerald-500 mr-2" />
                 {t('cultivation_cost_net_profit_estimate') || 'Estimated Financial Returns Breakdown'} ({displayArea} {landUnit === 'Acres' ? 'Acres' : 'Ha'} Land)
               </h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-base font-semibold">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-lg font-semibold">
                 <div className={`p-3 rounded-xl border flex justify-between ${isDarkMode ? 'bg-slate-900 border-slate-700 text-slate-300' : 'bg-gray-50 border-gray-200 text-gray-700'}`}>
                   <span>{t('total_cultivation_cost')}:</span>
                   <span className={`font-bold ${isDarkMode ? 'text-white' : 'text-gray-700'}`}>{formatIndianCurrency(75000 * areaHa)}</span>
@@ -1502,10 +1502,10 @@ const FarmerDashboard = () => {
 
               <div className={`p-3.5 rounded-xl border flex justify-between items-center ${isDarkMode ? 'bg-slate-900 border-emerald-500/40' : 'bg-white border-emerald-300'}`}>
                 <div>
-                  <span className={`block text-sm font-bold uppercase ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>{t('expected_net_profit')}</span>
-                  <span className={`text-3xl font-black ${isDarkMode ? ((analysisData.profit_analysis?.net_profit_inr || 1) >= 0 ? "text-emerald-400" : "text-red-400") : ((analysisData.profit_analysis?.net_profit_inr || 1) >= 0 ? "text-emerald-600" : "text-red-600")}`}>{formatIndianCurrency(analysisData.profit_analysis?.net_profit_inr || ((3.65 * areaHa * 23000) - (75000 * areaHa)))}</span>
+                  <span className={`block text-base font-bold uppercase ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>{t('expected_net_profit')}</span>
+                  <span className={`text-4xl font-black ${isDarkMode ? ((analysisData.profit_analysis?.net_profit_inr || 1) >= 0 ? "text-emerald-400" : "text-red-400") : ((analysisData.profit_analysis?.net_profit_inr || 1) >= 0 ? "text-emerald-600" : "text-red-600")}`}>{formatIndianCurrency(analysisData.profit_analysis?.net_profit_inr || ((3.65 * areaHa * 23000) - (75000 * areaHa)))}</span>
                 </div>
-                <span className={`${(analysisData.profit_analysis?.roi_percent || 19.1) >= 0 ? "bg-emerald-700" : "bg-red-700"} text-white font-black text-lg px-4 py-1.5 rounded-full shadow-xs`}>{(analysisData.profit_analysis?.roi_percent || 19.1) > 0 ? "+" : ""}{analysisData.profit_analysis?.roi_percent || 19.1}% {t("roi")}</span>
+                <span className={`${(analysisData.profit_analysis?.roi_percent || 19.1) >= 0 ? "bg-emerald-700" : "bg-red-700"} text-white font-black text-xl px-4 py-1.5 rounded-full shadow-xs`}>{(analysisData.profit_analysis?.roi_percent || 19.1) > 0 ? "+" : ""}{analysisData.profit_analysis?.roi_percent || 19.1}% {t("roi")}</span>
               </div>
             </div>
 
@@ -1538,13 +1538,13 @@ const FarmerDashboard = () => {
                   <Sprout className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-extrabold text-xl sm:text-2xl flex items-center gap-2">
+                  <h3 className="font-extrabold text-2xl sm:text-3xl flex items-center gap-2">
                     {getLocalizedCropName(selectedInsightCrop.crop || 'Crop')}
-                    <span className="text-sm bg-emerald-400/30 text-emerald-100 px-2.5 py-0.5 rounded-full font-bold border border-emerald-300/40">
+                    <span className="text-base bg-emerald-400/30 text-emerald-100 px-2.5 py-0.5 rounded-full font-bold border border-emerald-300/40">
                       Essential Farmer Guide
                     </span>
                   </h3>
-                  <p className="text-base text-emerald-100">Practical Agronomic Insights & Market Advice</p>
+                  <p className="text-lg text-emerald-100">Practical Agronomic Insights & Market Advice</p>
                 </div>
               </div>
 
@@ -1563,37 +1563,37 @@ const FarmerDashboard = () => {
               {/* Quick Metrics Bar */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                 <div className={`p-3 rounded-2xl border ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-emerald-50/70 border-emerald-200'}`}>
-                  <span className="block text-sm font-bold uppercase text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                  <span className="block text-base font-bold uppercase text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                     <Clock className="h-3 w-3" /> Growth Duration
                   </span>
-                  <span className="text-lg font-black text-emerald-800 dark:text-emerald-300 mt-0.5 block">
+                  <span className="text-xl font-black text-emerald-800 dark:text-emerald-300 mt-0.5 block">
                     {(CROP_INSIGHTS_DATABASE[selectedInsightCrop.crop?.toLowerCase()] || defaultCropInsight(selectedInsightCrop.crop)).duration}
                   </span>
                 </div>
 
                 <div className={`p-3 rounded-2xl border ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-blue-50/70 border-blue-200'}`}>
-                  <span className="block text-sm font-bold uppercase text-blue-600 dark:text-blue-400 flex items-center gap-1">
+                  <span className="block text-base font-bold uppercase text-blue-600 dark:text-blue-400 flex items-center gap-1">
                     <Droplets className="h-3 w-3" /> Water Need
                   </span>
-                  <span className="text-lg font-black text-blue-900 dark:text-blue-300 mt-0.5 block truncate">
+                  <span className="text-xl font-black text-blue-900 dark:text-blue-300 mt-0.5 block truncate">
                     {(CROP_INSIGHTS_DATABASE[selectedInsightCrop.crop?.toLowerCase()] || defaultCropInsight(selectedInsightCrop.crop)).water}
                   </span>
                 </div>
 
                 <div className={`p-3 rounded-2xl border ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-amber-50/70 border-amber-200'}`}>
-                  <span className="block text-sm font-bold uppercase text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                  <span className="block text-base font-bold uppercase text-amber-600 dark:text-amber-400 flex items-center gap-1">
                     <DollarSign className="h-3 w-3" /> Net Profit
                   </span>
-                  <span className="text-lg font-black text-amber-900 dark:text-amber-300 mt-0.5 block">
+                  <span className="text-xl font-black text-amber-900 dark:text-amber-300 mt-0.5 block">
                     {formatIndianCurrency(selectedInsightCrop.expected_net_profit || 40000)}
                   </span>
                 </div>
 
                 <div className={`p-3 rounded-2xl border ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-teal-50/70 border-teal-200'}`}>
-                  <span className="block text-sm font-bold uppercase text-teal-600 dark:text-teal-400 flex items-center gap-1">
+                  <span className="block text-base font-bold uppercase text-teal-600 dark:text-teal-400 flex items-center gap-1">
                     <ShieldCheck className="h-3 w-3" /> Safety Score
                   </span>
-                  <span className="text-lg font-black text-teal-900 dark:text-teal-300 mt-0.5 block">
+                  <span className="text-xl font-black text-teal-900 dark:text-teal-300 mt-0.5 block">
                     {selectedInsightCrop.safety_score || 75} / 100
                   </span>
                 </div>
@@ -1608,51 +1608,51 @@ const FarmerDashboard = () => {
                     
                     {/* Soil & Sowing */}
                     <div className={`p-4 rounded-2xl border ${isDarkMode ? 'bg-slate-800/80 border-slate-700' : 'bg-emerald-50/50 border-emerald-200/80'}`}>
-                      <h4 className={`text-base font-black uppercase tracking-wider flex items-center gap-1.5 mb-1.5 ${
+                      <h4 className={`text-lg font-black uppercase tracking-wider flex items-center gap-1.5 mb-1.5 ${
                         isDarkMode ? 'text-emerald-400' : 'text-emerald-900'
                       }`}>
                         <MapPin className="h-4 w-4 text-emerald-600" /> Soil & Sowing Requirements
                       </h4>
-                      <p className={`text-base font-medium leading-relaxed ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>
+                      <p className={`text-lg font-medium leading-relaxed ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>
                         <strong className={`font-black ${isDarkMode ? 'text-white' : 'text-emerald-950'}`}>Soil Type:</strong> {info.soil}
                       </p>
-                      <p className={`text-base font-medium leading-relaxed mt-1 ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>
+                      <p className={`text-lg font-medium leading-relaxed mt-1 ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>
                         <strong className={`font-black ${isDarkMode ? 'text-white' : 'text-emerald-950'}`}>Ideal Sowing:</strong> {info.sowing}
                       </p>
                     </div>
 
                     {/* Fertilizer & Soil Health */}
                     <div className={`p-4 rounded-2xl border ${isDarkMode ? 'bg-slate-800/80 border-slate-700' : 'bg-purple-50/60 border-purple-200/80'}`}>
-                      <h4 className={`text-base font-black uppercase tracking-wider flex items-center gap-1.5 mb-1.5 ${
+                      <h4 className={`text-lg font-black uppercase tracking-wider flex items-center gap-1.5 mb-1.5 ${
                         isDarkMode ? 'text-purple-300' : 'text-purple-900'
                       }`}>
                         <Sparkles className="h-4 w-4 text-purple-600" /> Fertilizer & Soil Health Advice
                       </h4>
-                      <p className={`text-base font-medium leading-relaxed ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>
+                      <p className={`text-lg font-medium leading-relaxed ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>
                         {info.npk}
                       </p>
                     </div>
 
                     {/* Pest & Disease Prevention */}
                     <div className={`p-4 rounded-2xl border ${isDarkMode ? 'bg-slate-800/80 border-slate-700' : 'bg-rose-50/60 border-rose-200/80'}`}>
-                      <h4 className={`text-base font-black uppercase tracking-wider flex items-center gap-1.5 mb-1.5 ${
+                      <h4 className={`text-lg font-black uppercase tracking-wider flex items-center gap-1.5 mb-1.5 ${
                         isDarkMode ? 'text-rose-400' : 'text-rose-900'
                       }`}>
                         <ShieldCheck className="h-4 w-4 text-rose-600" /> Pest & Disease Care
                       </h4>
-                      <p className={`text-base font-medium leading-relaxed ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>
+                      <p className={`text-lg font-medium leading-relaxed ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>
                         {info.pest}
                       </p>
                     </div>
 
                     {/* Government Schemes & Market Support */}
                     <div className={`p-4 rounded-2xl border ${isDarkMode ? 'bg-emerald-950/60 border-emerald-800' : 'bg-emerald-100/60 border-emerald-300'}`}>
-                      <h4 className={`text-base font-black uppercase tracking-wider flex items-center gap-1.5 mb-1.5 ${
+                      <h4 className={`text-lg font-black uppercase tracking-wider flex items-center gap-1.5 mb-1.5 ${
                         isDarkMode ? 'text-emerald-300' : 'text-emerald-950'
                       }`}>
                         <DollarSign className="h-4 w-4 text-emerald-600" /> Odisha Schemes & Market Potential
                       </h4>
-                      <p className={`text-base font-extrabold leading-relaxed ${isDarkMode ? 'text-emerald-200' : 'text-emerald-950'}`}>
+                      <p className={`text-lg font-extrabold leading-relaxed ${isDarkMode ? 'text-emerald-200' : 'text-emerald-950'}`}>
                         {info.market}
                       </p>
                     </div>
@@ -1667,7 +1667,7 @@ const FarmerDashboard = () => {
             <div className={`px-6 py-3 border-t flex justify-end ${isDarkMode ? 'bg-slate-900 border-slate-800' : 'bg-gray-50 border-gray-200'}`}>
               <button
                 onClick={() => setSelectedInsightCrop(null)}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base px-5 py-2 rounded-xl shadow-xs transition-all cursor-pointer"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg px-5 py-2 rounded-xl shadow-xs transition-all cursor-pointer"
               >
                 Got It, Close
               </button>
@@ -1681,7 +1681,7 @@ const FarmerDashboard = () => {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
           <div className={`w-full max-w-md rounded-2xl shadow-2xl p-6 ${isDarkMode ? "bg-slate-900 border border-slate-700" : "bg-white"}`}>
             <div className="flex justify-between items-center mb-4">
-              <h3 className={`text-xl font-black flex items-center ${isDarkMode ? "text-emerald-400" : "text-emerald-700"}`}>
+              <h3 className={`text-2xl font-black flex items-center ${isDarkMode ? "text-emerald-400" : "text-emerald-700"}`}>
                 <MapPin className="h-5 w-5 mr-2 text-red-500" /> Select Farm Location
               </h3>
               <button onClick={() => setIsMapModalOpen(false)} className={`p-1 rounded-full ${isDarkMode ? "hover:bg-slate-800 text-slate-400" : "hover:bg-gray-100 text-gray-500"}`}>
@@ -1726,8 +1726,8 @@ const FarmerDashboard = () => {
                   <MessageSquare className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-black tracking-tight">Official Officer Messages</h3>
-                  <p className="text-base text-blue-600 font-bold">📍 {location} District Krushi Office</p>
+                  <h3 className="text-2xl font-black tracking-tight">Official Officer Messages</h3>
+                  <p className="text-lg text-blue-600 font-bold">📍 {location} District Krushi Office</p>
                 </div>
               </div>
 
@@ -1745,22 +1745,22 @@ const FarmerDashboard = () => {
                 officerAlerts.map(alert => (
                   <div key={alert.id} className="p-4 bg-blue-50/70 border border-blue-200 rounded-2xl space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-base font-black text-blue-950 flex items-center">
+                      <span className="text-lg font-black text-blue-950 flex items-center">
                         🏛️ {alert.sender || `${location} District Officer`}
                       </span>
-                      <span className="text-sm font-bold text-gray-500 font-mono">
+                      <span className="text-base font-bold text-gray-500 font-mono">
                         {alert.timestamp}
                       </span>
                     </div>
 
-                    <p className="text-base sm:text-lg text-gray-800 font-medium leading-relaxed bg-white p-3 rounded-xl border border-blue-100 shadow-2xs">
+                    <p className="text-lg sm:text-xl text-gray-800 font-medium leading-relaxed bg-white p-3 rounded-xl border border-blue-100 shadow-2xs">
                       {alert.message}
                     </p>
 
                     <div className="flex justify-end items-center pt-1">
                       <a 
                         href="tel:18001801551" 
-                        className="inline-flex items-center text-base font-black text-emerald-700 hover:text-emerald-800 bg-emerald-100 px-3 py-1.5 rounded-lg transition-colors"
+                        className="inline-flex items-center text-lg font-black text-emerald-700 hover:text-emerald-800 bg-emerald-100 px-3 py-1.5 rounded-lg transition-colors"
                       >
                         📞 Contact Krushi Helpline (1800-180-1551)
                       </a>
@@ -1768,7 +1768,7 @@ const FarmerDashboard = () => {
                   </div>
                 ))
               ) : (
-                <div className="p-8 text-center text-gray-500 text-lg italic">
+                <div className="p-8 text-center text-gray-500 text-xl italic">
                   No official alerts received yet for {location} District.
                 </div>
               )}
@@ -1778,7 +1778,7 @@ const FarmerDashboard = () => {
             <div className="pt-2 border-t border-gray-200/60 flex justify-end">
               <button
                 onClick={() => setIsAlertModalOpen(false)}
-                className="px-5 py-2 bg-gray-900 text-white hover:bg-gray-800 rounded-xl text-base font-bold transition-all shadow-xs cursor-pointer"
+                className="px-5 py-2 bg-gray-900 text-white hover:bg-gray-800 rounded-xl text-lg font-bold transition-all shadow-xs cursor-pointer"
               >
                 Close Messages
               </button>
