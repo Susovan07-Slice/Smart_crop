@@ -406,7 +406,7 @@ const Login = () => {
                 className="text-lg sm:text-xl font-extrabold text-emerald-700 hover:text-emerald-800 hover:underline flex items-center justify-center mx-auto space-x-1.5 bg-emerald-50 px-4 py-2.5 rounded-xl border border-emerald-200 shadow-2xs transition-colors cursor-pointer w-full"
               >
                 <UserPlus className="h-4 w-4 text-emerald-700" />
-                <span>Don't have an account? Sign Up with Phone Number</span>
+                <span>{t('dont_have_account_signup')}</span>
               </button>
             </div>
           </form>
@@ -418,7 +418,7 @@ const Login = () => {
             <div>
               <label className="block text-lg font-extrabold text-gray-800 uppercase mb-1 flex items-center">
                 <Phone className="h-4 w-4 mr-1 text-emerald-600" />
-                Mobile Number (Primary Account Key) *
+                {t('mobile_number_label')}
               </label>
               <input
                 type="tel"
@@ -435,7 +435,7 @@ const Login = () => {
             <div className="grid grid-cols-2 gap-2.5">
               <div>
                 <label className="block text-lg font-bold text-gray-700 uppercase mb-1">
-                  Set 4-Digit PIN *
+                  {t('set_pin_label')}
                 </label>
                 <input
                   type="password"
@@ -450,7 +450,7 @@ const Login = () => {
 
               <div>
                 <label className="block text-lg font-bold text-gray-700 uppercase mb-1">
-                  Confirm PIN *
+                  {t('confirm_pin_label')}
                 </label>
                 <input
                   type="password"
@@ -464,12 +464,12 @@ const Login = () => {
               </div>
             </div>
 
-            {/* First Name & Surname (OPTIONAL PROFILE FIELDS) */}
+            {/* {t('first_name_label')} & {t('surname_label')} (OPTIONAL PROFILE FIELDS) */}
             <div className="grid grid-cols-2 gap-2.5 pt-1">
               <div>
                 <label className="block text-lg font-bold text-gray-600 uppercase mb-1 flex items-center">
                   <User className="h-3.5 w-3.5 mr-1 text-emerald-600" />
-                  First Name <span className="text-gray-400 font-normal lowercase ml-1">(optional)</span>
+                  {t('first_name_label')} <span className="text-gray-400 font-normal lowercase ml-1">{t('optional')}</span>
                 </label>
                 <input
                   type="text"
@@ -483,7 +483,7 @@ const Login = () => {
               <div>
                 <label className="block text-lg font-bold text-gray-600 uppercase mb-1 flex items-center">
                   <User className="h-3.5 w-3.5 mr-1 text-emerald-600" />
-                  Surname <span className="text-gray-400 font-normal lowercase ml-1">(optional)</span>
+                  {t('surname_label')} <span className="text-gray-400 font-normal lowercase ml-1">{t('optional')}</span>
                 </label>
                 <input
                   type="text"
@@ -522,8 +522,7 @@ const Login = () => {
             <div>
               <label className="block text-lg font-extrabold text-emerald-900 uppercase mb-1 flex items-center">
                 <Globe className="h-3.5 w-3.5 mr-1 text-emerald-600" />
-                Preferred Language / ପସନ୍ଦର ଭାଷା *
-              </label>
+                {t('preferred_language_label')}</label>
               <select
                 value={signupLang}
                 onChange={(e) => {
@@ -582,7 +581,7 @@ const Login = () => {
                 className="text-lg sm:text-xl font-extrabold text-emerald-700 hover:text-emerald-800 hover:underline flex items-center justify-center mx-auto space-x-1.5 bg-emerald-50 px-4 py-2.5 rounded-xl border border-emerald-200 shadow-2xs transition-colors cursor-pointer w-full"
               >
                 <LogIn className="h-4 w-4 text-emerald-700" />
-                <span>Already have an account? Log In with Mobile Number</span>
+                <span>{t('already_have_account_login')}</span>
               </button>
             </div>
           </form>

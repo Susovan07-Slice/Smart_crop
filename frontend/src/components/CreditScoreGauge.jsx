@@ -23,7 +23,7 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
     if (dScore <= 25) {
       return {
         ...envRisks,
-        badgeText: "VERY LOW DISTRESS",
+        badgeText: "VERY {t('low_distress')}",
         badgeClass: isDarkMode ? "bg-emerald-900/70 text-emerald-300 border-emerald-700" : "bg-emerald-100 text-emerald-800 border-emerald-300",
         scoreColor: isDarkMode ? "text-emerald-400" : "text-emerald-600",
         barColor: "bg-emerald-500",
@@ -37,7 +37,7 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
     } else if (dScore <= 50) {
       return {
         ...envRisks,
-        badgeText: "LOW DISTRESS",
+        badgeText: "{t('low_distress')}",
         badgeClass: isDarkMode ? "bg-emerald-900/50 text-emerald-300 border-emerald-600" : "bg-emerald-50 text-emerald-700 border-emerald-200",
         scoreColor: isDarkMode ? "text-emerald-400" : "text-emerald-600",
         barColor: "bg-emerald-500",
@@ -51,7 +51,7 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
     } else if (dScore <= 75) {
       return {
         ...envRisks,
-        badgeText: "MODERATE DISTRESS",
+        badgeText: "{t('moderate_distress')}",
         badgeClass: isDarkMode ? "bg-amber-900/70 text-amber-300 border-amber-700" : "bg-amber-100 text-amber-900 border-amber-300",
         scoreColor: isDarkMode ? "text-amber-400" : "text-amber-600",
         barColor: "bg-amber-500",
@@ -65,7 +65,7 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
     } else {
       return {
         ...envRisks,
-        badgeText: "HIGH DISTRESS",
+        badgeText: "{t('high_distress')}",
         badgeClass: isDarkMode ? "bg-rose-900/70 text-rose-300 border-rose-700" : "bg-red-100 text-red-800 border-red-300",
         scoreColor: isDarkMode ? "text-rose-400" : "text-red-600",
         barColor: "bg-red-500",
@@ -103,11 +103,11 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
             <h3 className={`text-2xl font-black tracking-tight flex items-center gap-1.5 ${
               isDarkMode ? 'text-white' : 'text-gray-900'
             }`}>
-              FARMER DISTRESS SCORE
+              {t('farmer_distress_score')}
               <Info className={`h-3.5 w-3.5 cursor-pointer ${isDarkMode ? 'text-slate-400 hover:text-slate-200' : 'text-gray-400 hover:text-gray-600'}`} title="Composite Farmer Distress Score (0-100) calculated from Loan Debt, Rainfall Deficit, Wind Hazard & Crop Vulnerability." />
             </h3>
             <p className={`text-lg font-medium ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>
-              Composite Distress Index (Lower is Better)
+              {t('composite_distress_index')}
             </p>
           </div>
         </div>
@@ -131,13 +131,13 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
       {/* Right Column: 4 Multi-Factor Risk Breakdown Metric Scale Bars */}
       <div className="flex-1 flex flex-col justify-between space-y-2.5 pl-0 md:pl-2">
         
-        {/* Metric 1: Loan & Debt Burden */}
+        {/* Metric 1: {t('loan_debt_burden')} */}
         <div className="flex items-center justify-between text-lg space-x-3">
           <div className="flex items-center space-x-2 w-40 shrink-0">
             <div className={`p-1 rounded-lg ${isDarkMode ? 'bg-slate-700 text-emerald-400' : 'bg-emerald-50 text-emerald-700'}`}>
               <Wallet className="h-3.5 w-3.5" />
             </div>
-            <span className={`font-bold truncate ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>Loan & Debt Burden</span>
+            <span className={`font-bold truncate ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>{t('loan_debt_burden')}</span>
           </div>
 
           <div className={`flex-1 h-2.5 rounded-full overflow-hidden border mx-2 ${
@@ -160,7 +160,7 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
             <div className={`p-1 rounded-lg ${isDarkMode ? 'bg-blue-950 text-blue-400' : 'bg-blue-50 text-blue-700'}`}>
               <CloudRain className="h-3.5 w-3.5" />
             </div>
-            <span className={`font-bold truncate ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>Rainfall Deficit Risk</span>
+            <span className={`font-bold truncate ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>{t('rainfall_deficit_risk')}</span>
           </div>
 
           <div className={`flex-1 h-2.5 rounded-full overflow-hidden border mx-2 ${
@@ -183,7 +183,7 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
             <div className={`p-1 rounded-lg ${isDarkMode ? 'bg-amber-950 text-amber-400' : 'bg-amber-50 text-amber-700'}`}>
               <Wind className="h-3.5 w-3.5" />
             </div>
-            <span className={`font-bold truncate ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>Wind Hazard Risk</span>
+            <span className={`font-bold truncate ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>{t('wind_hazard_risk')}</span>
           </div>
 
           <div className={`flex-1 h-2.5 rounded-full overflow-hidden border mx-2 ${
@@ -200,13 +200,13 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
           </span>
         </div>
 
-        {/* Metric 4: Crop Vulnerability Risk */}
+        {/* Metric 4: {t('crop_vulnerability_risk')} */}
         <div className="flex items-center justify-between text-lg space-x-3">
           <div className="flex items-center space-x-2 w-40 shrink-0">
             <div className={`p-1 rounded-lg ${isDarkMode ? 'bg-emerald-950 text-emerald-400' : 'bg-emerald-50 text-emerald-700'}`}>
               <Wheat className="h-3.5 w-3.5" />
             </div>
-            <span className={`font-bold truncate ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>Crop Vulnerability Risk</span>
+            <span className={`font-bold truncate ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>{t('crop_vulnerability_risk')}</span>
           </div>
 
           <div className={`flex-1 h-2.5 rounded-full overflow-hidden border mx-2 ${
@@ -223,13 +223,13 @@ const CreditScoreGauge = ({ score = 0, category = "Very Low", hasLoan = false, l
           </span>
         </div>
 
-        {/* Edit Financial & Loan Profile Action Bar */}
+        {/* {t('edit_financial_profile')} Action Bar */}
         <div className="flex justify-end pt-1">
           <button
             onClick={onEditLoan}
             className="flex items-center text-lg font-black text-white bg-emerald-600 hover:bg-emerald-700 border border-emerald-500 px-4 py-2 rounded-xl transition-all shadow-sm hover:scale-105 active:scale-95 cursor-pointer"
           >
-            <span>💳 Edit Financial & Loan Profile</span>
+            <span>💳 {t('edit_financial_profile')}</span>
             <ArrowRight className="h-4 w-4 ml-1.5" />
           </button>
         </div>

@@ -961,12 +961,12 @@ const FarmerDashboard = () => {
                   {isDarkMode ? (
                     <>
                       <Sun className="h-4.5 w-4.5 text-amber-400 fill-amber-400" />
-                      <span>Light Mode</span>
+                      <span>{t('light_mode')}</span>
                     </>
                   ) : (
                     <>
                       <Moon className="h-4.5 w-4.5 text-slate-700 fill-slate-700" />
-                      <span>Dark Mode</span>
+                      <span>{t('dark_mode')}</span>
                     </>
                   )}
                 </button>
@@ -987,7 +987,7 @@ const FarmerDashboard = () => {
                   title="View Official Messages & Alerts from District Agricultural Officer"
                 >
                   <MessageSquare className="h-4.5 w-4.5 text-white" />
-                  <span>Officer Messages</span>
+                  <span>{t('officer_messages')}</span>
                   {officerAlerts.filter(a => !a.is_read).length > 0 && (
                     <span className="ml-1.5 bg-yellow-400 text-red-950 text-lg font-black px-2 py-0.5 rounded-full border border-white">
                       {officerAlerts.filter(a => !a.is_read).length} New
@@ -1012,7 +1012,7 @@ const FarmerDashboard = () => {
               <div>
                 <h4 className="text-lg font-black text-red-950 uppercase tracking-wider flex items-center gap-1.5">
                   <span>📩 Official Alert from {location} District Officer</span>
-                  <span className="bg-red-600 text-white text-base px-2 py-0.5 rounded-full font-bold">New Message</span>
+                  <span className="bg-red-600 text-white text-base px-2 py-0.5 rounded-full font-bold">{t('new_message')}</span>
                 </h4>
                 <p className="text-lg sm:text-xl font-bold text-gray-800 mt-0.5">{officerAlerts.find(a => !a.is_read)?.message}</p>
               </div>
@@ -1117,12 +1117,12 @@ const FarmerDashboard = () => {
                     {isSpeaking ? (
                       <>
                         <VolumeX className="h-4 w-4" />
-                        <span>⏹️ Stop Voice</span>
+                        <span>⏹️ {t('stop_voice')}</span>
                       </>
                     ) : (
                       <>
                         <Volume2 className="h-4 w-4" />
-                        <span>🔊 Read Aloud ({lang === 'or' ? 'ଓଡ଼ିଆ' : lang === 'hi' ? 'हिन्दी' : 'English'})</span>
+                        <span>🔊 {t('read_aloud')}</span>
                       </>
                     )}
                   </button>
@@ -1164,7 +1164,7 @@ const FarmerDashboard = () => {
             <div className="flex items-center text-xl font-bold mb-2 sm:mb-0 flex-wrap gap-2">
               <div className="flex items-center">
                 <MapPin className="h-4 w-4 mr-1.5 text-red-500 shrink-0" />
-                <span className={`uppercase tracking-wide text-lg ${isDarkMode ? 'text-slate-300' : 'text-gray-500'}`}>Farm Location:</span>
+                <span className={`uppercase tracking-wide text-lg ${isDarkMode ? 'text-slate-300' : 'text-gray-500'}`}>{t('farm_location')}:</span>
               </div>
               <select
                 value={location}
@@ -1227,9 +1227,9 @@ const FarmerDashboard = () => {
                 }}
                 className={`w-full border rounded-xl px-3.5 py-2.5 text-xl font-semibold focus:ring-2 focus:ring-green-500 outline-none shadow-2xs ${isDarkMode ? 'bg-slate-700 text-white border-slate-600' : 'bg-white text-gray-800 border-gray-300'}`}
               >
-                <option value="Kharif Monsoon">Kharif (Monsoon)</option>
-                <option value="Rabi Winter">Rabi (Winter)</option>
-                <option value="Zaid Summer">Zaid (Summer)</option>
+                <option value="Kharif Monsoon">{t('kharif_season')}</option>
+                <option value="Rabi Winter">{t('rabi_season')}</option>
+                <option value="Zaid Summer">{t('zaid_season')}</option>
               </select>
             </div>
 
@@ -1250,8 +1250,8 @@ const FarmerDashboard = () => {
                     }}
                     className={`ml-2 text-base bg-transparent font-extrabold cursor-pointer outline-none ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`}
                   >
-                    <option value="Hectares" className="text-gray-900">Hectares</option>
-                    <option value="Acres" className="text-gray-900">Acres</option>
+                    <option value="Hectares" className="text-gray-900">{t('hectares')}</option>
+                    <option value="Acres" className="text-gray-900">{t('acres')}</option>
                   </select>
                 </div>
               <input 
@@ -1281,15 +1281,15 @@ const FarmerDashboard = () => {
           <div className="grid grid-cols-4 gap-3.5 text-center">
             <div className={`p-3 rounded-xl border shadow-2xs ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-emerald-100'}`}>
               <span className="block text-base font-bold text-gray-400 uppercase">{t('nitrogen')}</span>
-              <span className="text-2xl font-black text-emerald-500">{soilProfile.N} <xs className="text-base">kg/ha</xs></span>
+              <span className="text-2xl font-black text-emerald-500">{soilProfile.N} <xs className="text-base">{t('kg_ha')}</xs></span>
             </div>
             <div className={`p-3 rounded-xl border shadow-2xs ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-emerald-100'}`}>
               <span className="block text-base font-bold text-gray-400 uppercase">{t('phosphorus')}</span>
-              <span className="text-2xl font-black text-emerald-500">{soilProfile.P} <xs className="text-base">kg/ha</xs></span>
+              <span className="text-2xl font-black text-emerald-500">{soilProfile.P} <xs className="text-base">{t('kg_ha')}</xs></span>
             </div>
             <div className={`p-3 rounded-xl border shadow-2xs ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-emerald-100'}`}>
               <span className="block text-base font-bold text-gray-400 uppercase">{t('potassium')}</span>
-              <span className="text-2xl font-black text-emerald-500">{soilProfile.K} <xs className="text-base">kg/ha</xs></span>
+              <span className="text-2xl font-black text-emerald-500">{soilProfile.K} <xs className="text-base">{t('kg_ha')}</xs></span>
             </div>
             <div className={`p-3 rounded-lg border shadow-2xs ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-emerald-100'}`}>
               <span className="block text-base font-bold text-gray-400 uppercase">{t('soilph')}</span>
@@ -1328,7 +1328,7 @@ const FarmerDashboard = () => {
                   isDarkMode ? 'bg-slate-900 border-slate-700 text-white' : 'bg-white border-emerald-100 text-gray-900'
                 }`}>
                   <span className={`block text-base font-bold uppercase ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>{t('currentmandiprice')}</span>
-                  <span className={`text-4xl font-black ${isDarkMode ? 'text-emerald-400' : 'text-emerald-700'}`}>₹{basePrice.toLocaleString('en-IN')} <xs className={`text-lg font-semibold ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>/qtl</xs></span>
+                  <span className={`text-4xl font-black ${isDarkMode ? 'text-emerald-400' : 'text-emerald-700'}`}>₹{basePrice.toLocaleString('en-IN')} <xs className={`text-lg font-semibold ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>{t('per_qtl')}</xs></span>
                 </div>
               </div>
 
@@ -1352,7 +1352,7 @@ const FarmerDashboard = () => {
                 <div className={`p-3.5 rounded-2xl border ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-emerald-100'}`}>
                   <span className={`block text-base font-bold uppercase ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>{t('profit_margin')}</span>
                   <span className={`text-2xl font-extrabold ${isDarkMode ? ((analysisData.profit_analysis?.roi_percent || 19.1) >= 0 ? "text-emerald-400" : "text-red-400") : ((analysisData.profit_analysis?.roi_percent || 19.1) >= 0 ? "text-emerald-600" : "text-red-600")}`}>{(analysisData.profit_analysis?.roi_percent || 19.1) > 0 ? "+" : ""}{analysisData.profit_analysis?.roi_percent || 19.1}%</span>
-                  <span className={`block text-base font-medium mt-0.5 ${isDarkMode ? 'text-slate-400' : 'text-gray-400'}`}>Return on Investment</span>
+                  <span className={`block text-base font-medium mt-0.5 ${isDarkMode ? 'text-slate-400' : 'text-gray-400'}`}>{t('return_on_investment')}</span>
                 </div>
               </div>
 
@@ -1455,22 +1455,22 @@ const FarmerDashboard = () => {
                 <div className="p-3.5 rounded-2xl border bg-slate-900 text-slate-100 border-slate-700 shadow-md">
                   <span className="block text-base font-bold text-slate-400 uppercase tracking-wider">{t('today_mandi_price')}</span>
                   <span className="text-2xl font-black text-white">₹{priceForecast.priceToday.toLocaleString('en-IN')}</span>
-                  <span className="block text-[9px] text-slate-400 font-extrabold mt-0.5">Base Rate</span>
+                  <span className="block text-[9px] text-slate-400 font-extrabold mt-0.5">{t('base_rate')}</span>
                 </div>
                 <div className="p-3.5 rounded-2xl border bg-emerald-900/90 text-emerald-100 border-emerald-700 shadow-md">
                   <span className="block text-base font-bold text-emerald-300 uppercase tracking-wider">{t('next_15_days') || '15 Day Forecast'}</span>
                   <span className="text-2xl font-black text-white">₹{priceForecast.price15.toLocaleString('en-IN')}</span>
-                  <span className="block text-[9px] text-emerald-300 font-extrabold mt-0.5">+3.8% Gain</span>
+                  <span className="block text-[9px] text-emerald-300 font-extrabold mt-0.5">{t('gain_3_8')}</span>
                 </div>
                 <div className="p-3.5 rounded-2xl border bg-emerald-800 text-white border-emerald-600 shadow-lg ring-1 ring-emerald-500/40">
                   <span className="block text-base font-bold text-emerald-200 uppercase tracking-wider">{t('next_30_days') || '30 Day Forecast'}</span>
                   <span className="text-2xl font-black text-white">₹{priceForecast.price30.toLocaleString('en-IN')}</span>
-                  <span className="block text-[9px] text-amber-300 font-extrabold mt-0.5">+7.5% Gain</span>
+                  <span className="block text-[9px] text-amber-300 font-extrabold mt-0.5">{t('gain_7_5')}</span>
                 </div>
                 <div className="p-3.5 rounded-2xl border bg-teal-900/90 text-teal-100 border-teal-700 shadow-md">
                   <span className="block text-base font-bold text-teal-300 uppercase tracking-wider">{t('next_90_days') || '90 Day Forecast'}</span>
                   <span className="text-2xl font-black text-white">₹{priceForecast.price90.toLocaleString('en-IN')}</span>
-                  <span className="block text-[9px] text-teal-300 font-extrabold mt-0.5">+13.4% Peak</span>
+                  <span className="block text-[9px] text-teal-300 font-extrabold mt-0.5">{t('peak_13_4')}</span>
                 </div>
               </div>
 
@@ -1540,7 +1540,7 @@ const FarmerDashboard = () => {
                       Essential Farmer Guide
                     </span>
                   </h3>
-                  <p className="text-lg text-emerald-100">Practical Agronomic Insights & Market Advice</p>
+                  <p className="text-lg text-emerald-100">{t('practical_insights')}</p>
                 </div>
               </div>
 
@@ -1610,10 +1610,10 @@ const FarmerDashboard = () => {
                         <MapPin className="h-4 w-4 text-emerald-600" /> Soil & Sowing Requirements
                       </h4>
                       <p className={`text-lg font-medium leading-relaxed ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>
-                        <strong className={`font-black ${isDarkMode ? 'text-white' : 'text-emerald-950'}`}>Soil Type:</strong> {info.soil}
+                        <strong className={`font-black ${isDarkMode ? 'text-white' : 'text-emerald-950'}`}>{t('soil_type')}:</strong> {info.soil}
                       </p>
                       <p className={`text-lg font-medium leading-relaxed mt-1 ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>
-                        <strong className={`font-black ${isDarkMode ? 'text-white' : 'text-emerald-950'}`}>Ideal Sowing:</strong> {info.sowing}
+                        <strong className={`font-black ${isDarkMode ? 'text-white' : 'text-emerald-950'}`}>{t('ideal_sowing')}:</strong> {info.sowing}
                       </p>
                     </div>
 
@@ -1722,7 +1722,7 @@ const FarmerDashboard = () => {
                   <MessageSquare className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-black tracking-tight">Official Officer Messages</h3>
+                  <h3 className="text-2xl font-black tracking-tight">{t('official_officer_messages')}</h3>
                   <p className="text-lg text-blue-600 font-bold">📍 {location} District Krushi Office</p>
                 </div>
               </div>
