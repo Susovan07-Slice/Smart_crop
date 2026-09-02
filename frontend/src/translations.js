@@ -287,6 +287,9 @@ export const translations = {
     message_sent: "Message Sent ✓",
     send_advisory: "Send Advisory",
 
+
+    hyperlocal_advisory: "HYPERLOCAL ADVISORY FOR",
+
   },
   hi: {
     // Intro Page
@@ -575,6 +578,9 @@ export const translations = {
     sending: "भेजा जा रहा है...",
     message_sent: "संदेश भेजा गया ✓",
     send_advisory: "सलाह भेजें",
+
+
+    hyperlocal_advisory: "के लिए रियल-टाइम सलाह:",
 
   },
   or: {

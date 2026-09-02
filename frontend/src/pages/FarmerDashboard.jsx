@@ -470,8 +470,7 @@ const FarmerDashboard = () => {
   const [nlpLoading, setNlpLoading] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const [lang, setWritingLang] = useState(lang || 'en');
-
+  
   const generateHyperlocalDistrictAdvisory = (distName, langCode) => {
     const cropStr = selectedCrop || 'Rice';
     const cropKey = cropStr.toLowerCase();
@@ -1057,8 +1056,7 @@ const FarmerDashboard = () => {
               <button
                 type="button"
                 onClick={() => {
-                  setWritingLang('en');
-                  changeLanguage('en');
+                                    changeLanguage('en');
                   setNlpResponse(generateHyperlocalDistrictAdvisory(location, 'en'));
                 }}
                 className={`px-3 py-1.5 rounded-xl text-lg font-black transition-all cursor-pointer ${
@@ -1070,8 +1068,7 @@ const FarmerDashboard = () => {
               <button
                 type="button"
                 onClick={() => {
-                  setWritingLang('or');
-                  changeLanguage('or');
+                                    changeLanguage('or');
                   setNlpResponse(generateHyperlocalDistrictAdvisory(location, 'or'));
                 }}
                 className={`px-3 py-1.5 rounded-xl text-lg font-black transition-all cursor-pointer ${
@@ -1083,8 +1080,7 @@ const FarmerDashboard = () => {
               <button
                 type="button"
                 onClick={() => {
-                  setWritingLang('hi');
-                  changeLanguage('hi');
+                                    changeLanguage('hi');
                   setNlpResponse(generateHyperlocalDistrictAdvisory(location, 'hi'));
                 }}
                 className={`px-3 py-1.5 rounded-xl text-lg font-black transition-all cursor-pointer ${
@@ -1103,7 +1099,7 @@ const FarmerDashboard = () => {
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b pb-2.5 border-emerald-100 gap-2">
               <span className="text-lg font-black text-emerald-700 uppercase flex items-center gap-1.5">
                 <Sparkles className="h-4 w-4 text-emerald-500 animate-pulse" />
-                <span>📍 HYPERLOCAL ADVISORY FOR {location.toUpperCase()} DISTRICT</span>
+                <span>📍 {t('hyperlocal_advisory') || 'HYPERLOCAL ADVISORY FOR'} {location.toUpperCase()} {t('district') || 'DISTRICT'}</span>
               </span>
 
               {/* READ ALOUD & STOP READING BUTTONS */}
