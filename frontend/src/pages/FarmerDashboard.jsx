@@ -470,7 +470,7 @@ const FarmerDashboard = () => {
   const [nlpLoading, setNlpLoading] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const [writingLang, setWritingLang] = useState(lang || 'en');
+  const [lang, setWritingLang] = useState(lang || 'en');
 
   const generateHyperlocalDistrictAdvisory = (distName, langCode) => {
     const cropStr = selectedCrop || 'Rice';
@@ -501,9 +501,9 @@ const FarmerDashboard = () => {
 
   useEffect(() => {
     if (!nlpQuery.trim()) {
-      setNlpResponse(generateHyperlocalDistrictAdvisory(location, writingLang));
+      setNlpResponse(generateHyperlocalDistrictAdvisory(location, lang));
     }
-  }, [location, writingLang, selectedCrop, analysisData]);
+  }, [location, lang, selectedCrop, analysisData]);
 
   const handleVoiceInput = () => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -512,7 +512,7 @@ const FarmerDashboard = () => {
       return;
     }
     const recognition = new SpeechRecognition();
-    recognition.lang = writingLang === 'or' ? 'or-IN' : writingLang === 'hi' ? 'hi-IN' : 'en-IN';
+    recognition.lang = lang === 'or' ? 'or-IN' : lang === 'hi' ? 'hi-IN' : 'en-IN';
     recognition.interimResults = false;
     
     setIsListening(true);
@@ -521,7 +521,7 @@ const FarmerDashboard = () => {
       const transcript = event.results[0][0].transcript;
       setNlpQuery(transcript);
       setIsListening(false);
-      handleNlpSubmit(transcript, writingLang);
+      handleNlpSubmit(transcript, lang);
     };
     recognition.onerror = () => setIsListening(false);
     recognition.onend = () => setIsListening(false);
@@ -549,9 +549,9 @@ const FarmerDashboard = () => {
 
     let speechText = textToRead;
 
-    if (writingLang === 'or') {
+    if (lang === 'or') {
       speechText = `${distName} ଜିଲ୍ଲାର କୃଷକ ଭାଇମାନଙ୍କ ପାଇଁ, ଆଗାମୀ ୫ ରୁ ୭ ଦିନ ମଧ୍ୟରେ, ମଧ୍ୟମ ଧରଣର ବର୍ଷା ସମ୍ଭାବନା ଥିବାରୁ ଜମିରୁ ଅତିରିକ୍ତ ଜଳ ନିଷ୍କାସନ ବ୍ୟବସ୍ଥା ଭଲ ରଖନ୍ତୁ। ଫସଲର ଭଲ ବୃଦ୍ଧି ପାଇଁ, ସୁଷମ NPK ସାର ୮୦:୪୦:୪୦ କେଜି/ହେକ୍ଟର, ସହ ୨୫ କେଜି ଜିଙ୍କ ସଲଫେଟ୍ କିସ୍ତିରେ ପ୍ରୟୋଗ କରନ୍ତୁ। ${distName} ମଣ୍ଡିରେ, ${cropStr} ର ଦର, କ୍ବିଣ୍ଟାଲ୍ ପ୍ରତି ₹୨,୩୦୦ ରେ ସ୍ଥିର ଅଛି, ଏବଂ ଆଗାମୀ ଦିନରେ ୮% ରୁ ୧୨% ବୃଦ୍ଧି ପାଇବାର ସମ୍ଭାବନା ଅଛି। ଏଥିସହିତ, ସକାଳ ସମୟରେ ଜମି ବୁଲି, କାଣ୍ଡବିନ୍ଧା ପୋକ କିମ୍ବା ପତ୍ର ପୋଡା ରୋଗ ଦେଖିଲେ, ନିମ୍ବ ତେଲ ୫ ମିଲି/ଲିଟର ସ୍ପ୍ରେ କରି ଫସଲକୁ ସୁରକ୍ଷିତ ରଖନ୍ତୁ।`;
-    } else if (writingLang === 'hi') {
+    } else if (lang === 'hi') {
       speechText = `नमस्ते किसान भाइयों! ${distName} जिले के लिए, अगले 5 से 7 दिनों में, मध्यम बारिश और अधिक आर्द्रता की संभावना है। इसलिए खेतों में पानी जमा होने से रोकने के लिए, जल निकासी का सही प्रबंध रखें। बेहतर फसल विकास के लिए, संतुलित NPK उर्वरक, 80:40:40 किलोग्राम प्रति हेक्टेयर, के साथ 25 किलोग्राम जिंक सल्फेट का प्रयोग करें। ${distName} मंडी में, ${cropStr} का भाव, 2300 रुपये प्रति क्विंटल पर मजबूत है, और आने वाले हफ्तों में 8 से 12 प्रतिशत की बढ़ोतरी की उम्मीद है। फसल को कीटों से बचाने के लिए, सुबह के समय तना छेदक या पत्ती झुलसा की जांच करें, और 5 मिली प्रति लीटर पानी में नीम का तेल मिलाकर छिड़काव करें।`;
     } else {
       speechText = `Hello Farmers! For ${distName} District, moderate rainfall is expected over the next 5 to 7 days with high humidity. Please ensure your field drainage channels are clear to prevent waterlogging. For optimal crop yield, apply balanced NPK fertilizers 80 40 40 kg per hectare, along with 25 kg per hectare of Zinc Sulphate. Market prices in ${distName} mandis for ${cropStr} are currently strong and steady at 2300 rupees per quintal, with an expected 8 to 12 percent price rise ahead. Finally, inspect your fields early in the morning for stem borer or leaf blast, and spray organic neem oil 5 ml per liter of water to protect your crops naturally.`;
@@ -559,7 +559,7 @@ const FarmerDashboard = () => {
 
     setIsSpeaking(true);
 
-    const audioUrl = `/api/tts-audio?text=${encodeURIComponent(speechText)}&lang=${writingLang}`;
+    const audioUrl = `/api/tts-audio?text=${encodeURIComponent(speechText)}&lang=${lang}`;
     const newAudio = new Audio(audioUrl);
 
     newAudio.onended = () => {
@@ -582,7 +582,7 @@ const FarmerDashboard = () => {
           window.speechSynthesis.cancel();
           const cleanText = (speechText || '').replace(/[*#`📍🌦️🧪📈🐛]/g, '');
           const utterance = new SpeechSynthesisUtterance(cleanText);
-          utterance.lang = writingLang === 'hi' ? 'hi-IN' : writingLang === 'or' ? 'hi-IN' : 'en-IN';
+          utterance.lang = lang === 'hi' ? 'hi-IN' : lang === 'or' ? 'hi-IN' : 'en-IN';
           utterance.rate = 0.90;
           utterance.onstart = () => setIsSpeaking(true);
           utterance.onend = () => setIsSpeaking(false);
@@ -605,7 +605,7 @@ const FarmerDashboard = () => {
 
   const handleNlpSubmit = async (queryParam, langParam) => {
     const textToQuery = typeof queryParam === 'string' ? queryParam : nlpQuery;
-    const langToUse = typeof langParam === 'string' ? langParam : writingLang;
+    const langToUse = typeof langParam === 'string' ? langParam : lang;
 
     const queryToUse = (textToQuery || '').trim();
     if (!queryToUse) return;
@@ -1043,20 +1043,10 @@ const FarmerDashboard = () => {
               }`}>
                 <Sparkles className="h-5.5 w-5.5 text-emerald-600 animate-pulse" />
                 <span>
-                  {writingLang === 'or' 
-                    ? "କୃଷକ ପରାମର୍ଶଦାତା (Farmer's Advisor)" 
-                    : writingLang === 'hi' 
-                    ? "किसान सलाहकार (Farmer's Advisor)" 
-                    : "Farmer's Advisor"}
-                </span>
+                  {t('farmers_advisor')}</span>
               </h3>
               <p className={`text-xs font-semibold mt-0.5 ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
-                {writingLang === 'or' 
-                  ? "ପାଣିପାଗ, ମୃତ୍ତିକା ସାର (NPK), ମଣ୍ଡି ଦର ଏବଂ କୀଟପତଙ୍ଗ ନିୟନ୍ତ୍ରଣ ପାଇଁ ରିଅଲ-ଟାଇମ ପରାମର୍ଶ" 
-                  : writingLang === 'hi' 
-                  ? "मौसम, मिट्टी उर्वरक (NPK), मंडी भाव और कीट नियंत्रण के लिए रियल-टाइम सलाह" 
-                  : "Real-time hyperlocal advisory for weather risk, soil NPK nutrients, mandi prices & pest control."}
-              </p>
+                {t('real_time_hyperlocal_advisory')}</p>
             </div>
 
             {/* LANGUAGE ADVISORY TOGGLE BUTTONS */}
@@ -1072,7 +1062,7 @@ const FarmerDashboard = () => {
                   setNlpResponse(generateHyperlocalDistrictAdvisory(location, 'en'));
                 }}
                 className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
-                  writingLang === 'en' ? 'bg-emerald-600 text-white shadow-xs scale-105' : 'text-emerald-900 hover:bg-emerald-200'
+                  lang === 'en' ? 'bg-emerald-600 text-white shadow-xs scale-105' : 'text-emerald-900 hover:bg-emerald-200'
                 }`}
               >
                 🇬🇧 English
@@ -1085,7 +1075,7 @@ const FarmerDashboard = () => {
                   setNlpResponse(generateHyperlocalDistrictAdvisory(location, 'or'));
                 }}
                 className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
-                  writingLang === 'or' ? 'bg-emerald-600 text-white shadow-xs scale-105' : 'text-emerald-900 hover:bg-emerald-200'
+                  lang === 'or' ? 'bg-emerald-600 text-white shadow-xs scale-105' : 'text-emerald-900 hover:bg-emerald-200'
                 }`}
               >
                 🇮🇳 ଓଡ଼ିଆ
@@ -1098,7 +1088,7 @@ const FarmerDashboard = () => {
                   setNlpResponse(generateHyperlocalDistrictAdvisory(location, 'hi'));
                 }}
                 className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
-                  writingLang === 'hi' ? 'bg-emerald-600 text-white shadow-xs scale-105' : 'text-emerald-900 hover:bg-emerald-200'
+                  lang === 'hi' ? 'bg-emerald-600 text-white shadow-xs scale-105' : 'text-emerald-900 hover:bg-emerald-200'
                 }`}
               >
                 🇮🇳 हिन्दी
@@ -1136,7 +1126,7 @@ const FarmerDashboard = () => {
                     ) : (
                       <>
                         <Volume2 className="h-4 w-4" />
-                        <span>🔊 Read Aloud ({writingLang === 'or' ? 'ଓଡ଼ିଆ' : writingLang === 'hi' ? 'हिन्दी' : 'English'})</span>
+                        <span>🔊 Read Aloud ({lang === 'or' ? 'ଓଡ଼ିଆ' : lang === 'hi' ? 'हिन्दी' : 'English'})</span>
                       </>
                     )}
                   </button>

@@ -11,7 +11,7 @@ const Dashboard = () => {
   
   const { t } = useLanguage();
 
-  const officerDistrict = localStorage.getItem('officerDistrict') || 'Khordha';
+  const officer{t('district')} = localStorage.getItem('officer{t('district')}') || 'Khordha';
   const officerUsername = localStorage.getItem('officerUsername') || 'admin';
 
   const fetchDashboardData = async () => {
@@ -19,7 +19,7 @@ const Dashboard = () => {
     setError(null);
     try {
       const response = await apiClient.get('/dashboard-data/', {
-        params: { district: officerDistrict }
+        params: { district: officer{t('district')} }
       });
       setData(response.data);
     } catch (err) {
@@ -40,7 +40,7 @@ const Dashboard = () => {
     const pollInterval = setInterval(() => {
       // Fetch silently without setting loading state to avoid UI flicker
       apiClient.get('/dashboard-data/', {
-        params: { district: officerDistrict }
+        params: { district: officer{t('district')} }
       })
       .then(response => setData(response.data))
       .catch(err => console.warn('Silent live-poll failed:', err));
@@ -50,7 +50,7 @@ const Dashboard = () => {
       window.removeEventListener('refreshOfficerDashboard', handleManualRefresh);
       clearInterval(pollInterval);
     };
-  }, [officerDistrict]);
+  }, [officer{t('district')}]);
 
   const [sendingAlertId, setSendingAlertId] = useState(null);
   const [sentAlertIds, setSentAlertIds] = useState(new Set());
@@ -76,7 +76,7 @@ const Dashboard = () => {
   if (loading) return (
     <div className="p-8 text-center text-gray-500 flex flex-col items-center justify-center min-h-[50vh]">
       <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-3"></div>
-      <p className="text-sm font-bold text-gray-700">Loading {officerDistrict} District Data...</p>
+      <p className="text-sm font-bold text-gray-700">Loading {officer{t('district')}} {t('district')} Data...</p>
     </div>
   );
   
@@ -102,19 +102,19 @@ const Dashboard = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transition-colors">
       
-      {/* Header with Strict District Jurisdiction Lock & Manual Refresh */}
+      {/* Header with Strict {t('district')} Jurisdiction Lock & Manual Refresh */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4 bg-white p-6 rounded-2xl shadow-xs border border-gray-100">
         <div>
           <div className="flex items-center space-x-2">
             <h1 className="text-2xl font-black text-gray-900 tracking-tight">
-              {officerDistrict} District Overview
+              {officer{t('district')}} {t('district')} Overview
             </h1>
             <span className="bg-blue-100 text-blue-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-blue-200">
-              Officer Portal
+              {t('officer_portal')}
             </span>
           </div>
           <p className="text-xs sm:text-sm text-gray-500 mt-1 font-medium">
-            Logged in as <strong className="text-blue-700">{officerUsername}</strong> • Dynamic District Agriculture Monitoring
+            {t('logged_in_as')} <strong className="text-blue-700">{officerUsername}</strong> {t('dynamic_district_agriculture_monitoring')}
           </p>
         </div>
 
@@ -127,15 +127,15 @@ const Dashboard = () => {
             title="Click to refresh officer dashboard data"
           >
             <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
-            <span>Refresh Data</span>
+            <span>{t('refresh_data')}</span>
           </button>
 
           <div className="flex items-center space-x-2 bg-blue-50 border border-blue-200 text-blue-900 px-4 py-2.5 rounded-xl shadow-2xs">
             <ShieldCheck className="h-5 w-5 text-blue-600 flex-shrink-0" />
             <div>
-              <span className="text-[10px] font-black text-blue-600 uppercase block tracking-wider">Assigned Jurisdiction</span>
+              <span className="text-[10px] font-black text-blue-600 uppercase block tracking-wider">{t('assigned_jurisdiction')}</span>
               <span className="text-sm font-black text-blue-950 flex items-center">
-                📍 {officerDistrict} District Only
+                📍 {officer{t('district')}} {t('district')} Only
               </span>
             </div>
           </div>
@@ -149,7 +149,7 @@ const Dashboard = () => {
             <Users className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">{t('total_farmers') || "Total District Farmers"}</p>
+            <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">{t('total_farmers') || "Total {t('district')} Farmers"}</p>
             <p className="text-2xl sm:text-3xl font-black text-gray-900">{data.total_farmers}</p>
           </div>
         </div>
@@ -169,10 +169,10 @@ const Dashboard = () => {
             <Activity className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">District Monitoring Status</p>
+            <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">{t('district_monitoring_status')}</p>
             <div className="flex items-center space-x-2 mt-0.5">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              <p className="text-xl font-extrabold text-gray-900">Active & Syncing</p>
+              <p className="text-xl font-extrabold text-gray-900">{t('active_syncing')}</p>
             </div>
           </div>
         </div>
@@ -184,9 +184,9 @@ const Dashboard = () => {
           <div>
             <h2 className="text-lg font-black text-red-950 flex items-center">
               <AlertTriangle className="w-5 h-5 mr-2 text-red-600" />
-              High Risk Interventions ({officerDistrict} District)
+              High Risk Interventions ({officer{t('district')}} {t('district')})
             </h2>
-            <p className="text-xs text-red-700 font-medium mt-0.5">Farmers requiring urgent distress intervention and officer advisory</p>
+            <p className="text-xs text-red-700 font-medium mt-0.5">{t('urgent_distress_intervention')}</p>
           </div>
           {data.high_risk_farmers.length > 0 && (
             <span className="text-xs font-extrabold px-3 py-1 bg-red-600 text-white rounded-full">
@@ -198,7 +198,7 @@ const Dashboard = () => {
         <div className="divide-y divide-gray-100">
           {data.high_risk_farmers.length === 0 ? (
             <div className="p-8 text-center text-gray-500 text-sm">
-              ✨ No high-risk distress farmers flagged in {officerDistrict} District currently.
+              ✨ No high-risk distress farmers flagged in {officer{t('district')}} {t('district')} currently.
             </div>
           ) : (
             data.high_risk_farmers.map(farmer => (
@@ -235,7 +235,7 @@ const Dashboard = () => {
                       return (
                         <button disabled className="px-4 py-2 rounded-xl text-xs font-black bg-blue-100 text-blue-800 flex items-center border border-blue-200 shadow-2xs opacity-80 cursor-wait animate-pulse">
                           <Loader2 className="w-3.5 h-3.5 animate-spin mr-1.5 text-blue-600" />
-                          <span>Sending...</span>
+                          <span>{t('sending')}</span>
                         </button>
                       );
                     }
@@ -243,7 +243,7 @@ const Dashboard = () => {
                       return (
                         <div className="px-4 py-2 rounded-xl text-xs font-black bg-emerald-100 text-emerald-800 flex items-center border border-emerald-300 shadow-2xs animate-in zoom-in-95 duration-200">
                           <CheckCircle2 className="w-4 h-4 mr-1.5 text-emerald-600 shrink-0" />
-                          <span>Message Sent ✓</span>
+                          <span>{t('message_sent')}</span>
                         </div>
                       );
                     }
@@ -252,7 +252,7 @@ const Dashboard = () => {
                         onClick={() => sendAlert(fKey)}
                         className="px-4 py-2 rounded-xl text-xs font-black bg-red-600 hover:bg-red-700 text-white active:scale-95 transition-all shadow-xs cursor-pointer flex items-center"
                       >
-                        <span>📢 Dispatch Alert</span>
+                        <span>{t('dispatch_alert')}</span>
                       </button>
                     );
                   })()}
@@ -269,9 +269,9 @@ const Dashboard = () => {
           <div>
             <h2 className="text-lg font-black text-gray-900 flex items-center">
               <Users className="w-5 h-5 mr-2 text-blue-600" />
-              Registered Farmer Directory ({officerDistrict} District)
+              Registered Farmer Directory ({officer{t('district')}} {t('district')})
             </h2>
-            <p className="text-xs text-gray-500 font-medium mt-0.5">Comprehensive database of all registered farmers in {officerDistrict}</p>
+            <p className="text-xs text-gray-500 font-medium mt-0.5">Comprehensive database of all registered farmers in {officer{t('district')}}</p>
           </div>
 
           <div className="relative max-w-xs w-full">
@@ -290,20 +290,20 @@ const Dashboard = () => {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-gray-50 border-b border-gray-100 text-[11px] font-black text-gray-500 uppercase tracking-wider">
-                <th className="py-3.5 px-6">Farmer Name</th>
-                <th className="py-3.5 px-6">Mobile Number</th>
-                <th className="py-3.5 px-6">District</th>
-                <th className="py-3.5 px-6">Primary Crop</th>
-                <th className="py-3.5 px-6">Est. Loan (₹)</th>
-                <th className="py-3.5 px-6">Distress Score</th>
-                <th className="py-3.5 px-6 text-right">Officer Action</th>
+                <th className="py-3.5 px-6">{t('farmer_name')}</th>
+                <th className="py-3.5 px-6">{t('mobile_number')}</th>
+                <th className="py-3.5 px-6">{t('district')}</th>
+                <th className="py-3.5 px-6">{t('primary_crop')}</th>
+                <th className="py-3.5 px-6">{t('est_loan')}</th>
+                <th className="py-3.5 px-6">{t('distress_score')}</th>
+                <th className="py-3.5 px-6 text-right">{t('officer_action')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 text-xs font-semibold text-gray-700">
               {filteredFarmers.length === 0 ? (
                 <tr>
                   <td colSpan="7" className="py-8 text-center text-gray-400">
-                    No farmers found matching search in {officerDistrict} District.
+                    No farmers found matching search in {officer{t('district')}} {t('district')}.
                   </td>
                 </tr>
               ) : (
@@ -337,19 +337,19 @@ const Dashboard = () => {
                             className="inline-flex items-center text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-3 py-1.5 rounded-xl shadow-2xs opacity-80 cursor-wait animate-pulse"
                           >
                             <Loader2 className="w-3.5 h-3.5 mr-1.5 animate-spin text-blue-600" />
-                            <span>Sending...</span>
+                            <span>{t('sending')}</span>
                           </button>
                         ) : isSent ? (
                           <div className="inline-flex items-center text-xs font-black text-emerald-800 bg-emerald-100 border border-emerald-300 px-3.5 py-1.5 rounded-xl shadow-2xs animate-in zoom-in-95 duration-200">
                             <CheckCircle2 className="w-4 h-4 mr-1.5 text-emerald-600 shrink-0" />
-                            <span>Message Sent ✓</span>
+                            <span>{t('message_sent')}</span>
                           </div>
                         ) : (
                           <button
                             onClick={() => sendAlert(farmerKey)}
                             className="inline-flex items-center text-xs font-black text-blue-600 hover:text-white bg-blue-50 hover:bg-blue-600 border border-blue-300 px-3.5 py-1.5 rounded-xl transition-all shadow-2xs hover:scale-105 active:scale-95 cursor-pointer"
                           >
-                            <span>Send Advisory</span>
+                            <span>{t('send_advisory')}</span>
                           </button>
                         )}
                       </td>
