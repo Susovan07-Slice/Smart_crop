@@ -94,13 +94,13 @@ const OfficerLogin = () => {
           <h2 className="mt-6 text-center text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">
             {t('officer_portal_title') || "Agricultural Officer Portal"}
           </h2>
-          <p className="mt-2 text-center text-xs sm:text-sm text-gray-600 font-medium">
+          <p className="mt-2 text-center text-sm sm:text-base text-gray-600 font-medium">
             Select your assigned Odisha District Jurisdiction below to login
           </p>
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-600 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-semibold">
+          <div className="bg-red-50 border border-red-200 text-red-600 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base font-semibold">
             {error}
           </div>
         )}
@@ -111,7 +111,7 @@ const OfficerLogin = () => {
             
             {/* District Jurisdiction Select Dropdown */}
             <div>
-              <label className="block text-xs font-black text-blue-950 uppercase mb-1.5 flex items-center">
+              <label className="block text-sm font-black text-blue-950 uppercase mb-1.5 flex items-center">
                 <Building2 className="h-4 w-4 mr-1.5 text-blue-600" />
                 Assigned Odisha District (30 Districts)
               </label>
@@ -123,7 +123,7 @@ const OfficerLogin = () => {
                     setSelectedDistrict(dist);
                     setUsername(`admin_${dist.toLowerCase()}`);
                   }}
-                  className="appearance-none rounded-xl block w-full pl-3.5 pr-8 py-3 border-2 border-blue-200 bg-blue-50/90 text-blue-950 font-black text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer shadow-2xs"
+                  className="appearance-none rounded-xl block w-full pl-3.5 pr-8 py-3 border-2 border-blue-200 bg-blue-50/90 text-blue-950 font-black text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer shadow-2xs"
                 >
                   {ODISHA_DISTRICTS.map(dist => (
                     <option key={dist} value={dist} className="text-gray-900 font-bold py-1">
@@ -136,7 +136,7 @@ const OfficerLogin = () => {
 
             {/* Password Input */}
             <div>
-              <label className="block text-xs font-black text-gray-700 uppercase mb-1.5 flex items-center">
+              <label className="block text-sm font-black text-gray-700 uppercase mb-1.5 flex items-center">
                 <Lock className="h-4 w-4 mr-1.5 text-blue-600" />
                 Officer Password
               </label>
@@ -147,7 +147,7 @@ const OfficerLogin = () => {
                 <input
                   type="password"
                   required
-                  className="appearance-none rounded-xl relative block w-full pl-10 px-3 py-3 border-2 border-gray-200 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-mono tracking-wider bg-gray-50"
+                  className="appearance-none rounded-xl relative block w-full pl-10 px-3 py-3 border-2 border-gray-200 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 text-base font-mono tracking-wider bg-gray-50"
                   placeholder="Enter officer password (default: 123)"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -160,7 +160,7 @@ const OfficerLogin = () => {
           <button
             type="submit"
             disabled={loading}
-            className="group relative w-full flex justify-center items-center py-3 sm:py-3.5 px-4 border border-transparent text-base font-black rounded-xl text-white bg-blue-600 hover:bg-blue-700 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 transition-all shadow-md cursor-pointer"
+            className="group relative w-full flex justify-center items-center py-3 sm:py-3.5 px-4 border border-transparent text-lg font-black rounded-xl text-white bg-blue-600 hover:bg-blue-700 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 transition-all shadow-md cursor-pointer"
           >
             {loading ? (
               <Loader2 className="animate-spin h-5 w-5" />
@@ -177,7 +177,7 @@ const OfficerLogin = () => {
           <button 
             type="button" 
             onClick={() => navigate('/')} 
-            className="text-xs sm:text-sm text-gray-500 hover:text-blue-600 transition-colors inline-flex items-center font-bold cursor-pointer"
+            className="text-sm sm:text-base text-gray-500 hover:text-blue-600 transition-colors inline-flex items-center font-bold cursor-pointer"
           >
             ← Back to Role Selection
           </button>

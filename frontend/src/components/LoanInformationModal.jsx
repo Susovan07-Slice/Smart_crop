@@ -136,11 +136,11 @@ const LoanInformationModal = ({ isOpen, onClose, onSave, initialData }) => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <div className="flex items-center justify-between mb-2">
-                <label className="block text-xs font-bold text-gray-700 uppercase">
+                <label className="block text-sm font-bold text-gray-700 uppercase">
                   {t("loan_active_question")}
                 </label>
                 {hasLoan && (
-                    <button type="button" onClick={handleAddLoan} className="text-[10px] flex items-center bg-emerald-100 text-emerald-700 px-2 py-1 rounded-lg font-bold hover:bg-emerald-200 transition-colors">
+                    <button type="button" onClick={handleAddLoan} className="text-xs flex items-center bg-emerald-100 text-emerald-700 px-2 py-1 rounded-lg font-bold hover:bg-emerald-200 transition-colors">
                         <Plus className="w-3 h-3 mr-1"/> Add Another Loan
                     </button>
                 )}
@@ -150,14 +150,14 @@ const LoanInformationModal = ({ isOpen, onClose, onSave, initialData }) => {
                 <button
                     type="button"
                     onClick={handleAddLoan}
-                    className="py-2.5 px-4 rounded-xl border text-xs font-extrabold transition-all bg-gray-100 border-gray-300 text-gray-600 hover:bg-gray-200"
+                    className="py-2.5 px-4 rounded-xl border text-sm font-extrabold transition-all bg-gray-100 border-gray-300 text-gray-600 hover:bg-gray-200"
                 >
                     {t("yes_active_loan")}
                 </button>
                 <button
                     type="button"
                     onClick={() => { setHasLoan(false); setLoans([]); }}
-                    className="py-2.5 px-4 rounded-xl border text-xs font-extrabold transition-all bg-emerald-600 border-emerald-500 text-white shadow-md"
+                    className="py-2.5 px-4 rounded-xl border text-sm font-extrabold transition-all bg-emerald-600 border-emerald-500 text-white shadow-md"
                 >
                     {t("no_loans")}
                 </button>
@@ -169,30 +169,30 @@ const LoanInformationModal = ({ isOpen, onClose, onSave, initialData }) => {
             <div key={loan.id} className="space-y-3.5 border border-emerald-200 bg-emerald-50/30 p-3.5 rounded-2xl relative">
               
               <div className="flex justify-between items-center border-b border-emerald-100 pb-2 mb-2">
-                  <span className="text-xs font-black text-emerald-800">LOAN #{index + 1}</span>
-                  <button type="button" onClick={() => handleRemoveLoan(loan.id)} className="text-[10px] text-red-600 bg-red-100 hover:bg-red-200 px-2 py-1 rounded-lg font-bold flex items-center transition-colors">
+                  <span className="text-sm font-black text-emerald-800">LOAN #{index + 1}</span>
+                  <button type="button" onClick={() => handleRemoveLoan(loan.id)} className="text-xs text-red-600 bg-red-100 hover:bg-red-200 px-2 py-1 rounded-lg font-bold flex items-center transition-colors">
                       <Trash2 className="w-3 h-3 mr-1"/> Mark as Cleared
                   </button>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-700 uppercase mb-1">{t("original_loan_amount")}</label>
+                  <label className="block text-sm font-bold text-gray-700 uppercase mb-1">{t("original_loan_amount")}</label>
                   <input
                     type="number"
                     value={loan.originalLoanAmount}
                     onChange={(e) => updateLoanField(loan.id, "originalLoanAmount", e.target.value)}
-                    className="w-full bg-white/90 border border-gray-300 rounded-xl px-3.5 py-2.5 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-emerald-500 outline-none shadow-2xs"
+                    className="w-full bg-white/90 border border-gray-300 rounded-xl px-3.5 py-2.5 text-sm font-bold text-gray-900 focus:ring-2 focus:ring-emerald-500 outline-none shadow-2xs"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-700 uppercase mb-1">{t("outstanding_principal")}</label>
+                  <label className="block text-sm font-bold text-gray-700 uppercase mb-1">{t("outstanding_principal")}</label>
                   <input
                     type="number"
                     value={loan.outstandingPrincipal}
                     readOnly
-                    className="w-full bg-red-50/50 border border-red-200 rounded-xl px-3.5 py-2.5 text-xs font-black text-red-600 outline-none shadow-inner cursor-not-allowed"
+                    className="w-full bg-red-50/50 border border-red-200 rounded-xl px-3.5 py-2.5 text-sm font-black text-red-600 outline-none shadow-inner cursor-not-allowed"
                     title="Auto-calculated"
                   />
                 </div>
@@ -200,23 +200,23 @@ const LoanInformationModal = ({ isOpen, onClose, onSave, initialData }) => {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-700 uppercase mb-1">{t("annual_interest_rate")}</label>
+                  <label className="block text-sm font-bold text-gray-700 uppercase mb-1">{t("annual_interest_rate")}</label>
                   <input
                     type="number"
                     step="0.1"
                     value={loan.annualInterestRate}
                     onChange={(e) => updateLoanField(loan.id, "annualInterestRate", e.target.value)}
-                    className="w-full bg-white/90 border border-gray-300 rounded-xl px-3.5 py-2.5 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-emerald-500 outline-none shadow-2xs"
+                    className="w-full bg-white/90 border border-gray-300 rounded-xl px-3.5 py-2.5 text-sm font-bold text-gray-900 focus:ring-2 focus:ring-emerald-500 outline-none shadow-2xs"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-700 uppercase mb-1">{t("total_amount_repaid")}</label>
+                  <label className="block text-sm font-bold text-gray-700 uppercase mb-1">{t("total_amount_repaid")}</label>
                   <input
                     type="number"
                     value={loan.totalAmountRepaid}
                     onChange={(e) => updateLoanField(loan.id, "totalAmountRepaid", e.target.value)}
-                    className="w-full bg-white/90 border border-emerald-300 rounded-xl px-3.5 py-2.5 text-xs font-black text-emerald-700 focus:ring-2 focus:ring-emerald-500 outline-none shadow-2xs"
+                    className="w-full bg-white/90 border border-emerald-300 rounded-xl px-3.5 py-2.5 text-sm font-black text-emerald-700 focus:ring-2 focus:ring-emerald-500 outline-none shadow-2xs"
                     required
                   />
                 </div>
@@ -224,20 +224,20 @@ const LoanInformationModal = ({ isOpen, onClose, onSave, initialData }) => {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-700 uppercase mb-1">{t("recent_new_loan")}</label>
+                  <label className="block text-sm font-bold text-gray-700 uppercase mb-1">{t("recent_new_loan")}</label>
                   <input
                     type="number"
                     value={loan.newLoanAmount}
                     onChange={(e) => updateLoanField(loan.id, "newLoanAmount", e.target.value)}
-                    className="w-full bg-white/90 border border-gray-300 rounded-xl px-3.5 py-2.5 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-emerald-500 outline-none shadow-2xs"
+                    className="w-full bg-white/90 border border-gray-300 rounded-xl px-3.5 py-2.5 text-sm font-bold text-gray-900 focus:ring-2 focus:ring-emerald-500 outline-none shadow-2xs"
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-700 uppercase mb-1">{t("repayment_frequency")}</label>
+                  <label className="block text-sm font-bold text-gray-700 uppercase mb-1">{t("repayment_frequency")}</label>
                   <select
                     value={loan.repaymentFrequency}
                     onChange={(e) => updateLoanField(loan.id, "repaymentFrequency", e.target.value)}
-                    className="w-full bg-white/90 border border-gray-300 rounded-xl px-3.5 py-2.5 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-emerald-500 outline-none shadow-2xs"
+                    className="w-full bg-white/90 border border-gray-300 rounded-xl px-3.5 py-2.5 text-sm font-bold text-gray-900 focus:ring-2 focus:ring-emerald-500 outline-none shadow-2xs"
                   >
                     <option value="Yearly">{t("yearly")}</option>
                     <option value="Half-yearly">{t("half_yearly")}</option>
@@ -249,21 +249,21 @@ const LoanInformationModal = ({ isOpen, onClose, onSave, initialData }) => {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-700 uppercase mb-1">Tenure (Months)</label>
+                  <label className="block text-sm font-bold text-gray-700 uppercase mb-1">Tenure (Months)</label>
                   <input
                     type="number"
                     value={loan.loanTenureMonths}
                     onChange={(e) => updateLoanField(loan.id, "loanTenureMonths", e.target.value)}
-                    className="w-full bg-white/90 border border-gray-300 rounded-xl px-3.5 py-2.5 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-emerald-500 outline-none shadow-2xs"
+                    className="w-full bg-white/90 border border-gray-300 rounded-xl px-3.5 py-2.5 text-sm font-bold text-gray-900 focus:ring-2 focus:ring-emerald-500 outline-none shadow-2xs"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-700 uppercase mb-1">{t("lender_source")}</label>
+                  <label className="block text-sm font-bold text-gray-700 uppercase mb-1">{t("lender_source")}</label>
                   <select
                     value={loan.lenderSource}
                     onChange={(e) => updateLoanField(loan.id, "lenderSource", e.target.value)}
-                    className="w-full bg-white/90 border border-gray-300 rounded-xl px-3.5 py-2.5 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-emerald-500 outline-none shadow-2xs"
+                    className="w-full bg-white/90 border border-gray-300 rounded-xl px-3.5 py-2.5 text-sm font-bold text-gray-900 focus:ring-2 focus:ring-emerald-500 outline-none shadow-2xs"
                   >
                     <option value="Bank">{t("bank")}</option>
                     <option value="Cooperative">{t("cooperative")}</option>
@@ -280,13 +280,13 @@ const LoanInformationModal = ({ isOpen, onClose, onSave, initialData }) => {
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2.5 text-xs font-bold text-gray-600 hover:text-gray-900 transition-colors"
+              className="px-4 py-2.5 text-sm font-bold text-gray-600 hover:text-gray-900 transition-colors"
             >
               {t("cancel")}
             </button>
             <button
               type="submit"
-              className="px-5 py-2.5 text-xs font-extrabold bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl shadow-md active:scale-95 transition-all"
+              className="px-5 py-2.5 text-sm font-extrabold bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl shadow-md active:scale-95 transition-all"
             >
               {t("save_profile_update_score")}
             </button>

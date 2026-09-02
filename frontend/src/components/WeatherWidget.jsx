@@ -205,7 +205,7 @@ const WeatherWidget = ({ location, isDarkMode }) => {
         <div className="min-w-[400px] flex justify-between px-2 h-[70px] items-center">
           {hourly.map((h, i) => (
             <div key={i} className="flex flex-col items-center justify-center w-[50px]">
-              <span className={`text-xs font-semibold mb-2 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{h.windSpeed} km/h</span>
+              <span className={`text-sm font-semibold mb-2 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{h.windSpeed} km/h</span>
               <ArrowUp 
                 className="h-4 w-4 text-blue-400" 
                 style={{ transform: `rotate(${h.windDir}deg)` }} 
@@ -233,7 +233,7 @@ const WeatherWidget = ({ location, isDarkMode }) => {
             </div>
           </div>
         </div>
-        <div className={`flex flex-col space-y-1 text-xs sm:text-sm text-right pt-1 ${isDarkMode ? 'text-slate-300' : 'text-gray-500'}`}>
+        <div className={`flex flex-col space-y-1 text-sm sm:text-base text-right pt-1 ${isDarkMode ? 'text-slate-300' : 'text-gray-500'}`}>
           <div><span className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-700'}`}>{t('precipitation')}:</span> {weatherData.current.precipProb}%</div>
           <div><span className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-700'}`}>{t('humidity')}:</span> {weatherData.current.humidity}%</div>
           <div><span className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-700'}`}>{t('wind')}:</span> {weatherData.current.wind} km/h</div>
@@ -243,7 +243,7 @@ const WeatherWidget = ({ location, isDarkMode }) => {
       {/* Tabs */}
       <div className={`flex space-x-6 border-b mt-2 ${isDarkMode ? 'border-slate-700' : 'border-gray-200'}`}>
         <div 
-          className={`text-sm font-bold pb-2 px-1 cursor-pointer transition-colors capitalize ${
+          className={`text-base font-bold pb-2 px-1 cursor-pointer transition-colors capitalize ${
             activeTab === 'temperature' 
               ? isDarkMode ? 'text-amber-400 border-b-2 border-amber-400' : 'text-gray-800 border-b-2 border-yellow-500' 
               : isDarkMode ? 'text-slate-400 hover:text-slate-200' : 'text-gray-500 hover:text-gray-700'
@@ -253,7 +253,7 @@ const WeatherWidget = ({ location, isDarkMode }) => {
           {t('temperature')}
         </div>
         <div 
-          className={`text-sm font-bold pb-2 px-1 cursor-pointer transition-colors capitalize ${
+          className={`text-base font-bold pb-2 px-1 cursor-pointer transition-colors capitalize ${
             activeTab === 'precipitation' 
               ? isDarkMode ? 'text-blue-400 border-b-2 border-blue-400' : 'text-gray-800 border-b-2 border-blue-500' 
               : isDarkMode ? 'text-slate-400 hover:text-slate-200' : 'text-gray-500 hover:text-gray-700'
@@ -263,7 +263,7 @@ const WeatherWidget = ({ location, isDarkMode }) => {
           {t('precipitation')}
         </div>
         <div 
-          className={`text-sm font-bold pb-2 px-1 cursor-pointer transition-colors capitalize ${
+          className={`text-base font-bold pb-2 px-1 cursor-pointer transition-colors capitalize ${
             activeTab === 'wind' 
               ? isDarkMode ? 'text-slate-200 border-b-2 border-slate-300' : 'text-gray-800 border-b-2 border-gray-400' 
               : isDarkMode ? 'text-slate-400 hover:text-slate-200' : 'text-gray-500 hover:text-gray-700'
@@ -284,7 +284,7 @@ const WeatherWidget = ({ location, isDarkMode }) => {
         <div className={`w-full overflow-x-auto scrollbar-hide border-t pt-2 mt-1 ${isDarkMode ? 'border-slate-700' : 'border-gray-100'}`}>
           <div className="min-w-[400px] flex justify-between px-2">
             {hourly.map((h, i) => (
-              <div key={i} className={`text-[10px] font-semibold w-[50px] text-center ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>
+              <div key={i} className={`text-xs font-semibold w-[50px] text-center ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>
                 {h.label}
               </div>
             ))}
@@ -296,11 +296,11 @@ const WeatherWidget = ({ location, isDarkMode }) => {
       <div className={`flex overflow-x-auto pt-2 pb-1 space-x-4 sm:space-x-6 scrollbar-hide border-t ${isDarkMode ? 'border-slate-700' : 'border-gray-100'}`}>
         {weatherData.daily.map((day, index) => (
           <div key={day.date} className="flex flex-col items-center min-w-[3.5rem]">
-            <span className={`text-[11px] font-semibold mb-2 capitalize ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>
+            <span className={`text-sm font-semibold mb-2 capitalize ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>
               {getDayName(day.date, index)}
             </span>
             {getWeatherIcon(day.weatherCode,"h-6 w-6 mb-2")}
-            <div className="flex items-center space-x-1 text-xs">
+            <div className="flex items-center space-x-1 text-sm">
               <span className={`font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{day.maxTemp}°</span>
               <span className={isDarkMode ? 'text-slate-400' : 'text-gray-400'}>{day.minTemp}°</span>
             </div>
