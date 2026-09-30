@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.vercel.smart_crop_final_version",
+      "sha256_cert_fingerprints": [
+        "AA:7D:4F:76:B1:17:3E:7B:1D:C5:D5:58:FA:73:5F:27:18:83:3C:72:8C:5F:36:C4:29:BD:EE:9C:DD:BC:9E:FF"
+      ]
+    }
+  }
+]
