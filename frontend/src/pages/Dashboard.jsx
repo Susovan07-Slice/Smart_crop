@@ -11,7 +11,7 @@ const Dashboard = () => {
   
   const { t } = useLanguage();
 
-  const officer{t('district')} = localStorage.getItem('officer{t('district')}') || 'Khordha';
+  const officerDistrict = localStorage.getItem('officerDistrict') || 'Khordha';
   const officerUsername = localStorage.getItem('officerUsername') || 'admin';
 
   const fetchDashboardData = async () => {
@@ -19,7 +19,7 @@ const Dashboard = () => {
     setError(null);
     try {
       const response = await apiClient.get('/dashboard-data/', {
-        params: { district: officer{t('district')} }
+        params: { district: officerDistrict }
       });
       setData(response.data);
     } catch (err) {
@@ -40,7 +40,7 @@ const Dashboard = () => {
     const pollInterval = setInterval(() => {
       // Fetch silently without setting loading state to avoid UI flicker
       apiClient.get('/dashboard-data/', {
-        params: { district: officer{t('district')} }
+        params: { district: officerDistrict }
       })
       .then(response => setData(response.data))
       .catch(err => console.warn('Silent live-poll failed:', err));
@@ -50,7 +50,7 @@ const Dashboard = () => {
       window.removeEventListener('refreshOfficerDashboard', handleManualRefresh);
       clearInterval(pollInterval);
     };
-  }, [officer{t('district')}]);
+  }, [officerDistrict]);
 
   const [sendingAlertId, setSendingAlertId] = useState(null);
   const [sentAlertIds, setSentAlertIds] = useState(new Set());
@@ -76,7 +76,7 @@ const Dashboard = () => {
   if (loading) return (
     <div className="p-8 text-center text-gray-500 flex flex-col items-center justify-center min-h-[50vh]">
       <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-3"></div>
-      <p className="text-xl font-bold text-gray-700">Loading {officer{t('district')}} {t('district')} Data...</p>
+      <p className="text-xl font-bold text-gray-700">Loading {officerDistrict} {t('district')} Data...</p>
     </div>
   );
   
@@ -107,7 +107,7 @@ const Dashboard = () => {
         <div>
           <div className="flex items-center space-x-2">
             <h1 className="text-4xl font-black text-gray-900 tracking-tight">
-              {officer{t('district')}} {t('district')} Overview
+              {officerDistrict} {t('district')} Overview
             </h1>
             <span className="bg-blue-100 text-blue-800 text-lg font-bold px-2.5 py-0.5 rounded-full border border-blue-200">
               {t('officer_portal')}
@@ -135,7 +135,7 @@ const Dashboard = () => {
             <div>
               <span className="text-base font-black text-blue-600 uppercase block tracking-wider">{t('assigned_jurisdiction')}</span>
               <span className="text-xl font-black text-blue-950 flex items-center">
-                📍 {officer{t('district')}} {t('district')} Only
+                📍 {officerDistrict} {t('district')} Only
               </span>
             </div>
           </div>
@@ -149,7 +149,7 @@ const Dashboard = () => {
             <Users className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-lg text-gray-500 font-bold uppercase tracking-wider">{t('total_farmers') || "Total {t('district')} Farmers"}</p>
+            <p className="text-lg text-gray-500 font-bold uppercase tracking-wider">{t('total_farmers') || "Total District Farmers"}</p>
             <p className="text-4xl sm:text-4xl font-black text-gray-900">{data.total_farmers}</p>
           </div>
         </div>
@@ -184,7 +184,7 @@ const Dashboard = () => {
           <div>
             <h2 className="text-2xl font-black text-red-950 flex items-center">
               <AlertTriangle className="w-5 h-5 mr-2 text-red-600" />
-              High Risk Interventions ({officer{t('district')}} {t('district')})
+              High Risk Interventions ({officerDistrict} {t('district')})
             </h2>
             <p className="text-lg text-red-700 font-medium mt-0.5">{t('urgent_distress_intervention')}</p>
           </div>
@@ -198,7 +198,7 @@ const Dashboard = () => {
         <div className="divide-y divide-gray-100">
           {data.high_risk_farmers.length === 0 ? (
             <div className="p-8 text-center text-gray-500 text-xl">
-              ✨ No high-risk distress farmers flagged in {officer{t('district')}} {t('district')} currently.
+              ✨ No high-risk distress farmers flagged in {officerDistrict} {t('district')} currently.
             </div>
           ) : (
             data.high_risk_farmers.map(farmer => (
@@ -269,9 +269,9 @@ const Dashboard = () => {
           <div>
             <h2 className="text-2xl font-black text-gray-900 flex items-center">
               <Users className="w-5 h-5 mr-2 text-blue-600" />
-              Registered Farmer Directory ({officer{t('district')}} {t('district')})
+              Registered Farmer Directory ({officerDistrict} {t('district')})
             </h2>
-            <p className="text-lg text-gray-500 font-medium mt-0.5">Comprehensive database of all registered farmers in {officer{t('district')}}</p>
+            <p className="text-lg text-gray-500 font-medium mt-0.5">Comprehensive database of all registered farmers in {officerDistrict}</p>
           </div>
 
           <div className="relative max-w-xs w-full">
@@ -303,7 +303,7 @@ const Dashboard = () => {
               {filteredFarmers.length === 0 ? (
                 <tr>
                   <td colSpan="7" className="py-8 text-center text-gray-400">
-                    No farmers found matching search in {officer{t('district')}} {t('district')}.
+                    No farmers found matching search in {officerDistrict} {t('district')}.
                   </td>
                 </tr>
               ) : (

@@ -239,7 +239,7 @@ export const translations = {
     microfinance: "Microfinance Institution",
     other_lender: "Other / Local Lender",
     cancel: "Cancel",
-    save_profile_update_score: "Save Profile & Update Safety Score"
+    save_profile_update_score: "Save Profile & Update Safety Score",
 
     farming_season: "Farming Season",
     soilph: "Soil pH",
@@ -633,7 +633,7 @@ export const translations = {
     microfinance: "माइक्रोफाइनेंस संस्थान",
     other_lender: "अन्य / स्थानीय साहूकार",
     cancel: "रद्द करें",
-    save_profile_update_score: "प्रोफ़ाइल सहेजें और सुरक्षा स्कोर अपडेट करें"
+    save_profile_update_score: "प्रोफ़ाइल सहेजें और सुरक्षा स्कोर अपडेट करें",
 
     farming_season: "कृषि का मौसम",
     soilph: "मिट्टी का pH",
